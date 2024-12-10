@@ -1,0 +1,74 @@
+\begin{frame}
+    \frametitle{Reutilizando consultas}
+
+    \begin{columns}
+        \column{.4\textwidth}
+    \centering
+    \huge ?`Podemos reutilizar consultas?
+
+        \column<2>{.55\textwidth}
+        \includegraphics[width=\textwidth]{mysql-yeah.jpg}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Vistas}
+
+    Las vistas \textbf{son consultas almacenadas}. 
+
+	\begin{lstlisting}[ language=SQL,
+		deletekeywords={IDENTITY},
+		deletekeywords={[2]INT},
+		morekeywords={clustered},
+		framesep=8pt,
+		xleftmargin=40pt,
+		framexleftmargin=40pt,
+		frame=tb,
+		framerule=0pt ]
+CREATE VIEW <nombre_vista> AS
+<consulta>
+\end{lstlisting}
+
+    \
+
+    \only<2->{
+    Puedes consultar a una vista de la misma manera que a una tabla.
+    }
+
+    \begin{columns}[t]
+        \column<2>{.55\textwidth}
+	\begin{lstlisting}[ language=SQL,
+		deletekeywords={IDENTITY},
+		deletekeywords={[2]INT},
+		morekeywords={clustered},
+		framesep=8pt,
+		xleftmargin=10pt,
+		framexleftmargin=10pt,
+		frame=tb,
+		framerule=0pt,
+        caption={Creaci\'on de la vista.} ]
+CREATE VIEW EmpleadosTecno AS
+SELECT Nombre, Departamento
+FROM Empleado
+WHERE Departamento = "IT";
+\end{lstlisting}
+
+        \column<2>{.45\textwidth}
+	\begin{lstlisting}[ language=SQL,
+		deletekeywords={IDENTITY},
+		deletekeywords={[2]INT},
+		morekeywords={clustered},
+		framesep=8pt,
+		xleftmargin=10pt,
+		framexleftmargin=10pt,
+		frame=tb,
+		framerule=0pt,
+        caption={Consulta a la vista.} ]
+SELECT Nombre
+FROM EmpleadosTecno
+WHERE Nombre LIKE "Mc%";
+\end{lstlisting}
+    \end{columns}
+
+\end{frame}

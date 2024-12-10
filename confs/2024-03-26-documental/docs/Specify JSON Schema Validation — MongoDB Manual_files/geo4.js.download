@@ -1,0 +1,17 @@
+(function(){
+  window['optimizely'] = window['optimizely'] || [];
+  window['optimizely'].push(['activateGeoDelayedExperiments', {
+    'location':{
+      'city': "MIAMI",
+      'continent': "NA",
+      'country': "US",
+      'region': "FL",
+      'dma': "528"
+    },
+    'ip':"185.243.57.78"
+  }]);
+})
+//
+()
+
+;

@@ -1,0 +1,49 @@
+\begin{frame}
+    \frametitle{Metodolog\'ia}
+
+    \begin{columns}
+        \column{.45\textwidth}
+
+        \includegraphics<1-2>[width=\textwidth]{img/specs-and-dbs.jpg}
+        \includegraphics<4-6>[width=\textwidth]{img/the-thinker.jpg}
+        \includegraphics<8>[width=\textwidth]{img/presenting-data.png}
+
+        \column{.1\textwidth}
+        \begin{center}
+            \begin{tikzpicture}
+                \node<2,6>[single arrow, fill=black, inner sep=6pt] at (0,0){};
+                \node<4,8>[single arrow, fill=black, inner sep=6pt, rotate=180] at (0,-1){};
+            \end{tikzpicture}
+        \end{center}
+
+        \column{.45\textwidth}
+            \only<2-4>{
+            \resizebox{\textwidth}{!}{
+                \begin{tikzpicture}[node distance=6em]
+                    \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+                    \node[entity] (jugador) {JUGADOR}
+                        [sibling distance=3cm]
+                        child {node[attribute] [above right of=jugador] {\tiny TROFEOS MAX}}
+                        child {node[attribute] [above of=jugador] {\tiny TROFEOS}}
+                        child {node[attribute] [above left of=jugador] {\tiny NOMBRE}}
+                        child {node[attribute] [left of=jugador] {\underline{\tiny \#J}}}
+                        child {node[attribute] [below left of=jugador] {NIVEL}}
+                        ;
+                  
+                    \node[entity] (clan) at (8,0) {CLAN}
+                    [sibling distance=3cm]
+                    child {node[attribute] [right of=clan] {\underline{\tiny \#Cl}}}
+                    child {node[attribute] [above of=clan] {\tiny REGI\'ON}}
+                    child {node[attribute] [above left of=clan] {\tiny TIPO}}
+                    child {node[attribute] [above right of=clan] {\tiny NOMBRE}}
+                    child {node[attribute] [below right of=clan] {\tiny TROFEOS MIN}};
+
+                    \node[relationship,aspect=2] (pertenecer) at (4,0) {PERTENECER}
+                    edge(jugador) edge(clan);
+                \end{tikzpicture}
+            }
+
+            }
+            \includegraphics<6-8>[width=\textwidth]{img/dev-interacts-bds.png}
+    \end{columns}
+\end{frame}

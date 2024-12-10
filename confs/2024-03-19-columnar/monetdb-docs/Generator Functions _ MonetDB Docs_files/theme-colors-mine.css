@@ -1,0 +1,158 @@
+
+:root{
+    
+    --MAIN-TEXT-color:#000044; /* Color of text by default */
+    --MAIN-TITLES-TEXT-color: #000044; /* Color of titles h2-h3-h4-h5 */
+    --MAIN-LINK-color:#3C60CE; /* Color of links */
+    --MAIN-LINK-HOVER-color:#3C60CE; /* Color of hovered links */
+    --MAIN-ANCHOR-color: #3C60CE; /* color of anchors on titles */
+
+    --SEARCHBOX-PLACEHOLDER-TEXT-color: #3C60CE;
+    --SEARCHBOX-TEXT-color: #004;
+
+    --MENU-HEADER-BG-color: #FFF;
+    --MENU-HEADER-BORDER-color: #FFF; /*Color of menu header border */ 
+
+    --MENU-SEARCH-BG-color:#fff; /* Search field background color (by default borders + icons) */
+    --MENU-SEARCH-BOX-color: #e0e0e0; /* Override search field border color */
+    --MENU-SEARCH-BOX-ICONS-color: #bdbdbd; /* Override search field icons color */
+
+    --MENU-SECTIONS-ACTIVE-BG-color:#4265CF10; /* Background color of the active section and its childs */
+    --MENU-SECTIONS-ACTIVE-BD-color:#4265CF10;; /* Background color of the active section and its childs */
+    --MENU-SECTIONS-BG-color:#fff; /* Background color of other sections */
+    --MENU-SECTIONS-LINK-color: #000044; /* Color of links in menu */
+    --MENU-SECTIONS-LINK-HOVER-color: #000044;  /* Color of links in menu, when hovered */
+    --MENU-SECTION-ACTIVE-CATEGORY-color: #1a3fb1; /* Color of active category text */
+    --MENU-SECTION-ACTIVE-CATEGORY-BG-color: #4265CF10;; /* Color of background for the active category (only) */
+
+    --MENU-VISITED-color: #bfe1f7; /* Color of 'page visited' icons in menu */
+    --MENU-SECTION-HR-color: #e0e0e0; /* Color of <hr> separator in menu */
+    
+}
+
+body {
+    color: var(--MAIN-TEXT-color) !important;
+    background-color: #fff;
+}
+
+textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[type="password"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="text"]:focus, input[type="url"]:focus, input[type="color"]:focus, input[type="date"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, select[multiple=multiple]:focus {
+    border-color: none;
+    box-shadow: none;
+}
+
+h2, h3, h4, h5 {
+    color: var(--MAIN-TITLES-TEXT-color) !important;
+}
+
+a {
+    color: var(--MAIN-LINK-color);
+}
+
+.anchor {
+    color: var(--MAIN-ANCHOR-color);
+}
+
+a:hover {
+    color: var(--MAIN-LINK-HOVER-color);
+}
+
+#sidebar ul li.visited > a .read-icon {
+	color: var(--MENU-VISITED-color);
+}
+
+#body a.highlight:after {
+    display: block;
+    content: "";
+    height: 1px;
+    width: 0%;
+    -webkit-transition: width 0.5s ease;
+    -moz-transition: width 0.5s ease;
+    -ms-transition: width 0.5s ease;
+    transition: width 0.5s ease;
+    background-color: var(--MAIN-LINK-HOVER-color);
+}
+#sidebar {
+	background-color: var(--MENU-SECTIONS-BG-color);
+}
+#sidebar #header-wrapper {
+    background: var(--MENU-HEADER-BG-color);
+    color: var(--MENU-SEARCH-BOX-color);
+    border-color: var(--MENU-HEADER-BORDER-color);
+}
+#sidebar .searchbox {
+	border-color: var(--MENU-SEARCH-BOX-color);
+    background: var(--MENU-SEARCH-BG-color);
+}
+#sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
+    background: var(--MENU-SECTIONS-ACTIVE-BG-color);
+    border-top: solid 1px var(--MENU-SECTIONS-ACTIVE-BD-color);
+    border-bottom: solid 1px var(--MENU-SECTIONS-ACTIVE-BD-color);
+}
+
+#sidebar .searchbox * {
+    color: var(--SEARCHBOX-TEXT-color);
+}
+
+#sidebar .searchbox input::placeholder {
+    color: var(--SEARCHBOX-PLACEHOLDER-TEXT-color);
+}
+
+#sidebar a {
+    color: var(--MENU-SECTIONS-LINK-color);
+}
+
+#sidebar a:hover {
+    color: var(--MENU-SECTIONS-LINK-HOVER-color);
+}
+
+#sidebar ul li.active > a {
+    background: var(--MENU-SECTION-ACTIVE-CATEGORY-BG-color);
+    color: var(--MENU-SECTION-ACTIVE-CATEGORY-color) !important;
+}
+
+#sidebar hr {
+    border-color: var(--MENU-SECTION-HR-color);
+    width: 70%;
+    margin-left:15%;
+    margin-left:15%;
+}
+
+#header {
+    margin-top: 1rem;
+}
+
+#prefooter ul {
+    text-align: center;
+}
+
+#prefooter ul li > a {
+    display: inline-block;
+}
+
+#prefooter ul li > a {
+    padding: 4px 10px;
+}
+
+#prefooter a {
+    background-color: var(--MENU-VISITED-color);
+    color: #fff;
+    border-radius: 12px;
+}
+
+#prefooter i {
+    color: var(--SEARCHBOX-TEXT-color);
+}
+
+#prefooter g {
+    fill: var(--SEARCHBOX-TEXT-color);
+}
+
+#prefooter select {
+    color: var(--SEARCHBOX-TEXT-color);
+}
+
+#extra-menu-sidebar {
+    margin-left: 1rem;
+    display: flex;
+}
+

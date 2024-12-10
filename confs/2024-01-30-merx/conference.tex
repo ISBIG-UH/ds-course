@@ -1,0 +1,67 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{listings}
+
+\usecolortheme{whale}
+\usetikzlibrary{er,positioning}  
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows, decorations.markings}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{overlay-beamer-styles}
+
+% \setbeameroption{show notes on second screen=left}
+
+\setbeamertemplate{navigation symbols}{}
+
+\tikzstyle{every link} = []
+\tikzstyle{link} = [>=triangle 60, draw, every link]
+
+\definecolor{attr}{RGB}{10,153,2}
+
+\title{Bases de Datos}
+\subtitle{Modelaci\'on Conceptual}
+\author[Garc\'ia L., Cardentey V. M., Ledesma A.]{
+    Lic. Andy Ledesma Garc\'ia\\
+    Lic. V\'ictor M. Cardentey Fundora\\ 
+    Dra. C. Lucina Garc\'ia Hern\'andez
+}
+\institute[MATCOM-UH]{
+    Departamento de Computaci\'on\\
+    Facultad de Matem\'atica y Computaci\'on\\
+    Universidad de La Habana\\[3mm]
+    Licenciatura en Ciencia de Datos
+}
+\date[]{30 de enero de 2024}
+
+
+\begin{document}
+    \maketitle
+    \include{data_processing.tex}
+    \include{methodology.tex}
+    \include{goal.tex}
+    \include{coc.tex}
+    \include{motivation.tex}
+    \include{identifying_key_aspects.tex}
+    \include{merx.tex}
+    \include{entities_and_relations.tex}
+    \include{cardinality.tex}
+    \include{degree.tex}
+    \include{pls_stop.tex}
+    \include{lets_keep_going.tex}
+    \include{attributes_and_keys.tex}
+    \include{intro_aggregations.tex}
+
+    % @NOTE for the next conf on thursday
+    % \include{mercy.tex}
+    % \include{finally.tex}
+    % \include{recap.tex}
+    % \include{questions.tex}
+    % end of note scope
+
+    \include{using_merx.tex}
+    \include{doubts}
+    \include{exercises.tex}
+    \maketitle
+\end{document}

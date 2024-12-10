@@ -1,0 +1,70 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\usecolortheme{whale}
+\usetikzlibrary{er,positioning}  
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows, decorations.markings}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.arrows}
+
+\usepackage{listings}
+
+\definecolor{blue1}{RGB}{126,126,206}
+\definecolor{blue2}{RGB}{87,87,192}
+\definecolor{blue3}{RGB}{51,51,178}
+\definecolor{blue4}{RGB}{27,26,107}
+
+
+\definecolor{cgreen}{RGB}{50,187,176}
+\definecolor{cblue} {RGB} {53,140,214}
+\lstdefinestyle{sharpc}{language=[Sharp]C, frame=lr, rulecolor=\color{blue!80!black}}
+
+\usepackage{multicol}
+
+\newcommand{\kword}[1]{{\color{cblue} \texttt{#1}}}
+\newcommand{\tword}[1]{{\color{cgreen} \texttt{#1}}}
+
+\setbeamertemplate{navigation symbols}{}
+
+\setbeameroption{show notes on second screen=right}
+
+\tikzstyle{every link} = []
+\tikzstyle{link} = [>=triangle 60, draw, every link]
+
+\definecolor{attr}{RGB}{10,153,2}
+
+\title{Bases de Datos}
+\subtitle{Dise\~no L\'ogico: Modelo relacional. Dise\~no Intuitivo}
+\author[Garc\'ia L., Cardentey V. M., Ledesma A.]{
+    Lic. Andy Ledesma Garc\'ia\\
+    Lic. V\'ictor M. Cardentey Fundora\\ 
+    Dra. C. Lucina Garc\'ia Hern\'andez
+}
+\institute[MATCOM-UH]{
+    Departamento de Computaci\'on\\
+    Facultad de Matem\'atica y Computaci\'on\\
+    Universidad de La Habana\\[3mm]
+    Licenciatura en Ciencia de Datos
+}
+\date[]{6 de febrero de 2024}
+
+
+\begin{document}
+    \maketitle
+    \include{recap.tex}
+    \include{objectives.tex}
+    \include{data_models.tex}
+    \include{before_relational.tex}
+    \include{finally.tex}
+    \include{structure.tex}
+    \include{constraints.tex}
+    \include{operations.tex}
+    \include{relational_model.tex}
+    \include{merx_to_relations.tex}
+    \include{idesign.tex}
+    \include{doubts.tex}
+    \maketitle
+    \include{annex.tex}
+\end{document}

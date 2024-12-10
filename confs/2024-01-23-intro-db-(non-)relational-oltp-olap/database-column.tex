@@ -1,0 +1,148 @@
+\begin{frame}
+    \frametitle{Bases de datos}
+    \framesubtitle{Columnares}
+
+\begin{center}
+    \Huge \textbf{Columnares}
+\end{center}
+\end{frame}
+
+\begin{frame}{Bases de datos}
+    \framesubtitle{Columnares}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de \textcolor{red}{registros} integrados."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                
+                \textcolor{red}{Registro}: datos espec\'ificos sobre una entidad u objeto de inter\'es
+            \end{block}
+      \vspace{8mm}
+
+      \centering
+
+        \begin{onlyenv}<1>
+      \begin{tabular}{|c|}
+          \hline
+           23082300205 \\ \hline
+           Edgar F. \\\hline
+           Codd \\\hline
+           23/08/1923 \\
+          \hline
+      \end{tabular}
+    \end{onlyenv}
+     
+     \begin{onlyenv}<2->
+      \begin{tabular}{|c|c|c|}
+          \hline
+           23082300205 & 43101123919 & 44011279165 \\ \hline
+           Edgar F. & Michael & Jim \\\hline
+           Codd & Stonebreaker & Gray \\\hline
+           23/08/1923 & 11/10/1943 & 12/01/1944 \\
+          \hline
+      \end{tabular}
+     \end{onlyenv}
+
+    \end{overlayarea}
+
+    \note<1>{@NOTE ahora el enfoque est\'a sobre las columnas, en lugar de las filas, i.e. es m\'as importante extraer todos los valores de una columna que todos los de una fila. Aqu\'i el principal objetivo es analizar comportamientos a partir de los datos}    
+\end{frame}
+
+\begin{frame}{Bases de datos}
+    \framesubtitle{Columnares}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+            \begin{quote}
+                ``... una base de datos es una colecci\'on \textcolor{red}{auto-descriptiva} de registros integrados."
+                \hspace{1em plus 1fill}---Allen Taylor
+            \end{quote}
+    
+            \textcolor{red}{Auto-descriptiva}: se almacenan metadatos (la descripci\'on de su estructura) dentro
+            del diccionario de datos de la propia base de datos.
+        \end{block}
+      \end{onlyenv}
+      
+          \vspace{5mm}
+      
+        \begin{columns}
+            \begin{column}[t]{0.5\textwidth}
+          \centering
+
+          \large \textbf{Persona}
+          \vspace{2mm}
+
+      \begin{tabular}{|c|c|}
+          \hline
+          CI : \textcolor{blue}{string} & 23082300205 \\ \hline
+          Nombre : \textcolor{blue}{string} & Edgar F. \\\hline
+          Apellido : \textcolor{blue}{string} & Codd \\\hline
+          F. Nacimiento : \textcolor{blue}{date} & 23/08/1923 \\
+          \hline
+      \end{tabular}
+    \end{column}
+            \begin{column}[t]{0.5\textwidth}
+            \end{column}
+        \end{columns}
+
+    \end{overlayarea}
+\end{frame}
+
+
+
+\begin{frame}{Bases de datos}
+    \framesubtitle{Columnares}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de registros \textcolor{red}{integrados}."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                \textcolor{red}{Integrados}: no solo contiene los datos sino tambi\'en las interrelaciones
+                 que se establecen entre estos.
+            \end{block}
+      \end{onlyenv}
+
+      \vspace{5mm}
+        \begin{columns}
+            \begin{column}[t]{0.5\textwidth}
+          \centering
+
+          \large \textbf{Persona}
+          \vspace{2mm}
+
+      \begin{tabular}{|c|c|}
+          \hline
+          CI : \textcolor{blue}{string} & \textcolor{red}{23082300205} \\ \hline
+          Nombre : \textcolor{blue}{string} & Edgar F. \\\hline
+          Apellido : \textcolor{blue}{string} & Codd \\\hline
+          F. Nacimiento : \textcolor{blue}{date} & 23/08/1923 \\
+          \hline
+      \end{tabular}
+    \end{column}
+
+            \begin{column}[t]{0.5\textwidth}
+          \centering
+
+          \large \textbf{Cuenta}
+          \vspace{2mm}
+
+                \begin{tabular}{|c|c|}
+                    \hline
+                    No. Cuenta : \textcolor{blue}{string} & 8976 \\\hline
+                    Balance : \textcolor{blue}{decimal} & 270.98 \\\hline
+                    CI Due\~no : \textcolor{blue}{string} & \textcolor{red}{23082300205} \\
+                    \hline
+                \end{tabular}
+            \end{column}
+        \end{columns}
+    \end{overlayarea}
+    
+
+    
+\end{frame}

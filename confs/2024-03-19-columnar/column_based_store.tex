@@ -1,0 +1,46 @@
+\begin{frame}
+    \frametitle{Almacenamiento basado en columnas}
+
+    \begin{block}{Principal caracter\'istica}
+        Cada bloque de informaci\'on s\'olo contiene datos de una columna.
+    \end{block}
+
+    \begin{columns}<2->[t]
+        \column{.5\textwidth}
+\begin{exampleblock}{Ventajas}
+    \begin{itemize}[<+(1)->]
+        \item Requiere menos almacenamiento gracias a t\'ecnicas de compresi\'on
+        \item Eficiente para consultas que requieren muchos datos pero s\'olo un peque\~no subconjunto de las columnas
+        \item C\'omputo en paralelo
+    \end{itemize}
+\end{exampleblock}
+
+        \column{.5\textwidth}
+\begin{alertblock}{Desventajas}
+    \begin{itemize}[<+(1)->]
+        \item Las operaciones de escritura son costosas
+        \item Ineficiente para operar sobre las filas
+    \end{itemize}
+\end{alertblock}
+    \end{columns}
+
+    \note<2>{@NOTE x ejemplo:
+        \begin{itemize}
+            \item referenciar a valores \'unicos
+            \item eliminar redundancia en datos repetidos continuamente (Run-Length Encoding)
+            \item eliminaci\'on de nulls llevando m\'ascaras de bits, por ejemplo
+        \end{itemize}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{Almacenamiento basado en columnas}
+
+    \begin{block}{Casos de uso}
+        \begin{itemize}[<+->]
+            \item \textit{Data warehousing} e Inteligencia de Negocios (BI)
+            \item Series de tiempo
+            \item An\'alisis en tiempo real
+        \end{itemize}
+    \end{block}
+\end{frame}

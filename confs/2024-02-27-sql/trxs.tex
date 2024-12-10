@@ -1,0 +1,56 @@
+\begin{frame}
+    \frametitle{Transacciones}
+
+    \Huge \centering Transacciones
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Transacciones}
+
+    Atomicidad, consistencia, aislamiento y durabilidad (ACID).
+
+    \begin{block}<2->{Secuencia de comandos}
+    \begin{enumerate}
+        \item<3-> Use \textcolor{codepurple}{START TRANSACTION} para marcar el comienzo del bloque de c\'odigo.
+        \item<4-> Ejecute una o m\'as operaciones (\textcolor{codepurple}{INSERT}, \textcolor{codepurple}{UPDATE}, \textcolor{codepurple}{DELETE}, etc).
+        \item<5-> Use \textcolor{codepurple}{COMMIT} para aplicar los cambios o \textcolor{codepurple}{ROLLBACK} para deshacerlos.
+    \end{enumerate}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Transacciones}
+    \framesubtitle{Ejemplo}
+
+	\begin{lstlisting}[ language=SQL,
+		deletekeywords={IDENTITY},
+		deletekeywords={[2]INT},
+		morekeywords={clustered},
+		framesep=8pt,
+		xleftmargin=10pt,
+		framexleftmargin=10pt,
+		frame=tb,
+		framerule=0pt,
+        ]
+START TRANSACTION;
+
+-- Intentar deducir la cantidad de la cuenta del emisor
+UPDATE Cuenta SET saldo = saldo - 100 WHERE Id = 1;
+-- Verificar aquí si hay alguna condición de error
+
+-- Intentar agregar la cantidad a la cuenta del receptor
+UPDATE Cuenta SET saldo = saldo + 100 WHERE Id = 2;
+-- Verificar aquí si hay alguna condición de error 
+
+-- Manejo de errores
+-- Aquí, estamos asumiendo que se utiliza una variable @error_detected para rastrear el estado del error
+IF @error_detected THEN
+    ROLLBACK;
+ELSE
+    COMMIT;
+END IF;
+\end{lstlisting}
+
+\end{frame}

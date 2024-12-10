@@ -1,0 +1,37 @@
+\frametitle{Alternativa: Utilizar la clausura de un conjunto de atributos}
+
+    \onslide<2>{
+
+        La clausura de un conjunto de atributos es $X^+_F = \{ A_i \in U \;|\; F \models X \to A_i\}$
+        \vspace{3mm}
+
+    \begin{columns}[t]
+        \column{.5\textwidth}
+
+        ¿$X \to Y$ pertenece a $F^+$?
+        \begin{enumerate}
+            \item Calcular $X^+_F$
+            \item Comprobar que $Y \subseteq X^+_F$
+        \end{enumerate}
+
+        \column{.5\textwidth}
+        \begin{algorithm}[t]
+            \caption{Calcular $X_F^+$}
+            \begin{algorithmic}[1] % The number tells where the line numbering should start
+                \STATE Initialize variables
+                \IF{condition}
+                    \STATE Do something
+                \ELSE
+                    \STATE Do something else
+                \ENDIF
+                \FOR{each item}
+                    \STATE Process item
+                \ENDFOR
+            \end{algorithmic}
+        \end{algorithm}
+    \end{columns}
+    }
+
+    % @TODO poner pseudoco'digo pa calcular X^+F
+
+    \note{@NOTE es en los 2 sentidos: devuelve true o false si X->Y pertenece a F+}

@@ -1,0 +1,348 @@
+\begin{frame}{Respondiendo preguntas}
+
+    \centering
+    \Huge\textcolor{blue3}{Lenguajes de consulta}
+    
+\end{frame}
+
+
+\begin{frame}{Lenguajes de consulta}
+    \begin{block}{Definici\'on}
+        Son aquellos lenguajes utilizados para definir solicitudes de recuperaci\'on
+        sobre los datos almacenados en una base de datos
+        
+    \end{block}
+
+    \begin{block}{Consulta}
+        Una solicitud de recuperación, es decir, una expresión relacional o una declaración que solicita la
+        evaluación de tal expresión
+    \end{block}
+\end{frame}
+
+\begin{frame}{Caso de estudio}
+
+    \centering
+    \begin{tikzpicture}[node distance=6em]
+        \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+        \node[entity] (jugador) {JUGADOR}
+            [sibling distance=3cm]
+            child {node[attribute] [above right of=jugador] {\tiny TROFEOS MAX}}
+            child {node[attribute] [above of=jugador] {\tiny TROFEOS}}
+            child {node[attribute] [above left of=jugador] {\tiny NOMBRE}}
+            child {node[attribute] [left of=jugador] {\underline{\tiny \#J}}}
+            child {node[attribute] [below left of=jugador] {\tiny NIVEL}}
+            ;
+      
+        \node[entity] (clan) at (8,0) {CARTA}
+        [sibling distance=3cm]
+        child {node[attribute] [right of=clan] {\underline{\tiny \#C}}}
+        child {node[attribute] [above of=clan] {\tiny COSTO}}
+        child {node[attribute] [above left of=clan] {\tiny DESC.}}
+        child {node[attribute] [above right of=clan] {\tiny NOMBRE}}
+        child {node[attribute] [below right of=clan] {\tiny CALIDAD}};
+        
+      
+        \node[relationship,aspect=2] (pertenecer) at (4,0) {COLECCIONAR};
+        \draw (pertenecer.east) -- (clan.west) node[above left] {$1,\ast$};
+        \draw (pertenecer.west) -- (jugador.east) node[above right] {$0,\ast$};
+    \end{tikzpicture}
+\end{frame}
+
+
+
+
+\begin{frame}{\'Algebra relacional}
+
+    \begin{block}{Consultas}
+        \begin{enumerate}
+            \item<2-> Obtener el nombre de todos los jugadores cuyo nivel es al menos 10.
+            \onslide<3->{$$r := \pi_{\text{\#J, Nombre}} (\text{Jugador}\,\sigma\, (\text{Nivel} \geq 10))$$}
+            \item<4-> Obtener el nombre de todas las cartas cuya calidad sea \'epica.
+            \onslide<5->{$$r := \pi_{\text{\#C, Nombre}} (\text{Carta}\,\sigma\, (\text{Calidad} = \text{"\'Epica"}))$$}
+        \end{enumerate}
+    \end{block}
+
+\end{frame}
+
+
+% \begin{frame}{\'Algebra relacional}
+
+%     \begin{block}{Consultas}
+%         \begin{enumerate}
+%             \item Obtener el nombre de todos los jugadores cuyo nivel es al menos 10.
+%             $$\pi_{\text{\#J, Nombre}} (\text{Jugador}\,\sigma\, (\text{Nivel} >= 10))$$ 
+%             \item Obtener el nombre de todas las cartas cuya calidad sea \'epica.
+%             $$\pi_{\text{\#C, Nombre}} (\text{Carta}\,\sigma\, (\text{Calidad} = \text{\'Epica}))$$
+%         \end{enumerate}
+%     \end{block}
+
+% \end{frame}
+
+
+\begin{frame}{\'Algebra relacional}
+
+    \begin{block}{Consultas}
+        \begin{enumerate}
+            \setcounter{enumi}{2}
+            \item Obtener el nombre de todos los jugadores que tienen la carta con identificador 2.
+            $$ r_1 = \pi_{\text{\#J}, \text{Nombre}}((\text{Jugador} \Join \text{Coleccionar})\,\sigma\,(\text{\#C}=2)) $$
+            $$ r_2 = \pi_{\text{\#J}, \text{Nombre}}(\text{Jugador} \Join (\text{Coleccionar}\,\sigma\,(\text{\#C}=2))) $$
+        \end{enumerate}
+        \vspace{5mm}
+
+        \centering
+        \large ¿Cu\'al es mejor?
+        
+        
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{El problema del \'algebra relacional}
+
+   
+    $$ \pi_{\text{\#J}, \text{Nombre}}((\text{Jugador} \Join \text{Coleccionar})\,\sigma\,(\text{\#C}=2)) $$
+
+    \begin{block}{¿En qu\'e orden se ejecutan las operaciones?}
+        \onslide<2->{
+        \begin{enumerate}
+            \item $\text{Jugador} \Join \text{Coleccionar}$\hspace{4mm} \onslide<3->{$O(|\text{Jugador}| \times |\text{Coleccionar}|)$}
+            \item $(\text{Jugador} \Join \text{Coleccionar})\,\sigma\,(\text{\#C} = 2)$\hspace{4mm} \onslide<4->{$O(|\text{Coleccionar}|)$}
+            \item $\pi_{\text{\#J}, \text{Nombre}}((\text{Jugador} \Join \text{Coleccionar})\,\sigma\,(\text{\#C}=2))$ \hspace{4mm} \onslide<5->{$O(|\text{Jugador}|)$}
+        \end{enumerate}
+        }
+
+        \begin{center}
+            \onslide<6->{
+            \vspace{5mm}
+            $
+            O(|\text{Jugador}| \times |\text{Coleccionar}| + |\text{Coleccionar}| + |\text{Jugador}|)
+            $
+            }
+            
+            \onslide<7>{
+            \vspace{2mm}
+            $
+            = O(|\text{Jugador}|^2 \times |\text{Carta}| + |\text{Coleccionar}| + |\text{Jugador}|)
+            $\\[2mm]
+            dado que $|\text{Coleccionar}| = O(|\text{Jugador}| \times |\text{Carta}|)$
+            }
+
+    
+        \end{center}
+    \end{block}
+         
+    
+\end{frame}
+
+
+\begin{frame}{El problema del \'algebra relacional}
+
+   
+    $$ \pi_{\text{\#J}, \text{Nombre}}(\text{Jugador} \Join (\text{Coleccionar}\,\sigma\,(\text{\#C}=2))) $$
+
+    \begin{block}{¿En qu\'e orden se ejecutan las operaciones?}
+        \onslide<2->{
+        \begin{enumerate}
+            \item $\text{Coleccionar} \,\sigma\, (\text{\#C = 2})$\hspace{4mm} \onslide<3->{$O(|\text{Coleccionar}|)$}
+            \item $\text{Jugador} \Join (\text{Coleccionar} \,\sigma\,(\text{\#C} = 2))$\hspace{4mm} \onslide<4->{$O(|\text{Jugador}|^2)$}
+            \item $\pi_{\text{\#J}, \text{Nombre}}(\text{Jugador} \Join (\text{Coleccionar}\,\sigma\,(\text{\#C}=2)))$ \hspace{4mm} \onslide<5->{$O  (|\text{Jugador}|)$}
+        \end{enumerate}
+        }
+
+        \onslide<6>{
+
+            $$
+            O( |\text{Jugador}|^2 + |\text{Coleccionar}| +|\text{Jugador}| )
+            $$
+        }
+    \end{block}
+         
+    
+\end{frame}
+
+
+\begin{frame}{El caracter imperativo del \'algebra relacional}
+    \centering
+    \Large No permite que el usuario se abstraiga de la optimizaci\'on
+
+\end{frame}
+
+\begin{frame}{Lenguajes de consulta declarativo}
+
+    \begin{block}{C\'alculo relacional}
+        \begin{itemize}
+            \item C\'alculo relacional de tuplas
+            \item C\'alculo relacional de dominios
+        \end{itemize}
+    \end{block}
+
+\end{frame}
+
+
+\begin{frame}{C\'alculo relacional de tuplas}
+    \begin{block}{Definici\'on}
+        Una consulta en el c\'alculo relacional de tuplas se expresa
+        de la forma:
+
+        $$
+            \{t \,|\, P(t)\}
+        $$
+        donde: \begin{itemize}
+            \item $t$ es una variable que representa una tupla
+            \item $P$ es una f\'ormula bien formada compuesta de \'atomos
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}{C\'alculo relacional de tuplas}
+
+    \begin{block}{Consultas}
+        \begin{enumerate}
+            \item Obtener todos los jugadores cuyo nivel es al menos 10.
+            \onslide<2->{$$\{t \,|\, t \in \text{Jugador} \land t[\text{Nivel}] \geq 10\}$$} 
+            \item<3-> Obtener el nombre de todos los jugadores cuyo nivel es al menos 10.
+            \onslide<4->{$$\{t \,|\, \exists\, j \in \text{Jugador}(t[\text{\#J}] = j[\text{\#J}] \land t[\text{Nombre}] = j[\text{Nombre}] \land j[\text{Nivel}] \geq 10)\}$$}
+        \end{enumerate}
+    \end{block}
+
+\end{frame}
+
+
+\begin{frame}{C\'alculo relacional de tuplas}
+ 
+    \begin{block}{Consultas}
+        \begin{enumerate}
+            \setcounter{enumi}{2}
+            \item Obtener el nombre de todos los jugadores que tienen la carta con identificador 2.
+            \onslide<2>{
+
+                \begin{scriptsize}
+                    $$ \{t | \exists j \in \text{Jugador} (t[\text{\#J}] = j[\text{\#J}] \land  t[\text{Nombre} ]= j[\text{Nombre}] \land \exists c \in \text{Coleccionar} ( j[\text{\#J}] = c[\text{\#J}] \land c[\text{\#C}] = 2 ))\}$$
+                    
+                \end{scriptsize}
+            }
+                
+            
+        \end{enumerate}
+
+        
+        
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{C\'alculo relacional de dominios}
+    \begin{block}{Definici\'on}
+        Una consulta en el c\'alculo relacional de dominios se
+        expresa de la forma
+        $$
+            \{<x_1,x_2,...,x_n\> | P(x_1,x_2,...,x_n)\}
+        $$
+        donde: \begin{itemize}
+            \item $x_1,x_2,...,x_n$ son variables de dominio
+            \item $P$ es una f\'ormula bien formada compuesta de \'atomos
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{C\'alculo relacional de dominios}
+
+    \begin{block}{Consultas}
+        Sean las variables $a, b, c ,d ,e$ correspondientes a \#J, Nombre, Nivel, Trofeos, TrofeosMax en la relaci\'on Jugador.
+
+        \begin{enumerate}
+            \item Obtener todos los jugadores cuyo nivel es al menos 10.
+            \onslide<2->{$$\{<a,b,c,d,e> \,|\,  <a,b,c,d,e> \in \text{Jugador} \land c \geq 10\}$$} 
+            \item<3-> Obtener el nombre de todos los jugadores cuyo nivel es al menos 10.
+            \onslide<4->{$$\{<a,b> \,|\, \exists c,d,e(<a,b,c,d,e> \in \text{Jugador} \land c \geq 10)\}$$}
+        \end{enumerate}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{C\'alculo relacional de dominios}
+    
+    \begin{block}{Consultas}
+        Sean las variables $a, b, c ,d ,e$ correspondientes a \#J, Nombre, Nivel, Trofeos, TrofeosMax en la relaci\'on Jugador.
+        Sea la variable $f$ correspondiente a \#C en la relaci\'on Coleccionar.
+        \begin{enumerate}
+            \item Obtener el nombre de todos los jugadores que tienen la carta con identificador 2.
+            \onslide<2->{
+
+                \begin{small}
+                    $$\{<a,b> \,|\, \exists c,d,e(<a,b,c,d,e> \in \text{Jugador} \land \exists f(<a,f> \in Coleccionar \land f=2))\}$$ 
+                    
+                \end{small}
+            }
+                
+            
+        \end{enumerate}
+
+        
+        
+    \end{block}
+
+\end{frame}
+
+
+\begin{frame}{Equivalencia entre lenguajes}
+    \begin{block}{El teorema de Codd}
+        \begin{itemize}
+            \item Para toda expresi\'on $E$ del \'algebra
+            relacional existe una consulta $Q$ del c\'alculo relacional
+            tal que $E \equiv  Q$
+            \item Para toda consulta $Q$ del c\'alculo
+            relacional existe una expresi\'on algebraica $E$ 
+            tal que $Q \equiv  E$
+        \end{itemize}
+
+        El c\'alculo relacional es un lenguaje relacional completo
+    \end{block}
+
+    \onslide<2->{
+
+        \begin{block}{Optimizaci\'on de consultas}
+            Transformar una consulta $Q$ del c\'alculo relacional en una expresi\'on $E$ del \'algebra relacional.
+        \end{block}
+    }
+\end{frame}
+
+
+\begin{frame}
+    \vspace{10mm}
+
+    \centering
+    \begin{Huge}
+        
+        \textcolor{blue3}{Turing completo vs Relacional completo}
+    \end{Huge}
+
+    \onslide<2>{
+
+        \begin{columns}[T]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Mayor expresividad
+                    \item No puede ser optimizado para el caso general de forma autom\'atica.
+                \end{itemize}
+            \end{column}
+    
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Menor expresividad
+                    \item Puede ser optimizado para el caso general de forma autom\'atica.
+                \end{itemize}
+            \end{column}
+            
+        \end{columns}
+    }
+\end{frame}
+
+

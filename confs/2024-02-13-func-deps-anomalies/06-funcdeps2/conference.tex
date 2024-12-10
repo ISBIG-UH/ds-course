@@ -1,0 +1,42 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\usecolortheme{whale}
+\usetikzlibrary{er,positioning}  
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows, decorations.markings}
+\usetikzlibrary{shapes.geometric}
+
+\setbeamertemplate{navigation symbols}{}
+
+\definecolor{violet}{rgb}{0.53, 0.0, 0.69}
+
+\definecolor{blue1}{RGB}{126,126,206}
+\definecolor{blue2}{RGB}{87,87,192}
+\definecolor{blue3}{RGB}{51,51,178}
+\definecolor{blue4}{RGB}{27,26,107}
+
+\tikzstyle{every link} = []
+\tikzstyle{link} = [>=triangle 60, draw, every link]
+
+\definecolor{attr}{RGB}{10,153,2}
+
+\title{Bases de Datos I}
+\subtitle{Teor\'ia del dise\~no: Tercera Forma Normal}
+\author[Garc\'ia L., Cardentey V. M.]{
+    Lic. V\'ictor M. Cardentey Fundora\\ 
+    Dra. Lucina Garc\'ia Hern\'andez
+}
+\institute[MATCOM-UH]{
+    Departamento de Computaci\'on\\
+    Facultad de Matem\'atica y Computaci\'on\\
+    Universidad de La Habana
+}
+\date[]{3 de abril de 2023}
+
+
+\begin{document}
+    \maketitle
+    \include{content.tex}
+\end{document}

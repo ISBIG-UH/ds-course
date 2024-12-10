@@ -1,0 +1,293 @@
+
+\begin{frame}{¿Qu\'e es un dise\~no te\'oricamente correcto?}
+    \begin{itemize}
+        \item Todos los esquemas relacionales de la descomposici\'on
+        est\'an en una forma normal {\color<2>{red}aceptable} (3FN o superior).
+        \item Se cumple la propiedad de join sin p\'erdida de informaci\'on (PLJ).
+        \item Se cumple la propiedad de preservaci\'on de dependencias funcionales (PPDF).
+    \end{itemize}
+
+    \onslide<2>{
+        \vspace{5mm}
+
+        \centering
+        \textcolor{red}{\large Un dise\~no correcto no garantiza que sea el mejor}
+    }
+\end{frame}
+
+
+\begin{frame}{¿PLJ y PPDF?}
+    \centering
+    \large ¿Al reunir las relaciones normalizadas la relaci\'on resultante ser\'a la original?
+
+\end{frame}
+
+\begin{frame}{Supongamos el siguiente escenario}
+    \begin{tikzpicture}[node distance=6em]
+
+        \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+        
+        
+        \node[entity] (estudiante) {PERSONA}
+            [sibling distance=3cm]
+            child {node[attribute] [above left of=estudiante] {\tiny NOMBREP}}
+            child {node[attribute] [left of=estudiante] {\underline{\tiny \#P}}};
+      
+        \node[entity] (asignatura) at (8,0) {HOSPITAL}
+        [sibling distance=3cm]
+        child {node[attribute] [right of=asignatura] {\underline{\tiny \#H}}}
+        child {node[attribute] [above right of=asignatura] {\tiny NOMBREH}};
+        
+      
+        \node[relationship,aspect=2] (evaluar) at (4,0) {PERTENECER};
+        \draw (evaluar.east) -- (asignatura.west) node[above left] {$0,\ast$};
+        \draw (evaluar.west) -- (estudiante.east) node[above right] {$0,\ast$};
+
+
+        \node[entity] (enfermedad) at (0,-5) {ENFERMEDAD}
+            [sibling distance=3cm]
+            child {node[attribute] [above right of=enfermedad] {\tiny NOMBREE }}
+            child {node[attribute] [right of=enfermedad] {\tiny \underline{\#E}}};
+
+        \node[relationship,aspect=2] (tener) at (0,-2.5) {TENER};
+        \draw (tener.north) -- (estudiante.south) node[below right] {$0,\ast$};
+        \draw (tener.south) -- (enfermedad.north) node[above right] {$0,\ast$};
+
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Definiendo el esquema universal}
+
+
+    \begin{enumerate}
+        \item $U = \{ \textnormal{\#P, NombreP,  \#H, NombreH, \#E, NombreE}\}$
+        \item $F = \{$ \\
+        \hspace{10mm} $\textnormal{\#P} \to \textnormal{NombreP}$\\
+        \hspace{10mm} $\textnormal{\#H} \to \textnormal{NombreH}$\\
+        \hspace{10mm} $\textnormal{\#E} \to \textnormal{NombreE}$\\
+        \hspace{10mm} $\textnormal{\#P,\#H} \to \textnormal{\#P,\#H}$\\
+        \hspace{10mm} $\textnormal{\#P,\#E} \to \textnormal{\#P,\#E}$\\
+        $\}$
+        \item Definimos el esquema relacional $\textbf{Evaluaciones}(U,F)$ con llave \#P, \#H, \#E
+    \end{enumerate}
+
+    \onslide<2>{
+        \vspace{5mm}
+        \centering
+        \large Ya $F$ es un cubrimiento minimal
+    }
+
+\end{frame}
+
+\begin{frame}{Obteniendo una descomposici\'on en 3FN}
+
+    \centering
+    \begin{columns}[T]
+        \begin{column}{0.48\linewidth}
+            $R_1(U_1,F_1)$:\\
+            \indent $U_1 = \{\textnormal{\#P, NombreP}\}$\\
+            \indent $F_1 = \pi_{U_1}(F)$\\[2mm]
+            $R_2(U_2,F_2)$:\\
+            \indent $U_2 = \{\textnormal{\#H, NombreH}\}$\\
+            \indent $F_2 = \pi_{U_2}(F)$\\[2mm]
+            $R_3(U_3,F_3)$:\\
+            \indent $U_3 = \{\textnormal{\#E, NombreE}\}$\\
+            \indent $F_3 = \pi_{U_3}(F)$
+        \end{column}
+    
+    
+        \begin{column}{0.48\linewidth}
+            $R_4(U_4,F_4)$:\\
+            \indent $U_4 = \{\textnormal{\#P, \#H}\}$\\
+            \indent $F_4 = \pi_{U_4}(F)$\\[2mm]
+            $R_5(U_5,F_5)$:\\
+            \indent $U_5 = \{\textnormal{\#P, \#E}\}$\\
+            \indent $F_5 = \pi_{U_5}(F)$
+        \end{column}
+        
+    \end{columns}
+
+    \onslide<2>{
+        \vspace{8mm}
+
+        \centering
+        \Large \it Mira en pizarra c\'omo al unir no se obtiene la original...
+    }
+\end{frame}
+
+\begin{frame}{Propiedad de Preservaci\'on de Dependencias Funcionales (PPDF)}
+    Si para un $R(U,F)$ se tiene la descomposici\'on $\rho = (R_1,R_2,...,R_k)$,
+    se dice que $\rho$ cumple la Propiedad de Preservaci\'on de Dependencias Funcionales (PPDF)
+    con respecto al conjunto de dependencias funcionales $F$ si:
+
+    $$
+        F \equiv \overset{k}{\underset{i=1}{U}} \Pi_{R_i}(F) 
+    $$
+\end{frame}
+
+\begin{frame}{Recordando}
+    \framesubtitle{Algoritmo para obtener una descomposici\'on en 3FN}
+    \textbf{Entrada:} Un esquema relacional $R(U,F)$, $F$ es un conjunto irreducible de dependencias funcionales.\\
+    \textbf{Salida:} Una descomposici\'on $\rho = (R_1,R_2,...,R_n)$, tal que
+    los esquemas relacionales $R_i(U_i,F_i)$ est\'an en 3FN con respecto
+    a $\Pi_{R_i}(F)$, $\forall i = 1,...,n$.\\
+
+    \textbf{M\'etodo:}\begin{enumerate}
+        \item Crear un esquema por cada dependencia funcional. Preferiblemente, hacer que en el mismo esquema coincidan todas las dependencias funcionales con el mismo miembro izquierdo. Sean estos esquemas $R_1, R_2, ..., R_n$.
+        \item Si en $U$ existe alg\'un atributo que no est\'a contenido en ninguna dependencia
+        funcional de $F$, este atributo puede formar un esquema relacional por s\'i mismo.
+        \item Luego, $\rho = (R_1,R_2,...,R_n)$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Entonces...}
+    \centering
+    El algoritmo para obtener una descomposici\'on en 3FN siempre cumple la PPDF
+    \vspace{5mm}
+
+    \centering
+    ¿Ocurrir\'a lo mismo con la PLJ?
+\end{frame}
+
+\begin{frame}{Propiedad del Join sin P\'erdida de Informaci\'on}
+    Si para un esquema relacional $R(U,F)$ se tiene la descomposici\'on
+    $\rho = (R_1,R_2,...,R_k)$, se dice que dicha descomposici\'on $\rho$ cumple
+    con la propiedad de join ($\Join$) sin p\'erdida de informaci\'on con respecto al
+    conjunto de dependencias funcionales $F$ si para toda instancia $r$ de $R$ que
+    satisfaga a $F$, se cumple que:
+    
+    $$
+        r = \pi_{R_1}(r) \Join \pi_{R_2}(r) \Join ... \Join \pi_{R_k}(r) = \overset{k}{\underset{i=1}{\Join }}R_i(r)
+    $$
+    
+    \vspace{5mm}
+    
+    \only<2>{
+    \begin{center}
+        \Large \textcolor{red}{Ya vimos un ejemplo en el que no se cumple :O}
+    \end{center}
+
+    }
+\end{frame}
+
+% @TODO poner de nuevo lo q es un disenyo correcto 
+
+
+
+
+\begin{frame}{La PLJ es un poco enga\~nosa...}
+    \centering
+    \Large Requiere que se pueda reconstruir la relaci\'on universal pero...
+    \vspace{5mm}
+
+    \centering
+    \Large ¿Siempre tiene sentido tener una relaci\'on universal?
+\end{frame}
+
+\begin{frame}{Otra forma de comprobar la PLJ}
+    \begin{block}{Teorema de Ullman}
+        Si $\rho = (R_1,R_2)$ es una descomposici\'on de $R(U,F)$ entonces
+        $\rho$ cumple con la PLJ respecto a $F$ si y solo si:
+        
+        $$
+            R_1 \cap R_2 \to R_1 - R_2 \lor R_1 \cap R_2 \to R_2 - R_1
+        $$
+        
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{Un parche para el algoritmo de 3FN que cumple la PPDF}
+    \begin{block}{Lema de Ullman}
+       Sea $\rho$ una descomposici\'on en 3FN para $R(U,F)$ construida utilizando
+       el algoritmo para obtener una descomposici\'on en 3FN que cumple la PPDF, y sea
+       $X$ una llave del esquema $R(U,F)$.
+       Entonces, $\sigma = \rho \cup {X}$ es una descomposici\'on de $R(U,F)$ con todos sus
+       esquemas relacionales en \textcolor{red}{3FN} que cumple la \textcolor{red}{PPDF}, pero que adem\'as cumple con la 
+       \textcolor{red}{PLJ}.
+
+    \end{block}
+
+    \onslide<2>{
+        \vspace{5mm}
+
+        \centering
+        \textcolor{red}{\large Una descomposici\'on obtenida con el algoritmo de 3FN y PPDF siempre puede ser convertida en un dise\~no correcto}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{?`La 3FN siempre elimina las anomal\'ias?}
+
+    \pause
+
+    \begin{align*}
+        U &= \{Persona, TipoEstablecimiento, EstablecimientoM\acute{a}sCercano\}  \\
+        F &= \{ \\
+          & Persona \ TipoEstablecimiento \rightarrow  EstablecimientoM\acute{a}sCercano;\\
+          & EstablecimientoM\acute{a}sCercano \rightarrow TipoEstablecimiento \\
+          \} &
+    \end{align*}
+
+    \pause
+
+    \begin{columns}[c]
+        \begin{column}{0.5\textwidth}
+    {\Large 
+    $R(U, F)$:
+    \begin{itemize}[<+->]
+        \item[\checkmark] 1FN
+        \item[\checkmark] 2FN
+        \item[\checkmark] 3FN
+    \end{itemize}
+    }
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \only<6>{
+            \huge \textcolor{red}{?`anomal\'ias?}
+            }
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{?`Es suficiente con la 3FN?}
+
+    \begin{align*}
+        F &= \{ \\
+          & Persona \ TipoEstablecimiento \rightarrow  EstablecimientoM\acute{a}sCercano;\\
+          & \textcolor<2>{red}{EstablecimientoM\acute{a}sCercano \rightarrow TipoEstablecimiento} \\
+          \} &
+    \end{align*}
+
+    \begin{table}
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+             \textbf{Persona} &  \textbf{Tipo de Establecimiento} & \textbf{Establecimiento M\'as Cercano} \\\hline
+             Claudia & \textcolor<2>{red}{\'Optica} & \textcolor<2>{red}{Almendares}\\\hline
+             Claudia & Peluquer\'ia & Luly Sal\'on\\\hline
+             Javier & Librer\'ia & Cuba Va\\\hline
+             Alejandra & Panader\'ia & La Cubana\\\hline
+             Alejandra & Peluquer\'ia & Riudi Peluqueros\\\hline
+             Alejandra & \textcolor<2>{red}{\'Optica} & \textcolor<2>{red}{Almendares}\\\hline
+        \end{tabular}
+    \end{table}
+
+    \vspace{1mm}
+
+    \centering
+    \only<2>{
+        \huge \textcolor{red}{redundancia}
+    }
+
+\end{frame}
+
+\begin{frame}{M\'as all\'a de la 3FN}
+    \begin{itemize}
+        \item Forma Normal de Boyce-Codd
+        \item 4ta Forma Normal
+        \item 5ta Forma Normal
+    \end{itemize}
+\end{frame}

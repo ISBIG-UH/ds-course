@@ -1,0 +1,32 @@
+\begin{frame}{Bases de datos}
+    \begin{overlayarea}{\linewidth}{\textheight}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on \textcolor<3>{blue}{auto-descriptiva} de \textcolor<2>{blue}{registros} \textcolor<4>{blue}{integrados}."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+            \end{block}
+                
+    \begin{block}<2->{Registro}
+        Datos espec\'ificos sobre una entidad u objeto de inter\'es.
+    \end{block}
+
+    \begin{block}<3->{Auto-descriptiva}
+        Se almacenan metadatos (la descripci\'on de su estructura) dentro.
+    \end{block}
+
+    \begin{block}<4->{Integrados}
+        No solo contiene los datos sino tambi\'en las interrelaciones.
+    \end{block}
+    \end{overlayarea}
+
+    \pause
+   
+   \note<5>{@NOTE Ahora vamos a ir explicando c\'omo se ajustan los t\'erminos \textit{auto-descriptiva}, \textit{registros} e \textit{integrados} a cada tipo de BDs que vamos a estudiar}
+\end{frame}
+
+\input{database-relational.tex}
+\input{database-key-value.tex}
+\input{database-column.tex}
+\input{database-doc.tex}
+\input{database-graph.tex}

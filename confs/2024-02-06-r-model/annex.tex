@@ -1,0 +1,71 @@
+\begin{frame}
+    \frametitle{Anexos}
+
+    \centering
+    \Huge \textcolor{blue3}{Anexos}
+
+\end{frame}
+
+
+\begin{frame}{Anexos}
+    \framesubtitle{Operaciones de Teor\'ia de conjuntos}
+
+    \begin{block}{Condiciones}
+        \begin{enumerate}
+            \item  Dos relaciones $R$ y $S$, no necesariamente distintas.
+            \item $R$ y $S$ tienen el mismo esquema, exceptuando, quiz\'as, el nombre.
+        \end{enumerate}
+    \end{block}
+
+    \begin{block}{Operaciones de conjuntos}
+        \begin{itemize}
+            \item $R \cup S$ es una relaci\'on con el mismo esquema, a excepci\'on del nombre, cuyo
+            cuerpo consiste en las tuplas que pertenecen a la relaci\'on $R$ o a la relaci\'on $S$
+            o ambas. Las tuplas duplicadas se eliminan.
+            \item $R \cap S$ es una relaci\'on con el mismo esquema, a excepci\'on del nombre, cuyo
+            cuerpo consiste en las tuplas que pertenecen tanto a la relaci\'on $R$ como a la relaci\'on $S$.
+            \item $R - S$ es una relaci\'on con el mismo esquema, a excepci\'on del nombre, cuyo cuerpo
+            consiste en las tuplas que pertenecen a la relaci\'on $R$ y no a la relaci\'on $S$.
+        \end{itemize}
+        
+    \end{block}
+\end{frame}
+
+\begin{frame}{Anexos}
+    \framesubtitle{Operaciones que remueven parte de una relaci\'on}
+
+    \begin{block}{Restricci\'on o Selecci\'on ($R \,\sigma\, F$)}
+        $R \,\sigma\,F$ produce una nueva relaci\'on con el mismo
+        esquema que $R$, a excepci\'on del nombre, cuyo cuerpo
+        es un subconjunto del cuerpo de $R$. Es decir, las tuplas en la relaci\'on
+        resultante son aquellas tuplas de $R$ que satisfacen la condici\'on $F$, expresada
+        mediante una f\'ormula bien formada.
+    \end{block}    
+\end{frame}
+
+\begin{frame}{Anexos}
+    \framesubtitle{Operaciones que remueven parte de una relaci\'on}
+
+    \begin{block}{Proyecci\'on ($\pi_{A_1,A_2,...,A_n}(R)$)}
+        $\pi_{A_1,A_2,...,A_n}(R)$ produce una relaci\'on cuyo
+        esquema solo contiene los atributos $A_1,A_2,...,A_n$ de $R$. El cuerpo
+        de la relaci\'on consiste en todas las tuplas $\{(A_1 : a_1), (A_2 : a_2),...,(A_n:a_n)\}$
+        tal que existe una tupla en $R$ cuyo valor asociado al atributo $A_i$ es $a_i$
+        para todo $i = 1,...,n$.
+
+
+    \end{block}
+\end{frame}
+
+\begin{frame}{Anexos}
+    \framesubtitle{Operaciones que combinan relaciones}
+
+    \begin{block}{Producto cartesiano $(R \times S)$}
+        Es una nueva relaci\'on cuyo encabezado es la uni\'on de los
+        encabezados de la relaci\'on $R$ y la relaci\'on $S$. La llave
+        primaria de la nueva relaci\'on es la uni\'on de las llaves
+        primarias de $R$ y $S$. Y las llaves for\'aneas de $R$ y $S$ tambi\'en
+        son llaves for\'aneas en $R \times S$. El cuerpo consiste en el conjunto
+        resultante de unir cada tupla de $R$ con cada una de las tuplas de $S$. 
+    \end{block}
+\end{frame}

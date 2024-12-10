@@ -1,0 +1,466 @@
+\begin{frame}{Continuemos con el ejemplo}
+        $U = \{ \textnormal{\#E, ENombre,  Grupo, Provincia, \#A, ANombre, Nota}\}$
+
+        $F = \{\textnormal{\#E} \to \textnormal{ENombre, Grupo, Provincia}${\bf;}\; $\textnormal{\#A} \to \textnormal{ANombre}${\bf;}\; $\textnormal{\#E,\#A} \to \textnormal{\#E,\#A}${\bf;}\; $\textnormal{\#E, \#A} \to \textnormal{Nota}${\bf;}\; $\textnormal{Provincia} \to \textnormal{Grupo}\}$\\[4mm]
+
+    \centering
+    \begin{tabular}{ccccccc}
+        \underline{\#E} & ENombre & Grupo & Provincia & \underline{\#A} & ANombre & Nota\\
+        $e_1$ & Juan & {111} & { La Habana} & $a_1$ & An\'alisis & 3\\
+        $e_1$ & Juan & {111} & { La Habana} & $a_2$ & L\'ogica & 2\\
+        $e_1$ & Juan & {111} & { La Habana} & $a_3$ & \'Algebra & 4\\
+        $e_1$ & Juan & {111} & { La Habana} & $a_4$ & Programaci\'on & 5\\
+        $e_3$ & Pedro & {111} & { La Habana} & $a_3$ & \'Algebra & 4\\
+        $e_2$ & Mar\'ia & {112} & { Matanzas} & $a_1$ & An\'alisis & 3\\
+        $e_2$ & Mar\'ia &  {112} & { Matanzas} & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  {112} & { Mayabeque} & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  {112} & { Mayabeque} & $a_4$ & Programaci\'on & 4\\
+        $e_5$ & Carlos &  {113} & { Pinar del R\'io} & $a_3$ & \'Algebra & 3
+    \end{tabular}
+
+    \note{@NOTE alguien no depende completamente de la llave? Dependencias transitivas?}
+\end{frame}
+
+\begin{frame}{Recapitulando...}
+    \begin{block}{Tercera Forma Normal}
+        Un esquema relacional $R(U,F)$ est\'a en tercera forma normal
+        (3FN), si est\'a en 2FN y los atributos no llaves son mutuamente independientes.
+        
+    \end{block}
+\end{frame}
+
+\begin{frame}{Descomposici\'on en 3ra Forma Normal}
+    \vspace{-3mm}
+    \begin{columns}[T]
+        \begin{column}{0.68\linewidth}
+            \begin{columns}[T]
+                \begin{column}{0.6\textwidth}
+                    \begin{center}
+                        \textbf{Estudiante}\\[2mm]
+        
+                        \begin{tabular}{ccc}
+                            \underline{\#E} & ENombre & Provincia\\[1mm]
+                            \hline
+                            $e_1$ & Juan & La Habana\\
+                            $e_2$ & Mar\'ia & Matanzas\\
+                            $e_3$ & Pedro & La Habana\\
+                            $e_4$ & Rita & Mayabeque\\
+                            $e_5$ & Carlos & Pinar del R\'io
+                        \end{tabular}
+                    \end{center}
+                \end{column}
+
+                \begin{column}{0.4\textwidth}
+                    \begin{center}
+                        \textbf{Provincia-Grupo}\\[2mm]
+        
+                        \begin{tabular}{cc}
+                            \underline{Provincia} & Grupo\\[1mm]
+                            \hline
+                            La Habana & 111\\
+                            Matanzas & 112 \\
+                            Mayabeque & 112 \\
+                            Pinar del R\'io & 113
+                            
+                        \end{tabular}
+                    \end{center}
+                \end{column}
+                
+            \end{columns}
+
+            \begin{center}
+                \textbf{Asignatura}\\[2mm]
+
+                \begin{tabular}{cc}
+                    \underline{\#A} & ANombre\\[1mm]
+                    \hline
+                    $a_1$ & An\'alisis\\
+                    $a_2$ & L\'ogica \\
+                    $a_3$ & \'Algebra\\
+                    $a_4$ & Programaci\'on
+                    
+                \end{tabular}
+            \end{center}
+            
+        \end{column}
+
+        \begin{column}{0.3\linewidth}
+            \vspace{6mm}
+            \begin{center}
+                \textbf{Evaluar}\\[2mm]
+
+                \begin{tabular}{ccc}
+                    \underline{\#E} & \underline{\#A} & Nota\\[1mm]
+                    \hline
+                    $e_1$ & $a_1$ & 3\\
+                    $e_1$ & $a_2$ & 2\\
+                    $e_1$ & $a_3$ & 4\\
+                    $e_1$ & $a_4$ & 5\\
+                    $e_3$ & $a_3$ & 4\\
+                    $e_2$ & $a_1$ & 3\\
+                    $e_2$ & $a_2$ & 3\\
+                    $e_4$ & $a_2$ & 3\\
+                    $e_4$ & $a_4$ & 4\\
+                    $e_5$ & $a_3$ & 3\\
+                \end{tabular}
+            \end{center}
+        \end{column}
+    \end{columns}
+    
+    \note{@NOTE c\'omo obtenerla?}
+\end{frame}
+
+
+\begin{frame}{Eliminando dependencias problem\'aticas}
+    \begin{block}{Cubrimiento minimal}
+        Dado dos conjuntos de dependencias funcionales $F$ y $G$, se dice
+        que $G$ es un cubrimiento minimal o cobertura irreducible
+        de $F$ si se cumple que:
+        \begin{enumerate}
+            \item $G \equiv F$
+            \item $G$ no contiene atributos redundantes
+            \item $G$ no contiene dependencias redundantes
+        \end{enumerate}
+        
+    \end{block}
+\end{frame}
+
+
+{
+\setbeamertemplate{background} 
+{
+    \includegraphics[width=\paperwidth,height=\paperheight]{img/automate.jpg}
+}
+\begin{frame}
+\end{frame}
+}
+
+
+\begin{frame}{Automatizando}
+    \begin{block}{Algoritmo para obtener un cubrimiento minimal}
+        
+        \textbf{Entrada}: Un conjunto de DFs $F$ sobre un universo de atributos $U$.\\
+        \textbf{Salida}: Un conjunto de DFs $G$, $G \equiv F$, sin atributos ni dependencias redundantes.
+        \pause
+        \textbf{M\'etodo}:
+        \begin{enumerate}[<+->]
+            \item A partir de $F$ construir un conjunto de DFs, $F'$, tal que el miembro derecho de cada DF sea un atributo simple.
+            \item A partir de $F'$ construir un conjunto de DFs, $F''$, donde ning\'un determinante contiene atributos redundates; o sea,
+            que para ninguna $X \to A$ en $F'$ y $Z \subset X$ se cumpla que
+            $F' - \{X \to A\} \cup \{Z \to A\}$ sea equivalente a $F'$.
+            \item A partir de $F''$ construir un conjunto de DFs, $F'''$, que no contenga dependencias
+            redundantes; o sea, que para ninguna $X \to A$ en $F''$ el conjunto de
+            dependencias funcionales $F'' - \{X \to A\}$ sea equivalente a $F''$.
+        \end{enumerate}
+    \end{block}
+    % @TODO probar en el ejemplo cambiar los pasos 2 y 3 a ver si obtienes un ejemplo distinto; TLDR orden importa?
+\end{frame}
+
+\begin{frame}{Ejecutando el algoritmo}
+    \begin{columns}[T]
+        
+        \begin{column}{0.25\linewidth}
+            
+            $AB \to C$\\
+            $C \to A$\\
+            $BC \to D$\\
+            $ACD \to B$\\
+            {\color<2-3>{red}$D \to EG$}\\
+            $BE \to C$\\
+            {\color<2-3>{red}$CG \to BD$}\\
+            {\color<2-3>{red}$CE \to AG$}
+            
+        \end{column}
+        \begin{column}{0.25\linewidth}
+            
+            \onslide<3->{
+
+                $AB \to C$\\
+                $C \to A$\\
+                $BC \to D$\\
+                {\color<5-6>{red}
+                $ACD \to B$\\}
+                {\color<3>{red}
+                $D \to E$\\
+                $D \to G$\\
+                }
+                $BE \to C$\\
+                {\color<3>{red}
+                $CG \to B$\\
+                $CG \to D$\\
+                $CE \to A$\\
+                $CE \to G$
+                }
+            }
+
+            
+        \end{column}
+        \begin{column}{0.25\linewidth}
+            \onslide<6->{
+
+            $AB \to C$\\
+            $C \to A$\\
+            $BC \to D$\\
+            {\color<6>{red}
+            $CD \to B$\\}
+            $D \to E$\\
+            $D \to G$\\
+            $BE \to C$\\
+            {\color<7>{red}
+            $CG \to B$\\}
+            $CG \to D$\\
+            {\color<7>{red}
+            $CE \to A$\\}
+            $CE \to G$
+        }
+        \end{column}
+        \begin{column}{0.25\linewidth}
+            \onslide<8->{
+
+            $AB \to C$\\
+            $C \to A$\\
+            $BC \to D$\\
+            $CD \to B$\\
+            $D \to E$\\
+            $D \to G$\\
+            $BE \to C$\\
+            $CG \to D$\\
+            $CE \to G$
+        }
+        \end{column}
+
+    \end{columns}
+    \vspace{5mm}
+
+    \centering
+    \only<4-5>{
+        $D \to G \land CG \to B \models CD \to B$ 
+    }
+    \only<7>{
+        $CG \to D \land CD \to B \models CG \to B$\\
+        $C \to A \models CE \to A$
+    }
+
+    
+\end{frame}
+
+\begin{frame}{Algoritmo para obtener una descomposici\'on en 3FN}
+    \textbf{Entrada:} Un esquema relacional $R(U,F)$, $F$ es un conjunto irreducible de dependencias funcionales.\\
+    \textbf{Salida:} Una descomposici\'on $\rho = (R_1,R_2,...,R_n)$, tal que
+    los esquemas relacionales $R_i(U_i,F_i)$ est\'an en 3FN con respecto
+    a $\Pi_{R_i}(F)$, $\forall i = 1,...,n$.\\
+
+    \pause
+    \textbf{M\'etodo:}\begin{enumerate}
+        \item<2-> \only<2>{Por cada dependencia funcional $X \to A_i$ en $F$ crear el esquema
+        relacional $R_i(U_i,F_i)$ tal que $U_i = X \cup \{A_i\}$ y $F_i = \Pi_{R_i}(F)$. Si en $F$ se tiene \\$X \to A_1$, $X \to A_2$,..., $X \to A_k$ se puede
+        utilizar un esquema relacional de la forma $R_j(U_j,F_j)$ con
+        $U_j = X \cup \{A_1,A_2,...,A_k\}$ y $F_j = \Pi_{R_j}(F)$.}\only<3->{Crear un esquema por cada dependencia funcional. Preferiblemente, hacer que en el mismo esquema coincidan todas las dependencias funcionales con el mismo miembro izquierdo. Sean estos esquemas $R_1, R_2, ..., R_n$.}
+        \item<4-> Si en $U$ existe alg\'un atributo que no est\'a contenido en ninguna dependencia
+        funcional de $F$, este atributo puede formar un esquema relacional por s\'i mismo.
+        \item<5-> Luego, $\rho = (R_1,R_2,...,R_n)$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Obteniendo el dise\~no}
+    \begin{columns}[T]
+        \begin{column}{0.3\linewidth}
+            \#E $\to$ ENombre\\
+            {\color<2>{red}
+            \#E $\to$ Grupo\\}
+            \#E $\to$ Provincia\\
+            \#A $\to$ ANombre\\
+            \#E, \#A $\to$ \#E, \#A\\
+            \#E, \#A $\to$ Nota\\
+            Provincia $\to$ Grupo
+        \end{column}
+
+        \begin{column}{0.3\linewidth}
+            \onslide<3>{
+            \#E $\to$ ENombre\\
+            \#E $\to$ Provincia\\
+            \#A $\to$ ANombre\\
+            \#E, \#A $\to$ \#E, \#A\\
+            \#E, \#A $\to$ Nota\\
+            Provincia $\to$ Grupo
+            }
+        \end{column}
+        
+    \end{columns}
+    \vspace{5mm}
+    \only<2>{
+        \centering
+        \#E $\to$ Provincia $\land$ Provincia $\to$ Grupo $\models$ \#E $\to$ Grupo
+    }
+\end{frame}
+
+
+\begin{frame}{Obteniendo el dise\~no}
+\centering
+\begin{columns}[T]
+    \begin{column}{0.48\linewidth}
+        $R_1(U_1,F_1)$:\\
+        \indent $U_1 = \{\textnormal{\#E, NombreE, Provincia}\}$\\
+        \indent $F_1 = \pi_{U_1}(F)$\\[2mm]
+        $R_2(U_2,F_2)$:\\
+        \indent $U_2 = \{\textnormal{Provincia, Grupo}\}$\\
+        \indent $F_2 = \pi_{U_2}(F)$
+    \end{column}
+
+
+    \begin{column}{0.48\linewidth}
+        $R_3(U_3,F_3)$:\\
+        \indent $U_3 = \{\textnormal{\#A, NombreA}\}$\\
+        \indent $F_3 = \pi_{U_3}(F)$\\[2mm]
+        $R_4(U_4,F_4)$:\\
+        \indent $U_4 = \{\textnormal{\#E, \#A, Nota}\}$\\
+        \indent $F_4 = \pi_{U_4}(F)$
+    \end{column}
+    
+\end{columns}
+
+
+
+\end{frame}
+
+\begin{frame}{Obteniendo el dise\~no}
+    \begin{columns}[T]
+        \begin{column}{0.68\linewidth}
+            \begin{columns}[T]
+                \begin{column}{0.6\textwidth}
+                    \begin{center}
+                        \textbf{Estudiante}\\[2mm]
+        
+                        \begin{tabular}{ccc}
+                            \underline{\#E} & ENombre & Provincia\\[1mm]
+                            \hline
+                            $e_1$ & Juan & La Habana\\
+                            $e_2$ & Mar\'ia & Matanzas\\
+                            $e_3$ & Pedro & La Habana\\
+                            $e_4$ & Rita & Mayabeque\\
+                            $e_5$ & Carlos & Pinar del R\'io
+                        \end{tabular}
+                    \end{center}
+                \end{column}
+
+                \begin{column}{0.4\textwidth}
+                    \begin{center}
+                        \textbf{Provincia-Grupo}\\[2mm]
+        
+                        \begin{tabular}{cc}
+                            \underline{Provincia} & Grupo\\[1mm]
+                            \hline
+                            La Habana & 111\\
+                            Matanzas & 112 \\
+                            Mayabeque & 112 \\
+                            Pinar del R\'io & 113
+                            
+                        \end{tabular}
+                    \end{center}
+                \end{column}
+                
+            \end{columns}
+
+            \begin{center}
+                \textbf{Asignatura}\\[2mm]
+
+                \begin{tabular}{cc}
+                    \underline{\#A} & ANombre\\[1mm]
+                    \hline
+                    $a_1$ & An\'alisis\\
+                    $a_2$ & L\'ogica \\
+                    $a_3$ & \'Algebra\\
+                    $a_4$ & Programaci\'on
+                    
+                \end{tabular}
+            \end{center}
+            
+        \end{column}
+
+        \begin{column}{0.3\linewidth}
+            \vspace{6mm}
+            \begin{center}
+                \textbf{Evaluar}\\[2mm]
+
+                \begin{tabular}{ccc}
+                    \underline{\#E} & \underline{\#A} & Nota\\[1mm]
+                    \hline
+                    $e_1$ & $a_1$ & 3\\
+                    $e_1$ & $a_2$ & 2\\
+                    $e_1$ & $a_3$ & 4\\
+                    $e_1$ & $a_4$ & 5\\
+                    $e_3$ & $a_3$ & 4\\
+                    $e_2$ & $a_1$ & 3\\
+                    $e_2$ & $a_2$ & 3\\
+                    $e_4$ & $a_2$ & 3\\
+                    $e_4$ & $a_4$ & 4\\
+                    $e_5$ & $a_3$ & 3\\
+                \end{tabular}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+% \begin{frame}{Aplicando el algoritmo}
+%     \begin{columns}[T]
+%         \begin{column}{0.3\linewidth}
+%             {\color<2>{red}\#E, \#A} $\to$ ENombre\\
+%             {\color<2>{red}\#E, \#A} $\to$ Grupo\\
+%             {\color<2>{red}\#E, \#A} $\to$ Provincia\\
+%             {\color<2>{red}\#E, \#A} $\to$ ANombre\\
+%             {\color<2>{red}\#E, \#A} $\to$ Nota\\
+%             {\color<4>{red}\#E} $\to$ ENombre\\
+%             {\color<4>{red}\#E} $\to$ Grupo\\
+%             {\color<4>{red}\#E} $\to$ Provincia\\
+%             {\color<6>{red}\#A} $\to$ ANombre\\
+%             {\color<8>{red}Provincia} $\to$ Grupo
+%         \end{column}
+
+%         \begin{column}{0.7\linewidth}
+%             \only<3>{
+%                 \begin{enumerate}
+%                     \item $U = \{ \textnormal{\#E, ENombre,  Grupo, Provincia, \#A, ANombre, Nota}\}$
+%                     \item $F = \{$ \\
+%                     \hspace{10mm} $\textnormal{\#E} \to \textnormal{ENombre, Grupo, Provincia}$\\
+%                     \hspace{10mm} $\textnormal{\#A} \to \textnormal{ANombre}$\\
+%                     \hspace{10mm} $\textnormal{\#E,\#A} \to \textnormal{\#E,\#A}$\\
+%                     \hspace{10mm} $\textnormal{\#E, \#A} \to \textnormal{Nota}$\\
+%                     \hspace{10mm} $\textnormal{Provincia} \to \textnormal{Grupo}$\\
+%                     $\}$
+%                     \item Definimos el esquema relacional $\textbf{Evaluaciones}(U,F)$ con llave \#E, \#A 
+%                 \end{enumerate}
+
+%             }
+%             \only<5>{
+%                 $U_2 = \{\textnormal{\#E, ENombre, Grupo, Provincia}\}$\\
+%                 $F_2 = \{\textnormal{\#E} \to \textnormal{ENombre, Grupo, Provincia,ANombre}$\\
+%                 $\textnormal{Provincia} \to \textnormal{Grupo}$\} 
+%             }
+%         \end{column}
+%     \end{columns}
+% \end{frame}
+
+
+
+
+
+
+
+% \begin{frame}{Formas normales}
+%     \begin{block}{Forma Normal de Boyce-Codd}
+%         Un esquema relacional $R(U,F)$ est\'a en BCFN
+%         si cada uno de sus determinantes constituye una llave
+%         o (superllave) candidata.
+        
+%     \end{block}
+% \end{frame}
+
+% \begin{frame}{3FN vs BCFN}
+
+%     \begin{itemize}
+%         \item 3FN Puede existir redundancia entre atributos que pertenecen a alguna llave
+%         \item 3FN $\neq$ BCFN se ponde de manifiesto cuando en la
+%         relaci\'on existe m\'as de una llave candidata, que sean compuestas y se solapen.
+%     \end{itemize}
+% \end{frame}

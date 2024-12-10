@@ -1,0 +1,187 @@
+\begin{frame}{Modelo relacional}
+    \centering
+    \Huge \textcolor{blue3}{Restricciones de integridad}
+\end{frame}
+
+
+\begin{frame}{¿Qu\'e es un estado consistente de la base de datos?}
+    \begin{block}{Estado de una base de datos}
+        \begin{itemize}
+            \item  Conjunto de instancias $\{r_1,r_2,...,r_n\}$ de las relaciones $R_1,R_2,...,R_n$ respectivamente
+            que conforman la base de datos en un instante de tiempo espec\'ifico.
+            \item<2>  Un estado es consistente si satisface cada una de las restricciones de integridad
+            definidas sobre la base de datos.
+        \end{itemize}
+       
+    \end{block}
+\end{frame}
+
+
+% \begin{frame}{Metarreglas}
+%     \begin{block}{Integridad de las entidades}
+%         El valor de una llave primaria debe ser no nulo del todo 
+%     \end{block}
+
+%     \vspace{5mm}
+%     \centering
+%     \resizebox{!}{2.6cm}{
+%         \begin{tikzpicture}[node distance=5em]
+%             \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+%             \node[entity, double distance=1.5pt] (jugador) {TEMPORADA}
+%                 [sibling distance=3cm]
+%                 child {node[attribute] [above right of=jugador] {\tiny PREMIO}}
+%                 child {node[attribute] [above of=jugador] {\tiny \underline{A\~NO}}}
+%                 child {node[attribute] [above left of=jugador] {\tiny \underline{\#L}}}
+%                 ;
+          
+%             \node[entity] (clan) at (8,0) {EQUIPO}
+%             [sibling distance=3cm]
+%             child {node[attribute] [above of=clan] {\tiny NOMBRE}}
+%             child {node[attribute] [above left of=clan] {\tiny PA\'IS}}
+%             child {node[attribute] [above right of=clan] {\tiny \underline{\#E}}};
+%             \node[relationship,aspect=2] (pertenecer) at (4,0) {PARTICIPAR}
+%             edge(jugador) edge(clan);
+%         \end{tikzpicture}
+%     }
+% \end{frame}
+
+
+\begin{frame}{\only<-3>{Metarreglas}\only<4>{La minimalidad}}
+    \begin{block}{Integridad de las entidades}
+        Todos los atributos de una llave primaria deben ser no nulos
+    \end{block}
+    \vspace{5mm}
+
+    \begin{tikzpicture}
+        \node at (0,0) {
+            \begin{minipage}{0.50\textwidth}
+                \centering
+                Relaci\'on R\\[2mm]
+                \begin{tabular}{|ccc|}
+                    \hline
+                    \{(\underline{A}:$\mathbb{N}$), & (\underline{B}:$\mathbb{N}$), & (C:$\mathbb{N}$)\}\\
+                    \hline
+                    \hline
+                    \{({\color<3->{red}A:1}), & (B:2022), & (C:1000)\}\\
+                    \{({\color<3->{red}A:1}), & (B:2021), & (C:1000)\}\\
+                    \{(A:2), & (B:2022), & (C:1200)\}\\
+                    \hline
+                \end{tabular}
+            \end{minipage}    
+        };
+        
+        \onslide<2->{
+            \node at (7.6, 0.2) {¿Se puede insertar esta tupla?};
+            \node at (7.6,-0.3) {\{({\color<3->{red}A:1}),(B:NULL),(C:1000)\}};
+        }
+    \end{tikzpicture}
+    \vspace{3mm}
+
+    \centering
+    \onslide<4>{
+    \large \textcolor{red}{La llave es minimal. Si su valor est\'a incompleto entonces no es \'unico}
+    }
+\end{frame}
+
+\begin{frame}{\only<-2>{Metarreglas}\only<3>{La minimalidad... otra vez}}
+    \begin{block}{Integridad referencial}
+        \begin{itemize}
+            \item  Todos los atributos de una llave for\'anea deben ser no nulos o todos deben ser nulos.
+            \item El valor de una llave for\'anea tiene que ser un valor existente de la llave primaria en la relaci\'on a la que hace referencia.
+        \end{itemize}
+    \end{block}
+
+   \pause
+
+    \begin{tikzpicture}
+        \node at (0,0) {
+            \begin{minipage}{0.50\textwidth}
+                \centering
+                Relaci\'on R\\[2mm]
+                \begin{tabular}{|ccc|}
+                    \hline
+                    \{(\underline{A}:$\mathbb{N}$), & (\underline{B}:$\mathbb{N}$), & (C:$\mathbb{N}$)\}\\
+                    \hline
+                    \hline
+                    \{(A:1), & ({\color<4>{red}B:2022}), & (C:1000)\}\\
+                    \{(A:1), & (B:2021), & (C:1000)\}\\
+                    \{(A:2), & ({\color<4>{red}B:2022}), & (C:1200)\}\\
+                    \hline
+                \end{tabular}
+            \end{minipage}    
+        };
+
+
+        \node at (6.5,0) {
+            \begin{minipage}{0.50\textwidth}
+                \centering
+                Relaci\'on S\\{\tiny FK: (A,B) REFERENCES R (A,B)}\\[2mm]
+                \begin{tabular}{|ccc|}
+                    \hline
+                    \{(\underline{D}:$\mathbb{N}$), & (A:$\mathbb{N}$), & (B:$\mathbb{N}$)\}\\
+                    \hline
+                    \hline
+                    \{(D:2), & (A:\only<2>{2}\only<3->{\textbf<3>{NULL}}), & ({\color<4>{red}B:2022})\}\\
+                    \hline
+                \end{tabular}
+            \end{minipage}    
+        };
+        
+    \end{tikzpicture}
+    \vspace{3mm}
+
+    \only<4>{
+    \centering
+    \large ¿A cu\'al tupla de la relaci\'on R referencia la tupla de la relaci\'on S?
+    }
+
+    \only<5>{
+        \centering
+        \large \textcolor{red}{El valor de una llave for\'anea es un valor de la llave primaria de otra tabla\\Tambi\'en le afecta la minimalidad.}}
+
+\end{frame}
+
+
+\begin{frame}{Metarreglas}
+  
+
+    \begin{block}{Integridad de los dominios}
+        \begin{itemize}
+            \item Todos los valores de un atributo de una
+            relaci\'on tienen que provenir del dominio pertinente.
+        \end{itemize}
+        
+    \end{block}
+    \vspace{3mm}
+
+    \centering
+    \onslide<2>{
+        \Large \textcolor{red}{Trivial}
+    }
+
+    \note<2>{@NOTE por qu\'e trivial? Poner contraejemplo.}
+
+\end{frame}
+
+
+
+\begin{frame}{Modelo relacional}
+    \vspace{5mm}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{block}{Estructura de datos}
+           Relaci\'on
+        \end{block}
+
+        \begin{block}{Restricciones de integridad}
+            \begin{itemize}
+                \item Metarreglas
+                \item Dependencias funcionales (\textit{spoiler})
+                \item Restricciones del negocio (\textit{spoiler})
+            \end{itemize}
+            
+        \end{block}
+    \end{overlayarea}
+
+    \note{@NOTE restricciones del negocio: todo no se puede representar hasta este punto (hay q programar)}
+\end{frame}
+

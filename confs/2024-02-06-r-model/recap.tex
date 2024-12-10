@@ -1,0 +1,144 @@
+\begin{frame}{¿D\'onde nos quedamos?}
+    \begin{columns}[T]
+        \begin{column}{0.48\linewidth}
+            \vspace{25mm}
+
+            \resizebox{\linewidth}{!}{
+                \begin{tikzpicture}[node distance=6em]
+                    \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+                    \node[entity] (jugador) {JUGADOR}
+                        [sibling distance=3cm]
+                        child {node[attribute] [above right of=jugador] {\tiny TROFEOS MAX}}
+                        child {node[attribute] [above of=jugador] {\tiny TROFEOS}}
+                        child {node[attribute] [above left of=jugador] {\tiny NOMBRE}}
+                        child {node[attribute] [left of=jugador] {\underline{\tiny \#J}}}
+                        child {node[attribute] [below left of=jugador] {NIVEL}}
+                        ;
+                  
+                    \node[entity] (clan) at (8,0) {CLAN}
+                    [sibling distance=3cm]
+                    child {node[attribute] [right of=clan] {\underline{\tiny \#Cl}}}
+                    child {node[attribute] [above of=clan] {\tiny REGI\'ON}}
+                    child {node[attribute] [above left of=clan] {\tiny TIPO}}
+                    child {node[attribute] [above right of=clan] {\tiny NOMBRE}}
+                    child {node[attribute] [below right of=clan] {\tiny TROFEOS MIN}};
+
+                    \node[relationship,aspect=2] (pertenecer) at (4,0) {PERTENECER}
+                    edge(jugador) edge(clan);
+                \end{tikzpicture}
+            }
+        \end{column}
+
+        \begin{column}{0.48\linewidth}
+
+            \begin{center}
+
+                \vspace{-5mm}
+
+                \tiny{JUGADOR}
+                \vspace{2mm}
+
+                \begin{tiny}
+                    
+                    \begin{tabular}{|c|c|c|c|c|}
+                        \hline
+                        \underline{\#J} & Nombre & Nivel& Trofeos & TrofeosMax\\
+                        \hline
+                        1 & Juan & 13 & 7500 & 7560\\
+                        \hline
+                        2 & Pedro &  11 & 7000 & 7200 \\
+                        \hline
+                        3 & Mar\'ia & 12  & 7050 & 7400\\
+                        \hline
+                        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+                        \hline
+                        
+                    \end{tabular}
+                \end{tiny}
+                
+                \vspace{3mm}
+
+                \tiny{CLAN}
+                \vspace{2mm}
+
+                \begin{tiny}
+                    \begin{tabular}{|c|c|c|c|c|}
+                        \hline
+                        \underline{\#C} & Nombre & Regi\'on & Tipo & TrofeosMin\\
+                        \hline
+                        1 & River Plate 2. & MEX & Cerrado & 7000 \\
+                        \hline
+                        2 & TheWarriors & GER & Invitaci\'on & 7300\\
+                        \hline
+                        3 & WestRoyale &  ESP & Cerrado & 6300\\
+                        \hline
+                        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+                        \hline
+                        
+                    \end{tabular}
+                \end{tiny}
+                
+                \vspace{3mm}
+
+                \tiny{PERTENECER}
+                \vspace{2mm}
+
+                \begin{tiny}
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        \underline{\#J} & \underline{\#C}\\
+                        \hline
+                        1 & 2  \\
+                        \hline
+                        2 & 3\\
+                        \hline
+                        3 & 1\\
+                        \hline
+                        $\vdots$ & $\vdots$\\
+                        \hline
+                    \end{tabular}
+                \end{tiny}
+                
+            \end{center}
+        \end{column}
+        
+    \end{columns}
+
+\end{frame}
+
+
+
+\begin{frame}{Fases del dise\~no de una base de datos}
+    
+    \begin{columns}[T]
+        \begin{column}{0.48\textwidth}
+            
+            \begin{overlayarea}{\linewidth}{\textheight}
+                \vspace{10mm}
+                \centering
+                \begin{tikzpicture}
+                    \node<1->[rectangle, fill=blue1, minimum width=5cm, minimum height=8mm, text=white] at (0,0) {An\'alisis de Requerimientos};
+                    \node<1->[single arrow, fill=black, inner sep=6pt, rotate=270] at (0,-0.8){};
+                    \node<1->[rectangle, fill=blue2, minimum width=5cm, minimum height=8mm, text=white] at (0,-1.8) {Modelos Conceptuales};
+                    \node<2->[single arrow, fill=black, inner sep=6pt, rotate=270] at (0,-2.6){};
+                    \node<2->[rectangle, fill=blue3, minimum width=5cm, minimum height=8mm, text=white] at (0,-3.6) {Dise\~no L\'ogico};
+                \end{tikzpicture}
+        
+        
+              
+                    
+            \end{overlayarea}
+        \end{column}
+
+        \begin{column}{0.48\textwidth}
+            \vspace{25mm}
+
+            \centering
+            \begin{block}<2->{Dise\~no l\'ogico}
+                El dise\~no l\'ogico es una descripci\'on
+                de las estructuras de datos utilizadas para
+                almacenar los datos.
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}

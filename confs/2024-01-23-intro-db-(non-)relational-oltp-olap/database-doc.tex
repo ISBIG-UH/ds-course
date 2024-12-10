@@ -1,0 +1,112 @@
+\begin{frame}
+    \frametitle{Bases de datos}
+    \framesubtitle{de Documentos}
+
+\begin{center}
+    \Huge \textbf{de Documentos}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Bases de datos}
+    \framesubtitle{de Documentos}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on \textcolor<2>{red}{auto-descriptiva} de \textcolor<1>{red}{registros} integrados."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+            \end{block}
+      \end{onlyenv}
+
+      \vspace{5mm}
+
+      \begin{center}
+        
+        \begin{minipage}{.6\textwidth}
+            \begin{onlyenv}<1>
+        \begin{lstlisting}[language=json]
+{  
+    "CI": "23082300205", 
+    "Nombre": "Edgar F.", 
+    "Apellido": "Codd", 
+    "F. Nacimiento": "23/08/1923",
+    "Titulo de Doctor": {
+        "F. Expedido": 1965,
+        ...
+    }
+}
+        \end{lstlisting}
+            \end{onlyenv}
+
+\begin{onlyenv}<2>
+        \begin{lstlisting}[language=json]
+{  
+    "#CI#": "23082300205", 
+    "#Nombre#": "Edgar F.", 
+    "#Apellido#": "Codd", 
+    "#F. Nacimiento#": "23/08/1923",
+    "#Titulo de Doctor#": {
+        "#F. Expedido#": 1965,
+        ...
+    }
+}
+        \end{lstlisting}
+\end{onlyenv}
+        \end{minipage}
+      \end{center}
+    \end{overlayarea}
+
+    \note<1>{@NOTE han trabajado con json antes?}
+    \note<2>{@NOTE el esquema puede variar entre docs de la misma colecci\'on, pero la estructura interna de un doc se encuentra bien definida}
+\end{frame}
+
+\begin{frame}[fragile]{Bases de datos}
+    \framesubtitle{de Documentos}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de registros \textcolor{red}{integrados}."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                \textcolor{red}{Integrados}: no solo contiene los datos sino tambi\'en las interrelaciones
+                 que se establecen entre estos.
+            \end{block}
+      \end{onlyenv}
+
+      \vspace{3mm}
+        \begin{columns}
+            \begin{column}[t]{0.525\textwidth}
+                \centering
+                \large \textbf{Persona} (llave:  ``\textcolor{blue}{23082300205}'')
+
+        \begin{lstlisting}[language=json]
+{  
+    "CI": "23082300205", 
+    "Nombre": "Edgar F.", 
+    "Apellido": "Codd", 
+    "F. Nacimiento": "23/08/1923"
+}
+        \end{lstlisting}
+            \end{column}
+
+            \begin{column}[t]{0.475\textwidth}
+                \centering
+                \large \textbf{Cuenta} (llave: ``8976'')
+
+        \begin{lstlisting}[language=json]
+{  
+    "No. Cuenta": "8976", 
+    "Balance": 270.98, 
+    "CI Duenyo": "#23082300205#"
+}
+                \end{lstlisting} 
+            \end{column}
+        \end{columns}
+    \end{overlayarea}
+    
+    \note{@NOTE dentro de un doc puede haber otro doc. Esta es otra manera de expresar una interrelaci\'on entre ellos}
+\end{frame}

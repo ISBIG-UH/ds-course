@@ -1,0 +1,87 @@
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{xypic}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{venndiagram}
+\usepackage{array}
+\usepackage[all]{xy}
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule for better rules in tables
+\usepackage{multirow}
+
+\usepackage{textcomp}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\usepackage[inkscapeformat=png]{svg}
+\usepackage{adjustbox}
+\usepackage{caption}
+\captionsetup[lstlisting]{labelformat=empty, labelsep=none}
+
+
+\usecolortheme{whale}
+\usetikzlibrary{er,positioning}  
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows, decorations.markings}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{mindmap}
+
+\setbeamertemplate{navigation symbols}{}
+
+% \setbeameroption{show notes on second screen=right}
+
+\definecolor{violet}{rgb}{0.53, 0.0, 0.69}
+
+\definecolor{blue1}{RGB}{126,126,206}
+\definecolor{blue2}{RGB}{87,87,192}
+\definecolor{blue3}{RGB}{51,51,178}
+\definecolor{blue4}{RGB}{27,26,107}
+
+\tikzstyle{every link} = []
+\tikzstyle{link} = [>=triangle 60, draw, every link]
+
+\definecolor{attr}{RGB}{10,153,2}
+
+\graphicspath{{Images/}{./}} % Specifies where to look for included images (trailing slash required)
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{HTML}{C42043}
+\definecolor{backcolour}{HTML}{F2F2F2}
+\definecolor{red}{HTML}{FF0000}
+\definecolor{bookColor}{cmyk}{0,0,0,0.90}  
+\color{bookColor}
+
+\lstset{upquote=true}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{codepurple},
+	numberstyle=\numberstyle,
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=none,
+	numbersep=10pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	otherkeywords = {OUT, SIGNAL, DECLARE, BEFORE, AFTER, CALL, WHILE, PROCEDURE},
+}
+\lstset{style=mystyle}
+
+\newcommand\numberstyle[1]{%
+	\footnotesize
+	\color{codegray}%
+	\ttfamily
+	\ifnum#1<10 0\fi#1 |%
+}
+
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}

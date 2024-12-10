@@ -1,0 +1,134 @@
+\begin{frame}{Representaci\'on tabular}
+    \begin{columns}[T]
+        \begin{column}{0.48\linewidth}
+            \vspace{25mm}
+
+            \resizebox{\linewidth}{!}{
+                \begin{tikzpicture}[node distance=6em]
+                    \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+                    \node[entity] (jugador) {JUGADOR}
+                        [sibling distance=3cm]
+                        child {node[attribute] [above right of=jugador] {\tiny TROFEOS MAX}}
+                        child {node[attribute] [above of=jugador] {\tiny TROFEOS}}
+                        child {node[attribute] [above left of=jugador] {\tiny NOMBRE}}
+                        child {node[attribute] [left of=jugador] {\underline{\tiny \#J}}}
+                        child {node[attribute] [below left of=jugador] {NIVEL}}
+                        ;
+                  
+                    \node[entity] (clan) at (8,0) {CLAN}
+                    [sibling distance=3cm]
+                    child {node[attribute] [right of=clan] {\underline{\tiny \#Cl}}}
+                    child {node[attribute] [above of=clan] {\tiny REGI\'ON}}
+                    child {node[attribute] [above left of=clan] {\tiny TIPO}}
+                    child {node[attribute] [above right of=clan] {\tiny NOMBRE}}
+                    child {node[attribute] [below right of=clan] {\tiny TROFEOS MIN}};
+
+                    \node[relationship,aspect=2] (pertenecer) at (4,0) {PERTENECER}
+                    edge(jugador) edge(clan);
+                \end{tikzpicture}
+            }
+        \end{column}
+
+        \begin{column}{0.48\linewidth}
+
+            \begin{center}
+
+                \vspace{-5mm}
+
+                \tiny{JUGADOR}
+                \vspace{2mm}
+
+                \begin{tiny}
+                    
+                    \begin{tabular}{|c|c|c|c|c|}
+                        \hline
+                        \underline{\#J} & Nombre & Nivel& Trofeos & TrofeosMax\\
+                        \hline
+                        1 & Juan & 13 & 7500 & 7560\\
+                        \hline
+                        2 & Pedro &  11 & 7000 & 7200 \\
+                        \hline
+                        3 & Mar\'ia & 12  & 7050 & 7400\\
+                        \hline
+                        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+                        \hline
+                        
+                    \end{tabular}
+                \end{tiny}
+                
+                \vspace{3mm}
+
+                \tiny{CLAN}
+                \vspace{2mm}
+
+                \begin{tiny}
+                    \begin{tabular}{|c|c|c|c|c|}
+                        \hline
+                        \underline{\#C} & Nombre & Regi\'on & Tipo & TrofeosMin\\
+                        \hline
+                        1 & River Plate 2. & MEX & Cerrado & 7000 \\
+                        \hline
+                        2 & TheWarriors & GER & Invitaci\'on & 7300\\
+                        \hline
+                        3 & WestRoyale &  ESP & Cerrado & 6300\\
+                        \hline
+                        $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\vdots$\\
+                        \hline
+                        
+                    \end{tabular}
+                \end{tiny}
+                
+                \vspace{3mm}
+
+                \tiny{PERTENECER}
+                \vspace{2mm}
+
+                \begin{tiny}
+                    \begin{tabular}{|c|c|}
+                        \hline
+                        \underline{\#J} & \underline{\#C}\\
+                        \hline
+                        1 & 2  \\
+                        \hline
+                        2 & 3\\
+                        \hline
+                        3 & 1\\
+                        \hline
+                        $\vdots$ & $\vdots$\\
+                        \hline
+                    \end{tabular}
+                \end{tiny}
+                
+            \end{center}
+        \end{column}
+        
+    \end{columns}
+
+    \note{@NOTE existen diversas estructuras de datos para representar un MERX l\'ogicamente: \'arboles, grafos... pero las tablas ofrecen muchas facilidades como la f\'acil comprensi\'on que de ellas puede hacer el interlocutor... Necesitamos una base matem\'atica-computacional que sostenga esta representaci\'on, que le d\'e formalidad, consistencia y confiabilidad.}
+\end{frame}
+
+\begin{frame}{¿C\'omo podemos describir un MERX?}
+
+    \begin{block}<2->{Modelo matem\'atico de datos}
+        Un modelo matem\'atico de datos es una definici\'on l\'ogica,
+        abstracta y auto-contenida de: \begin{itemize}
+            \item<3-> \textbf{Estructuras de datos}: utilizadas para la representaci\'on de los datos
+            y sus interrelaciones.
+            \item<4-> \textbf{Restricciones de integridad}: utilizadas para mantener un estado consistente
+            de la base de datos durante la ejecuci\'on de operaciones que modifican la base de datos.
+            \item<5-> \textbf{Operaciones}: utilizadas para manipular los datos.
+        \end{itemize}
+        \onslide<6->{que integradas constituyen una m\'aquina abstracta con la que los usuarios interact\'uan.}
+    \end{block}
+    
+\end{frame}
+
+
+\begin{frame}{La implementaci\'on no es una descripci\'on}
+    \begin{block}{Implementaci\'on de un modelo matem\'atico de datos}
+        Es una realizaci\'on f\'isica
+        en una m\'aquina real de los componentes
+        de la m\'aquina abstracta que constituye el modelo.\\[5mm]
+    \end{block}
+\end{frame}
+

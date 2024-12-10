@@ -1,0 +1,130 @@
+\begin{frame}{¿Hasta d\'onde hemos llegado?}
+    \centering
+    \resizebox{14cm}{7.5cm}{
+    \begin{tikzpicture}
+        \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+        \tikzstyle{every relationship} = [minimum width=2.5cm, minimum height=1.3cm]
+        \tikzset{link/.append style={
+            postaction={decorate},
+            decoration={
+                markings,
+                mark= at position 0.5 with {
+                    \draw (0.5em,1ex) -- (-0.5em,1ex) to[bend right=90] (-0.5em,-1ex) -- (0.5em,-1ex);
+                }
+            }
+        }}
+        \node[entity] (jugador) at (0,0) {JUGADOR};
+        \node[entity] (fecha) at (0,4.6) {FECHA};
+        \node[entity] (clan) at (0,-4.6) {CLAN};
+        \node[entity] (carta) at (8.6,0) {CARTA};
+
+        
+
+        \node[entity] (tropa) at (8.6, 5) {TROPA};
+        \node[entity] (estructura) at (11.6,5) {ESTRUCTURA};
+        \node[entity] (hechizo) at (5.6,5) {HECHIZO};
+
+        \node[regular polygon, draw, regular polygon sides=6, minimum width=7mm, xscale=3, label=center:TIPO] (tipo) at (8.6,2.5) {};
+        \draw (carta.north) -- (tipo.south);
+        \draw (tipo.west) -- (5.6,2.5);
+        \draw (tipo.east) -- (11.6,2.5);
+        \draw[link] (tropa.south) -- (tipo.north);
+        \draw[link] (hechizo.south) -- (5.6,2.5);
+        \draw[link] (estructura.south) -- (11.6,2.5);
+
+
+        \node[relationship,aspect=2] (pertenecer) at (3,-2.3) {\small PERTENECER}
+            edge(jugador) edge(clan);
+        \node at (1.6,-0.9) {$1,\ast$};
+        \node at (1.6,-3.8) {$0,1$};
+
+        \node at (1.5,-4.4) {$0,1$};
+        \node at (6.4,-1.7) {$0,\ast$};
+
+        \node at (0.6,-0.9) {$0,\ast$};
+        \node at (-0.6,-0.9) {$0,\ast$};
+
+        \node[relationship,aspect=2] (coleccionar) at (4.3,0) {\small COLECCIONAR}
+            edge(carta) edge(jugador);
+        \node at (1.6,0.2) {$0,\ast$};
+        \node at (7.0,0.2) {$1,\ast$};
+
+        \node[relationship,aspect=2] (enfrentar) at (0,2.3) {\small ENFRENTAR}
+            edge(fecha);
+        \draw (enfrentar.west) -- (jugador.north);
+        \draw (enfrentar.east) -- (jugador.north);
+        \node at (0.7,0.8) {$0,1$};
+        \node at (-0.7,0.8) {$0,1$};
+        \node at (0.4,3.7) {$0,\ast$};
+
+        \node[relationship,aspect=2] (seramigo) at (0, -2.3) {\small SER\_AMIGO};
+        \draw (seramigo.east) -- (jugador.south);
+        \draw (seramigo.west) -- (jugador.south);
+
+        \node[relationship,aspect=2] (serlider) at (-3,-2.3) {\small SER\_L\'IDER}
+            edge(jugador) edge(clan);
+        \node at (-1.6,-3.8) {$0,1$};
+        \node at (-1.6,-0.9) {$1,1$};
+
+        \node[rectangle, draw, minimum width=12.5cm, minimum height=2.8cm] at (4,0) {};
+        \node at (7.8,-1) {CARTA COLECCIONADA};
+
+        \node[relationship, aspect=2] (donar) at (6,-4.6) {DONAR} edge(clan);
+        \draw (6,-1.4) -- (donar.north);
+
+        
+        \draw (-3,0) -- (jugador.west);
+        
+        \node[entity] (premium) at (-6.5,-1.2) {J.PREMIUM};
+        \node[entity] (profesional) at (-6.5,1.2) {J.PROFESIONAL};
+        \draw (-3,0) -- (-3,-1.2);
+        \draw (-3,0) -- (-3,1.2);
+        \draw[link] (premium.east) -- (-3,-1.2);
+        \draw[link] (profesional.east) -- (-3,1.2);
+
+
+        \node[entity] (equipo) at (-6.5,5) {EQUIPO};
+        \node at (-6.1,4.1) {$1,1$};
+        \node at (-6.1,2) {$1,\ast$};
+
+        \node[relationship,aspect=2] (miembro) at (-6.5,3.1) {MIEMBRO} edge(profesional) edge(equipo); 
+
+        \node[entity,double distance=1.5pt] (temporada) at (-14, 5) {TEMPORADA};
+
+
+        \node[entity] (liga) at (-14,0.5) {LIGA};
+        \node[relationship,aspect=2,double distance=1.5pt] (organizar) at (-14,2.7) {ORGANIZAR} edge(temporada) edge(liga);
+
+        \node[relationship,aspect=2] (compet) at (-10.2,5) {COMPETIR} edge(temporada) edge(equipo);
+        
+        \node at (-8,5.2) {$\ast,\ast$};
+        \node at (-12.3,5.2) {$1,\ast$};
+
+        \node at (-13.6,4.1) {$1,1$};
+        \node at (-13.6,1.3) {$1,\ast$};
+       
+        
+
+
+
+        
+    \end{tikzpicture}
+    }
+\end{frame}
+
+\begin{frame}{¿De d\'onde partimos?}
+    \centering
+    \includegraphics[width=0.8\linewidth, height=0.8\textheight]{img/specs.png}
+\end{frame}
+
+\begin{frame}{¿C\'omo obtener una especificaci\'on?}
+    \begin{block}{An\'alisis de requerimientos}
+        \begin{itemize}
+            \item Descripciones en lenguaje natural
+            \item Encuestas
+            \item Observaci\'on directa 
+            \item Formatos de registros
+            \item Esquemas de datos
+        \end{itemize}
+    \end{block}
+\end{frame}

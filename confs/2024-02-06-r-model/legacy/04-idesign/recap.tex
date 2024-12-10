@@ -1,0 +1,54 @@
+\begin{frame}{¿D\'onde nos quedamos?}
+    \begin{columns}[T]
+        \begin{column}{0.48\linewidth}
+            \vspace{13mm}
+
+            \resizebox{\linewidth}{!}{
+                \begin{tikzpicture}[node distance=6em]
+                    \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+                    \node[entity] (jugador) {JUGADOR}
+                        [sibling distance=3cm]
+                        child {node[attribute] [above right of=jugador] {\tiny TROFEOS MAX}}
+                        child {node[attribute] [above of=jugador] {\tiny TROFEOS}}
+                        child {node[attribute] [above left of=jugador] {\tiny NOMBRE}}
+                        child {node[attribute] [left of=jugador] {\underline{\tiny \#J}}}
+                        child {node[attribute] [below left of=jugador] {\tiny NIVEL}}
+                        ;
+                  
+                    \node[entity] (clan) at (8,0) {CARTA}
+                    [sibling distance=3cm]
+                    child {node[attribute] [right of=clan] {\underline{\tiny \#C}}}
+                    child {node[attribute] [above of=clan] {\tiny COSTO}}
+                    child {node[attribute] [above left of=clan] {\tiny DESC.}}
+                    child {node[attribute] [above right of=clan] {\tiny NOMBRE}}
+                    child {node[attribute] [below right of=clan] {\tiny CALIDAD}};
+                    
+                  
+                    \node[relationship,aspect=2] (pertenecer) at (4,0) {COLECCIONAR};
+                    \draw (pertenecer.east) -- (clan.west) node[above left] {$1,\ast$};
+                    \draw (pertenecer.west) -- (jugador.east) node[above right] {$0,\ast$};
+                \end{tikzpicture}
+            }
+        \end{column}
+
+        \begin{column}{0.48\linewidth}
+
+           
+
+                \vspace{14mm}
+
+                \begin{scriptsize}
+                    
+                    \textbf{Jugador}(\underline{\#J}, Nombre, Nivel, Trofeos, TrofeosMax)\\[2mm]
+                    \textbf{Carta}(\underline{\#C}, Nombre, Calidad, Desc., Costo)\\[2mm]
+                    \textbf{Coleccionar}(\underline{\#J}, \underline{\#C})\\[1mm]
+                    \hspace{4mm} FK: \#J REFERENCES Jugador\\
+                    \hspace{4mm} FK: \#C REFERENCES Carta
+
+                \end{scriptsize}
+
+        \end{column}
+        
+    \end{columns}
+
+\end{frame}

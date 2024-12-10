@@ -1,0 +1,215 @@
+
+\begin{frame}{Restricciones sobre interrelaciones}
+
+    \begin{block}{Cardinalidad de una interrelaci\'on}
+        Cantidad de instancias en un conjunto de entidades que
+        puede estar relacionado con una \'unica instancia en el otro
+        conjunto de entidades.
+    \end{block}
+
+    \pause
+
+    \begin{block}{¿C\'omo determinar la cardinalidad de una interrelaci\'on?}
+        Por cada conjunto de entidades en un extremo de la interrelaci\'on: \begin{enumerate}
+            \item Fijar una \'unica entidad en el conjunto de entidades restante
+            \item Calcular la cantidad de instancias relacionadas con las entidades fijadas
+        \end{enumerate}
+    \end{block}
+\end{frame}
+
+% One to many relationship example
+\begin{frame}
+    {
+    \only<-9>{Determinar la cardinalidad de una interrelaci\'on. Ejemplo}
+    \only<10>{Interrelaciones de uno a muchos}
+    }
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \vspace{10mm}
+        \begin{center}
+            \Large{
+                \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{pertenecer} \hspace{10mm} \textcolor{orange}{clan}
+            } 
+        \end{center}
+        \vspace{3mm}
+
+        \centering
+        \begin{tikzpicture}
+            \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+            \node[entity] (jugador) at (0,0) {JUGADOR};
+            \node[entity] (clan) at (9,0) {CLAN};
+            \node[relationship, aspect=2] (pertenecer) at (4.5,0) {PERTENECER} edge(jugador) edge(clan);
+            \onslide<4-8>{\node at (7.5,0.2) {{\color<4,8>{red}{1}}};}
+            \only<4>{\draw[->,thick,color=red](7,0.7) -- (7.4,0.4);}
+            \onslide<7-8>{\node at (1.5,0.2) {{\color<7,8>{red}{$\ast$}}};}
+            \only<7>{\draw[->,thick,color=red](1.9,0.8) -- (1.6,0.4);}
+            \onslide<9-10>{\node at (7.5,0.2) {${\color<9>{red}{0}}, 1$};}
+            \onslide<9-10>{\node at (1.5,0.2) {${\color<9>{red}{1}}, \ast$};}
+
+        \end{tikzpicture}
+
+        \only<2-4>{
+            \begin{block}{Cardinalidad en el extremo CLAN}
+                \begin{enumerate}
+                    \item Fijamos una \'unica entidad en el conjunto JUGADOR
+                    \item<3-4> ¿Un jugador a cu\'antos clanes puede pertenecer?
+                    \item<4> Un jugador puede pertenecer a un \textcolor{red}{\'unico} clan
+                \end{enumerate}
+            \end{block}
+        }
+
+        \only<5-7>{
+            \begin{block}{Cardinalidad en el extremo JUGADOR}
+                \begin{enumerate}
+                    \item Fijamos una \'unica entidad en el conjunto CLAN
+                    \item<6-7> ¿A un clan cu\'antos jugadores pueden llegar a pertenecer?
+                    \item<7> A un clan pueden pertenecer \textcolor{red}{muchos} jugadores
+                \end{enumerate}
+            \end{block}
+        }
+
+        \only<8>{
+            \vspace{5mm}
+
+            \centering
+            \Large{\textcolor{red}{ Cardinalidad m\'axima de una interrelaci\'on (posibilidad)}}
+        
+        }
+
+        \only<9>{
+            \vspace{5mm}
+
+            \centering
+            {\Large \textcolor{red}{ Cardinalidad m\'inima de una interrelaci\'on (opcionalidad)}}
+            \vspace{2mm}
+
+            ¿Un jugador al menos a cu\'antos clanes debe pertenecer?
+
+            ¿A un clan al menos cu\'antos jugadores deben pertenecer?
+        }
+
+        \only<10>{
+            \vspace{5mm}
+            Si la cardinalidad m\'axima en una direcci\'on es 1 y en la otra
+            es mayor que 1 se dice que la interrelaci\'on 
+            es de \textcolor{red}{uno a muchos} (o viceversa, de muchos a uno) 
+            y es denotada por \textcolor{red}{ $1 : \ast$} (o viceversa, \textcolor{red}{$\ast : 1$}). 
+        }
+
+    \end{overlayarea}
+\end{frame}
+
+
+% One to one relationship example
+\begin{frame}{
+    \only<-7>{Determinar la cardinalidad de una interrelaci\'on. Otro ejemplo}
+    \only<8>{Interrelaciones de uno a uno}
+    }
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \vspace{10mm}
+        \begin{center}
+            \Large{
+                \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{ser l\'ider} \hspace{10mm} \textcolor{orange}{clan}
+            }
+        \end{center}
+        \vspace{3mm}
+
+        \centering
+        \begin{tikzpicture}
+            \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+            \node[entity] (jugador) at (0,0) {JUGADOR};
+            \node[entity] (clan) at (9,0) {CLAN};
+            \node[relationship, aspect=2] (serlider) at (4.5,0) {SER\_L\'IDER} edge(jugador) edge(clan);
+            \onslide<4->{\node at (7.5,0.2) {$0, 1$};}
+            \onslide<7->{\node at (1.5,0.2) {$1, 1 $};}
+        \end{tikzpicture}
+
+
+        \only<2-4>{
+            \begin{block}{Cardinalidad en el extremo CLAN}
+                \begin{enumerate}
+                    \item Fijamos una \'unica entidad en el conjunto JUGADOR
+                    \item<3-4> ¿Un jugador de cu\'antos clanes puede ser l\'ider?
+                    \item<4> Un jugador puede ser l\'ider de ning\'un clan o de uno solo
+                \end{enumerate}
+            \end{block}
+        }
+
+        \only<5-7>{
+            \begin{block}{Cardinalidad en el extremo JUGADOR}
+                \begin{enumerate}
+                    \item Fijamos una \'unica entidad en el conjunto CLAN
+                    \item<6-7> ¿De un clan cu\'antos jugadores pueden ser l\'ider?
+                    \item<7> Un clan tiene un y solo un l\'ider
+                \end{enumerate}
+            \end{block}
+        }
+
+        \only<8>{
+            \vspace{5mm}
+
+            Si la cardinalidad m\'axima en ambas direcciones de la interrelaci\'on es 1
+            se dice que la interrelaci\'on es de \textcolor{red}{uno a uno} y es denotada por \textcolor{red}{$1:1$}.
+        }
+    \end{overlayarea}
+\end{frame}
+
+
+% Many to many relationship example
+\begin{frame}{
+    \only<-7>{Determinar la cardinalidad de una interrelaci\'on. S\'i, otro m\'as}
+    \only<8>{Interrelaciones de muchos a muchos}
+    }
+    \begin{overlayarea}{\textwidth}{\textheight}
+        \vspace{10mm}
+        \begin{center}
+            \Large{
+                \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{coleccionar} \hspace{10mm} \textcolor{orange}{carta}
+            }
+        \end{center}
+        \vspace{3mm}
+    
+        \centering
+        \begin{tikzpicture}
+            \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+            \node[entity] (jugador) at (0,0) {JUGADOR};
+            \node[entity] (carta) at (9,0) {CARTA};
+            \node[relationship, aspect=2] (coleccionar) at (4.5,0) {COLECCIONAR} edge(jugador) edge(carta);
+            \onslide<4->{\node at (7.5,0.2) {$1,\ast$};}
+            \onslide<7->{\node at (1.5,0.2) {$0,\ast$};}
+        \end{tikzpicture}
+    
+        \only<2-4>{
+            \begin{block}{Cardinalidad en el extremo CARTA}
+                \begin{enumerate}
+                    \item Fijamos una \'unica entidad en el conjunto JUGADOR
+                    \item<3-4> ¿Un jugador cu\'antas cartas puede coleccionar?
+                    \item<4> Un jugador puede llegar a coleccionar todas las cartas y debe de tener al menos una
+                \end{enumerate}
+            \end{block}
+        }
+    
+        \only<5-7>{
+            \begin{block}{Cardinalidad en el extremo JUGADOR}
+                \begin{enumerate}
+                    \item Fijamos una \'unica entidad en el conjunto CARTA
+                    \item<6-7> ¿Una carta cu\'antos jugadores pueden coleccionarla?
+                    \item<7> Muchos jugadores pueden coleccionar una misma carta y pueden existir cartas muy raras que ninguno tenga
+                \end{enumerate}
+            \end{block}
+        }
+    
+        \only<8>{
+        \vspace{5mm}
+            
+            Si las \textcolor{red}{cardinalidades m\'aximas} en ambas direcciones
+            son mayores que 1 se dice que la interrelaci\'on 
+            es \textcolor{red}{muchos a muchos} y es \textcolor{red}{denotada por $\ast : \ast$}. 
+        }
+    \end{overlayarea}
+
+  
+\end{frame}
+
+

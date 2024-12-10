@@ -1,0 +1,21 @@
+// OLd script if all arrows are visible 
+// jQuery('.fa-caret-down').on('click', function(e) {
+//     e.preventDefault();
+//     $(this).parent().next("ul").toggle();
+//     if ($(this).hasClass('fas fa-caret-down')) {
+//         $(this).removeClass("fas fa-caret-down");
+//         $(this).addClass("fas fa-caret-right");
+//     } else {
+//         $(this).removeClass("fas fa-caret-right");
+//         $(this).addClass("fas fa-caret-down");
+//     }
+// });
+
+// OLd script just for down arrows
+jQuery('.fa-caret-down').on('click', function(e) {
+    e.preventDefault();
+    $(this).parent().next("ul").toggle();
+    if ($(this).hasClass('fas fa-caret-down')) {
+        $(this).removeClass("fas fa-caret-down");
+    }
+});

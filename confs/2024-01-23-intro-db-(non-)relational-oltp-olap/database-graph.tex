@@ -1,0 +1,97 @@
+\begin{frame}
+    \frametitle{Bases de datos}
+    \framesubtitle{de Grafos}
+
+\begin{center}
+    \Huge \textbf{de Grafos}
+\end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{?`Qu\'e es un grafo?}
+
+    \begin{center}
+        \includegraphics<2>[scale=.9]{img/graph-db/graph-vertices.pdf}
+        \includegraphics<3>[scale=.9]{img/graph-db/graph-edges.pdf}
+        \includegraphics<4>[scale=.9]{img/graph-db/graph-directed-edges.pdf}
+    \end{center}
+
+    \note<4>{@NOTE di casos de uso}
+\end{frame}
+
+\begin{frame}[fragile]{Bases de datos}
+    \framesubtitle{de Grafos}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de \textcolor{red}{registros} integrados."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                
+                \textcolor{red}{Registro}: datos espec\'ificos sobre una entidad u objeto de inter\'es
+            \end{block}
+      \end{onlyenv}
+      \vspace{2mm}
+      \begin{center}
+        
+        % @TODO las etiketas de las imgs se ven fula en el edge web browser
+        \includegraphics[scale=.77]{img/graph-db/graph-db-data.pdf}
+
+      \end{center}
+    \end{overlayarea}
+
+    \note{@NOTE las interrelaciones tambi\'en pueden tener datos asociados}
+\end{frame}
+
+\begin{frame}[fragile]{Bases de datos}
+    \framesubtitle{de Grafos}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+            \begin{quote}
+                ``... una base de datos es una colecci\'on \textcolor{red}{auto-descriptiva} de registros integrados."
+                \hspace{1em plus 1fill}---Allen Taylor
+            \end{quote}
+    
+            \textcolor{red}{Auto-descriptiva}: se almacenan metadatos (la descripci\'on de su estructura) dentro
+            del diccionario de datos de la propia base de datos.
+        \end{block}
+      \end{onlyenv}
+      
+          \vspace{5mm}
+\centering
+
+      \includegraphics[scale=.7]{img/graph-db/graph-db-auto-descriptive.pdf}
+
+    \end{overlayarea}
+
+    \note{@NOTE no se fuerza un esquema, pero las etiquetas y las llaves de las propiedades se encargan de describir los datos}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Bases de datos}
+    \framesubtitle{de Grafos}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de registros \textcolor{red}{integrados}."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                \textcolor{red}{Integrados}: no solo contiene los datos sino tambi\'en las interrelaciones
+                 que se establecen entre estos.
+            \end{block}
+      \end{onlyenv}
+
+      \vspace{5mm}
+      
+      \includegraphics[scale=.74]{img/graph-db/graph-db-relations.pdf}
+    \end{overlayarea}
+    
+    \note{@NOTE las interrelaciones son ciudadanas de 1ra clase}
+\end{frame}

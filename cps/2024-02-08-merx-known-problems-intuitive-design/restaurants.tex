@@ -1,0 +1,13 @@
+\subsection{Cadena de restaurantes}
+
+Una cadena de restaurantes internacional tiene sucursales en varios pa\'ises. Cada sucursal ha designado a un selecto grupo de empleados para supervisar algunos de sus restaurantes que son muy populares y atienden a muchos clientes. Considere la siguiente modelaci\'on para este escenario, determine su error y proponga una soluci\'on.\\
+
+    \resizebox{!}{1.2cm}{
+\begin{tikzpicture}[auto,node distance=1.2cm]
+  \node[entity] (programador) {SUCURSAL};
+\node[relationship, aspect=2] (pertenecer) [right=of programador] {CONTRATAR} edge node[above] {1,1} (programador);
+  \node[entity] (sucursal) [right=of pertenecer] {EMPLEADO} edge node[above] {$\ast$,$\ast$} (pertenecer);
+  \node[relationship, aspect=2] (desarrollar) [right=of sucursal] {SUPERVISAR} edge node[above] {0,$\ast$} (sucursal);
+  \node[entity] (proyecto) [right=of desarrollar] {RESTAURANTE} edge node[above] {0,$\ast$} (desarrollar);
+\end{tikzpicture}
+    }

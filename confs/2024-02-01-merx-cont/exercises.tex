@@ -1,0 +1,36 @@
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle<2>{1. Administraci\'on de recursos en la investigaci\'on}
+
+    \pause
+    En la facultad existen varios proyectos de investigaci\'on, de los cuales se conoce el identificador, el nombre y el \'area de relevancia. En estos proyectos trabajan investigadores de los cuales se conoce su identificador, nombre y grado cient\'ifico. Adem\'as la facultad cuenta con ciertos recursos destinados a la investigaci\'on como pueden ser equipos de c\'omputo, APIs de pago, servidores en la nube, etc. De los recursos se conoce su identificador, nombre, tipo y descripci\'on. Los investigadores que trabajan en un proyecto pueden solicitar todos los recursos que sean necesarios para ese proyecto en espec\'ifico. Un investigador trabajando en un mismo proyecto puede solicitar un recurso una sola vez.
+
+    \note<2->{@NOTE agregaciones}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle{2. Comprando en Steam}
+
+    Has sido contratado por Valve para confeccionar una base de datos para el registro de las acciones en su tienda de juegos Steam. En Steam todo usuario registrado tiene un SteamID que lo identifica, un nombre de usuario, una contrase\~na y nacionalidad. Los juegos de la tienda tienen un c\'odigo, nombre, desarrollador y fecha de salida. La mayor\'ia de los juegos de la tienda son de pago pero existen algunos que son gratuitos. De los juegos de pago se conoce su precio y la cantidad de \textit{Steam points} que otorga comprarlo. De los juegos gratuitos se almacena si son monetizados o no y el tipo de monetizaci\'on aplicada en caso de tenerla (pueden ser \textit{loot boxes}, micro-transacciones, gachas, etc.). Cuando un usuario compra un juego de pago se convierte en un usuario verificado, estos usuarios pueden gastar sus \textit{Steam points} comprando art\'iculos de la tienda de regalos de Steam. De los art\'iculos en la tienda de regalos se conoce su identificador, nombre y precio (en \textit{Steam points}).
+
+    \note{@NOTE agregaciones}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle{3. Cursos optativos en la facultad}
+
+    En la facultad de Matem\'atica y Computaci\'on los profesores imparten varios cursos optativos para los estudiantes. Tanto de los profesores como de los estudiantes se almacena su identificador, su nombre y apellido. De los profesores se conoce ademas su categor\'ia docente y grado cient\'ifico. De los estudiantes se conoce el a\~no que cursan actualmente. Cada curso optativo tiene un identificador, un nombre, su duraci\'on (en horas clase), el a\~no escolar a partir del cual un estudiante puede tomar el curso y un \'unico profesor que lo imparte. Estos cursos no son fijos en el programa de estudio sino que ofrecen varias convocatorias cada a\~no, de estas convocatorias se conoce la fecha de inicio y el aula donde se va a impartir el curso. Un estudiante puede matricularse en varias convocatorias y en una convocatoria s\'olo pueden matricularse aquellos estudiantes que cumplan el requisito de a\~no escolar para el curso en cuesti\'on.
+
+    \note{@NOTE entidades d\'ebiles}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle{4. Mejorando un poco la tienda}
+
+    Se desea modelar la solicitud de productos de los clientes mediante \'ordenes de compra. De los clientes se conoce su n\'umero, su nombre, su direcci\'on y el c\'odigo postal. De los productos se conoce su c\'odigo, su descripci\'on y su precio unitario. De las \'ordenes de compra se conoce su fecha de emisi\'on y la fecha de entrega de la solicitud esperada. Un cliente puede emitir o no varias \'ordenes de compra, pero una orden corresponde a un solo cliente. En una orden se pueden solicitar varios productos, especificando la cantidad de cada uno. Un producto puede solicitarse o no en varias \'ordenes de compra.
+
+    \note{@NOTE entidades d\'ebiles}
+\end{frame}

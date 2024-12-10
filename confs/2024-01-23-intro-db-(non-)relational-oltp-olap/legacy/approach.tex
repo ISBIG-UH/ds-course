@@ -1,0 +1,62 @@
+\begin{frame}{Un cambio de enfoque}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                
+                En los sistemas orientados a ficheros los humanos tienen el control sobre los ficheros  
+            \end{block}
+        \end{onlyenv}
+
+        \vspace{10mm}
+
+        \centering
+        \includegraphics<2>[height=50mm, width=80mm]{img/filesystem.png}
+    \end{overlayarea}
+\end{frame}
+
+
+\begin{frame}{Un cambio de enfoque}
+    \centering
+    \begin{tikzpicture}
+        \node at (0,3.7) {\tiny \bf {Usuario}} ;
+        \node[inner sep=0pt] (user) at (0,3) {
+            \includegraphics[width=1.3cm]{img/user.png}
+        };
+
+
+        \node at (6,3.7) {\tiny \bf {Fichero}} ;
+        \node[inner sep=0pt] (file) at (6,3) {
+            \includegraphics[width=1.3cm]{img/file.png}
+        };
+
+        \draw[<->,thick] (user.east) -- (file.west);
+    \end{tikzpicture}
+
+    El usuario interact\'ua directamente con los ficheros
+
+    \vspace{20pt}
+    \centering
+    \begin{tikzpicture}
+        \node at (0,3.7) {\tiny \bf {Usuario}} ;
+        \node[inner sep=0pt] (user) at (0,3) {
+            \includegraphics[width=1.3cm]{img/user.png}
+        };
+
+        \node at (3,3.7) {\tiny \bf {Software}} ;
+        \node[inner sep=0pt] (dbms) at (3,3) {
+            \includegraphics[width=1.3cm]{img/dbms.png}
+        };
+
+        \node at (6,3.7) {\tiny \bf {Base de datos}} ;
+        \node[inner sep=0pt] (database) at (6,3) {
+            \includegraphics[width=1.3cm]{img/database.png}
+        };
+
+        \draw[<->,thick] (user.east) -- (dbms.west);
+        \draw[<->,thick] (dbms.east) -- (database.west);
+    \end{tikzpicture}
+    
+    El usuario interact\'ua con la base de datos mediante
+    \textit{software}
+   
+\end{frame}

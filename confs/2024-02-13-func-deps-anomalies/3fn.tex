@@ -1,0 +1,352 @@
+{
+\setbeamertemplate{background} 
+{
+    \includegraphics[width=\paperwidth,height=\paperheight]{img/database-issues.jpg}
+}
+\begin{frame}
+\end{frame}
+}
+
+\begin{frame}{La situaci\'on}
+    Se desea desarrollar una base de datos para registrar las notas
+    de los estudiantes de la carrera en cada una de las asignaturas que
+    cursan:
+    \begin{itemize}
+        \item De cada estudiante se conoce su identificador, su nombre, su grupo y su provincia de residencia.
+        \item De cada asignatura se conoce su identificador y su nombre.
+        \item Por cada asignatura se conoce la nota que obtuvo el estudiante en la evaluaci\'on final.
+    \end{itemize}
+    Adem\'as, se conoce que los estudiantes son organizados en los grupos de acuerdo a su provincia.
+\end{frame}
+
+
+\begin{frame}{Primero lo primero}
+
+    \resizebox{\linewidth}{!}{
+                \begin{tikzpicture}[node distance=6em]
+                    \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+                    \node[entity] (estudiante) {ESTUDIANTE}
+                        [sibling distance=3cm]
+                        child {node[attribute] [above right of=estudiante] {\tiny PROVINCIA}}
+                        child {node[attribute] [above of=estudiante] {\tiny GRUPO}}
+                        child {node[attribute] [above left of=estudiante] {\tiny ENOMBRE}}
+                        child {node[attribute] [left of=estudiante] {\underline{\tiny \#E}}};
+                  
+                    \node[entity] (asignatura) at (8,0) {ASIGNATURA}
+                    [sibling distance=3cm]
+                    child {node[attribute] [right of=asignatura] {\underline{\tiny \#A}}}
+                    child {node[attribute] [above right of=asignatura] {\tiny ANOMBRE}};
+                    
+                  
+                    \node[relationship,aspect=2] (evaluar) at (4,0) {EVALUAR}[node distance=4em]
+                    child {node[attribute] [above of=evaluar] {\tiny NOTA}};
+                    \draw (evaluar.east) -- (asignatura.west) node[above left] {$0,\ast$};
+                    \draw (evaluar.west) -- (estudiante.east) node[above right] {$0,\ast$};
+                \end{tikzpicture}
+            }
+\end{frame}
+
+
+\begin{frame}{Metodolog\'ia para obtener un esquema relacional correcto}
+    \begin{enumerate}
+        \item Identificar el universo $U$ de atributos del fen\'omeno.
+        \item Identificar el conjunto $F$ de las dependencias funcionales que se establecen entre los atributos.
+        \item Definir el esquema relacional $R(U,F)$.
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Ejemplo}
+    \begin{enumerate}
+        \item $U = \{ \textnormal{\#E, ENombre,  Grupo, Provincia, \#A, ANombre, Nota}\}$
+    \end{enumerate}
+
+    \onslide<2>{
+    \vspace{10mm}
+
+    \centering    
+    \large{¿C\'omo podemos obtener $F$ a partir del dise\~no conceptual?}}
+\end{frame}
+
+\begin{frame}{Algoritmo de extracci\'on de dependencias funcionales}
+    \begin{enumerate}
+        \item<2-> Por cada conjunto de entidades con un conjunto de atributos $X \subseteq U$,
+        se a\~nade la dependencia funcional $K \to X$ donde $K$ es la llave del conjunto de entidades.
+        \item<3-> Por cada conjunto de interrelaciones se toma su llave $K$ y se a\~nade la
+        dependencia funcional $K \to K$. Adem\'as, por cada conjunto de entidades en un extremo
+        de cardinalidad m\'axima 1 en la interrelaci\'on, se a\~nade la dependencia funcional $K - K_E \to K_E$ donde
+        $K_E$ es la llave del conjunto de entidades.
+        \item<4-> Por cada agregaci\'on con un conjunto de atributos $X \subseteq U$ se a\~nade la dependencia
+        funcional $K \to X$ donde $K$ es la llave del conjunto de interrelaciones que encierra la agregaci\'on.
+        \item<5-> A\~nadir aquellas dependencias funcionales asociadas a otras restricciones del negocio
+        especificadas en los requerimientos.
+    \end{enumerate}
+        
+\end{frame}
+
+
+\begin{frame}{Ejecutando el algoritmo}
+    \centering
+    \resizebox{!}{2.5cm}{
+        \begin{tikzpicture}[node distance=6em]
+            \tikzstyle{every entity} = [minimum width=2cm, minimum height=1.2cm]
+            \node[entity] (estudiante) {ESTUDIANTE}
+                [sibling distance=3cm]
+                child {node[attribute] [above right of=estudiante] {\tiny PROVINCIA}}
+                child {node[attribute] [above of=estudiante] {\tiny GRUPO}}
+                child {node[attribute] [above left of=estudiante] {\tiny ENOMBRE}}
+                child {node[attribute] [left of=estudiante] {\underline{\tiny \#E}}};
+            
+            \node[entity] (asignatura) at (8,0) {ASIGNATURA}
+            [sibling distance=3cm]
+            child {node[attribute] [right of=asignatura] {\underline{\tiny \#A}}}
+            child {node[attribute] [above right of=asignatura] {\tiny ANOMBRE}};
+            
+            
+            \node[relationship,aspect=2] (evaluar) at (4,0) {EVALUAR}[node distance=4em]
+            child {node[attribute] [above of=evaluar] {\tiny NOTA}};
+            \draw (evaluar.east) -- (asignatura.west) node[above left] {$0,\ast$};
+            \draw (evaluar.west) -- (estudiante.east) node[above right] {$0,\ast$};
+        \end{tikzpicture}
+    }
+        \vspace{3mm}
+
+
+        \begin{enumerate}
+            \item<2-> Se tienen los conjuntos de entidades ESTUDIANTE y ASIGNATURA:\begin{itemize}
+                \item $\textnormal{\#E} \to \textnormal{ENombre, Grupo, Provincia}$
+                \item $\textnormal{\#A} \to \textnormal{ANombre}$
+            \end{itemize}
+            \item<3-> Se tiene el conjunto de interrelaciones EVALUAR: \begin{itemize}
+                \item $\textnormal{\#E,\#A} \to \textnormal{\#E,\#A}$
+            \end{itemize}
+            \item<4-> Se tiene la agregaci\'on ASIGNATURA-EVALUADA \begin{itemize}
+                \item $\textnormal{\#E, \#A} \to \textnormal{Nota}$
+            \end{itemize}
+            \item<5-> A\~nadimos las restricciones planteadas en la especificaci\'on: \begin{itemize}
+                \item $\textnormal{Provincia} \to \textnormal{Grupo}$
+            \end{itemize}
+        \end{enumerate}
+\end{frame}
+
+\begin{frame}{Continuemos con el ejemplo}
+    \begin{enumerate}
+        \item $U = \{ \textnormal{\#E, ENombre,  Grupo, Provincia, \#A, ANombre, Nota}\}$
+        \item $F = \{$ \\
+        \hspace{10mm} $\textnormal{\#E} \to \textnormal{ENombre, Grupo, Provincia}$\\
+        \hspace{10mm} $\textnormal{\#A} \to \textnormal{ANombre}$\\
+        \hspace{10mm} $\textnormal{\#E,\#A} \to \textnormal{\#E,\#A}$\\
+        \hspace{10mm} $\textnormal{\#E, \#A} \to \textnormal{Nota}$\\
+        \hspace{10mm} $\textnormal{Provincia} \to \textnormal{Grupo}$\\
+        $\}$
+        \item Definimos el esquema relacional $\textbf{Evaluaciones}(U,F)$ con llave \#E, \#A 
+    \end{enumerate}
+
+    \note{@NOTE aki' se pone una trivial expli'citamente (spoiler). Provincia->Grupo es una externa al merx}
+\end{frame}
+
+\begin{frame}{¿Es este un buen dise\~no? (Anomal\'ia de inserci\'on)}
+    \centering
+    \begin{tabular}{ccccccc}
+        \underline{\#E} & ENombre & Grupo & Provincia & \underline{\#A} & ANombre & Nota\\
+        $e_1$ & Juan & {111} & { La Habana} & $a_1$ & An\'alisis & 3\\
+        $e_1$ & Juan & {111} & { La Habana} & $a_2$ & L\'ogica & 2\\
+        $e_1$ & Juan & {111} & { La Habana} & $a_3$ & \'Algebra & 4\\
+        $e_1$ & Juan & {111} & { La Habana} & $a_4$ & Programaci\'on & 5\\
+        $e_3$ & Pedro & {111} & { La Habana} & $a_3$ & \'Algebra & 4\\
+        $e_2$ & Mar\'ia & {112} & { Matanzas} & $a_1$ & An\'alisis & 3\\
+        $e_2$ & Mar\'ia &  {112} & { Matanzas} & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  {112} & { Mayabeque} & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  {112} & { Mayabeque} & $a_4$ & Programaci\'on & 4\\
+        $e_5$ & Carlos &  {113} & { Pinar del R\'io} & $a_3$ & \'Algebra & 3
+    \end{tabular}
+    \vspace{5mm}
+
+    \centering
+    \only<2,3>{
+        {¿Se pudiera insertar un alumno que todav\'ia no ha recibido evaluaciones?}\\[2mm]
+        \begin{tabular}{ccccccc}
+            {\color<3>{red}$e_6$} & Marcos & 111 & La Habana & {\color<3>{red}NULL} & NULL & NULL
+            
+        \end{tabular}
+        }
+\end{frame}
+
+\begin{frame}{¿Es este un buen dise\~no? (Anomal\'ia de eliminaci\'on)}
+    \centering
+    \begin{tabular}{ccccccc}
+        \underline{\#E} & ENombre & Grupo & Provincia & \underline{\#A} & ANombre & Nota\\
+        $e_1$ & Juan & 111 & La Habana & $a_1$ & An\'alisis & 3\\
+        $e_1$ & Juan & 111 & La Habana & $a_2$ & L\'ogica & 2\\
+        $e_1$ & Juan & 111 & La Habana  & $a_3$ & \'Algebra & 4\\
+        $e_1$ & Juan & 111 & La Habana & $a_4$ & Programaci\'on & 5\\
+        $e_3$ & Pedro & 111 & La Habana & $a_3$ & \'Algebra & 4\\
+        $e_2$ & Mar\'ia & 112 &  Matanzas & $a_1$ & An\'alisis & 3\\
+        $e_2$ & Mar\'ia &  112 & Matanzas & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita & 112 & Mayabeque & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  112 & Mayabeque & $a_4$ & Programaci\'on & 4\\
+        \onslide<-1>{
+        $e_5$ & Carlos &  113 & Pinar del R\'io & $a_3$ & \'Algebra & 3
+        }
+    \end{tabular}
+    \vspace{5mm}
+
+    \only<1>{
+        ¿Qu\'e ocurre si se eliminan las notas del estudiante $e_5$?
+    }
+    \only<2>{
+        \textcolor{red}{Se pierde la informaci\'on relacionada con la provincia Pinar del R\'io y el grupo C113}
+    }
+
+\end{frame}
+
+
+\begin{frame}{¿Es este un buen dise\~no? (Anomal\'ia de modificaci\'on)}
+    \centering
+    \begin{tabular}{ccccccc}
+        \underline{\#E} & ENombre & Grupo & Provincia & \underline{\#A} & ANombre & Nota\\
+        $e_1$ & Juan & 111 & {\color<2>{red} La Habana} & $a_1$ & An\'alisis & 3\\
+        $e_1$ & Juan & 111 & {\color<2>{red} La Habana} & $a_2$ & L\'ogica & 2\\
+        $e_1$ & Juan & 111 & {\color<2>{red} La Habana} & $a_3$ & \'Algebra & 4\\
+        $e_1$ & Juan & 111 & {\color<2>{red} La Habana} & $a_4$ & Programaci\'on & 5\\
+        $e_3$ & Pedro & 111& La Habana & $a_3$ & \'Algebra & 4\\
+        $e_2$ & Mar\'ia & 112 & Matanzas & $a_1$ & An\'alisis & 3\\
+        $e_2$ & Mar\'ia &  112 &  Matanzas & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  112 & Mayabeque & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  112 & Mayabeque & $a_4$ & Programaci\'on & 4\\
+        $e_5$ & Carlos &  113 & Pinar del R\'io & $a_3$ & \'Algebra & 3
+    \end{tabular}
+    \vspace{5mm}
+
+    \only<1>{
+        ¿Qu\'e tendr\'iamos que hacer si queremos cambiar la provincia de Juan?
+    }
+    \only<2>{
+        \textcolor{red}{Todas las tuplas deben ser modificadas en una misma transacci\'on}
+    }
+\end{frame}
+
+\begin{frame}
+    \frametitle{?`Es este un buen dise\~no? (Redundacia)}
+
+    \centering
+    \begin{tabular}{ccccccc}
+        \underline{\#E} & ENombre & Grupo & Provincia & \underline{\#A} & ANombre & Nota\\
+        $e_1$ & Juan & {\color{orange}111} & {\color{orange} La Habana} & $a_1$ & An\'alisis & 3\\
+        $e_1$ & Juan & {\color{orange}111} & {\color{orange} La Habana} & $a_2$ & L\'ogica & 2\\
+        $e_1$ & Juan & {\color{orange}111} & {\color{orange} La Habana} & $a_3$ & \'Algebra & 4\\
+        $e_1$ & Juan & {\color{orange}111} & {\color{orange} La Habana} & $a_4$ & Programaci\'on & 5\\
+        $e_3$ & Pedro & {\color{orange}111} & {\color{orange} La Habana} & $a_3$ & \'Algebra & 4\\
+        $e_2$ & Mar\'ia & {\color{blue}112} & {\color{blue} Matanzas} & $a_1$ & An\'alisis & 3\\
+        $e_2$ & Mar\'ia &  {\color{blue}112} & {\color{blue} Matanzas} & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  {\color{blue}112} & {\color{blue} Mayabeque} & $a_2$ & L\'ogica & 3\\
+        $e_4$ & Rita &  {\color{blue}112} & {\color{blue} Mayabeque} & $a_4$ & Programaci\'on & 4\\
+        $e_5$ & Carlos &  {\color{green}113} & {\color{green} Pinar del R\'io} & $a_3$ & \'Algebra & 3
+    \end{tabular}
+    \vspace{5mm}
+
+    \centering
+    {\textcolor{red}{¿Es necesaria esta redundancia?}}
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{Entonces...}
+    \centering
+    \Large ¿C\'omo solucionar estas anomal\'ias?
+\end{frame}
+
+\begin{frame}{F\'acil...}
+    \begin{columns}[T]
+        \begin{column}{0.68\linewidth}
+            \begin{columns}[T]
+                \begin{column}{0.6\textwidth}
+                    \begin{center}
+                        \textbf{Estudiante}\\[2mm]
+        
+                        \begin{tabular}{ccc}
+                            \underline{\#E} & ENombre & Provincia\\[1mm]
+                            \hline
+                            $e_1$ & Juan & La Habana\\
+                            $e_2$ & Mar\'ia & Matanzas\\
+                            $e_3$ & Pedro & La Habana\\
+                            $e_4$ & Rita & Mayabeque\\
+                            $e_5$ & Carlos & Pinar del R\'io
+                        \end{tabular}
+                    \end{center}
+                \end{column}
+
+                \begin{column}{0.4\textwidth}
+                    \begin{center}
+                        \textbf{Provincia-Grupo}\\[2mm]
+        
+                        \begin{tabular}{cc}
+                            \underline{Provincia} & Grupo\\[1mm]
+                            \hline
+                            La Habana & 111\\
+                            Matanzas & 112 \\
+                            Mayabeque & 112 \\
+                            Pinar del R\'io & 113
+                            
+                        \end{tabular}
+                    \end{center}
+                \end{column}
+                
+            \end{columns}
+
+            \begin{center}
+                \textbf{Asignatura}\\[2mm]
+
+                \begin{tabular}{cc}
+                    \underline{\#A} & ANombre\\[1mm]
+                    \hline
+                    $a_1$ & An\'alisis\\
+                    $a_2$ & L\'ogica \\
+                    $a_3$ & \'Algebra\\
+                    $a_4$ & Programaci\'on
+                    
+                \end{tabular}
+            \end{center}
+            
+        \end{column}
+
+        \begin{column}{0.3\linewidth}
+            \vspace{6mm}
+            \begin{center}
+                \textbf{Evaluar}\\[2mm]
+
+                \begin{tabular}{ccc}
+                    \underline{\#E} & \underline{\#A} & Nota\\[1mm]
+                    \hline
+                    $e_1$ & $a_1$ & 3\\
+                    $e_1$ & $a_2$ & 2\\
+                    $e_1$ & $a_3$ & 4\\
+                    $e_1$ & $a_4$ & 5\\
+                    $e_3$ & $a_3$ & 4\\
+                    $e_2$ & $a_1$ & 3\\
+                    $e_2$ & $a_2$ & 3\\
+                    $e_4$ & $a_2$ & 3\\
+                    $e_4$ & $a_4$ & 4\\
+                    $e_5$ & $a_3$ & 3\\
+                \end{tabular}
+            \end{center}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+    \begin{frame}{Formalizando el dise\~no}
+        \centering
+        \Large{ ¿C\'omo obtener esta soluci\'on?}
+        
+        \vfill
+        
+        \hfill
+        \begin{minipage}{0.3\textwidth}
+            \only<2>{\it continuar\'a...}
+        \end{minipage}
+    \end{frame}

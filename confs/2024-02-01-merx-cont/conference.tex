@@ -1,0 +1,45 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\usecolortheme{whale}
+\usetikzlibrary{er,positioning}  
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows, decorations.markings}
+\usetikzlibrary{shapes.geometric}
+
+\setbeamertemplate{navigation symbols}{}
+
+% \setbeameroption{show notes on second screen=right}
+
+\tikzstyle{every link} = []
+\tikzstyle{link} = [>=triangle 60, draw, every link]
+
+\definecolor{attr}{RGB}{10,153,2}
+
+\title{Bases de Datos}
+\subtitle{Modelaci\'on Conceptual Parte II (Final)}
+\author[Garc\'ia L., Cardentey V. M., Ledesma A.]{
+    Lic. Andy Ledesma Garc\'ia\\
+    Lic. V\'ictor M. Cardentey Fundora\\ 
+    Dra. C. Lucina Garc\'ia Hern\'andez
+}
+\institute[MATCOM-UH]{
+    Departamento de Computaci\'on\\
+    Facultad de Matem\'atica y Computaci\'on\\
+    Universidad de La Habana\\[3mm]
+    Licenciatura en Ciencia de Datos
+}
+\date[]{1ro febrero de 2024}
+
+
+\begin{document}
+    \maketitle
+    \include{previously.tex}
+    \include{aggregations}
+    \include{object_oriented.tex}
+    \include{recap.tex}
+    \include{questions.tex}
+    \include{exercises}
+    \maketitle
+\end{document}

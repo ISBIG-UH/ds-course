@@ -1,0 +1,48 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage{graphicx}
+
+\usecolortheme{whale}
+\usetikzlibrary{er,positioning}  
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{arrows, decorations.markings}
+\usetikzlibrary{shapes.geometric}
+
+\setbeamertemplate{navigation symbols}{}
+
+\definecolor{violet}{rgb}{0.53, 0.0, 0.69}
+
+\definecolor{blue1}{RGB}{126,126,206}
+\definecolor{blue2}{RGB}{87,87,192}
+\definecolor{blue3}{RGB}{51,51,178}
+\definecolor{blue4}{RGB}{27,26,107}
+
+\tikzstyle{every link} = []
+\tikzstyle{link} = [>=triangle 60, draw, every link]
+
+\definecolor{attr}{RGB}{10,153,2}
+
+\title{Bases de Datos}
+\subtitle{Ejercitaci\'on. Teor\'ia del dise\~no: Tercera Forma Normal}
+\author[Garc\'ia L., Cardentey V. M., Ledesma A.]{
+    Lic. Andy Ledesma Garc\'ia\\
+    Lic. V\'ictor M. Cardentey Fundora\\ 
+    Dra. C. Lucina Garc\'ia Hern\'andez
+}
+\institute[MATCOM-UH]{
+    Departamento de Computaci\'on\\
+    Facultad de Matem\'atica y Computaci\'on\\
+    Universidad de La Habana\\[3mm]
+    Licenciatura en Ciencia de Datos
+}
+\date[]{15 de febrero de 2024}
+
+
+\begin{document}
+    \maketitle
+    \include{previously}
+    \include{func_deps_exercises}
+    \include{normal_forms}
+    \include{normal_forms_exercises}
+    \maketitle
+\end{document}

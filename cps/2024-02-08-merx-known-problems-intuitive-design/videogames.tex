@@ -1,0 +1,12 @@
+\subsection{Programadores de videojuegos}
+Una compa\~n\'ia de videojuegos ha dise\~nado una base de datos para mantener un registro sobre los proyectos en que est\'an trabajando sus programadores. Los programadores de esta empresa est\'an organizados en sucursales, las cuales le asignan a cada uno el proyecto en que va a trabajar. Las sucursales se encargan de desarrollar los proyectos llegando a trabajar varias sucursales en un mismo proyecto.  Considere la siguiente modelaci\'on para este escenario, determine su error y proponga una soluci\'on (una modelaci\'on correcta).\\
+
+    \resizebox{!}{1.3cm}{
+\begin{tikzpicture}[auto,node distance=1.2cm]
+  \node[entity] (programador) {PROGRAMADOR};
+\node[relationship, aspect=2] (pertenecer) [right=of programador] {PERTENECER} edge node[above] {$\ast$} (programador);
+  \node[entity] (sucursal) [right=of pertenecer] {SUCURSAL} edge node[above] {$\ast$} (pertenecer);
+  \node[relationship, aspect=2] (desarrollar) [right=of sucursal] {DESARROLLAR} edge node[above] {$\ast$} (sucursal);
+  \node[entity] (proyecto) [right=of desarrollar] {PROYECTO} edge node[above] {$\ast$} (desarrollar);
+\end{tikzpicture}
+    }

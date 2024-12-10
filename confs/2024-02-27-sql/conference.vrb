@@ -1,0 +1,32 @@
+
+	\frametitle{Ejemplo - Solución}
+	
+	\begin{lstlisting}[ language=SQL,
+		deletekeywords={IDENTITY},
+		deletekeywords={[2]INT},
+		morekeywords={clustered},
+		framesep=8pt,
+		xleftmargin=40pt,
+		framexleftmargin=40pt,
+		frame=tb,
+		framerule=0pt ]
+CREATE TRIGGER trg_limit_test BEFORE INSERT ON Orden
+FOR EACH ROW BEGIN
+  DECLARE total INT;
+  DECLARE limiteDiario INT;
+  SET total = (-- (1)
+    SELECT SUM(Cantidad)
+    FROM orden
+    WHERE NoC = NEW.NoC AND NoP = NEW.NoP AND DATE(Fecha) = DATE(NEW.Fecha)
+  );-- (2)
+  SET limiteDiario = (
+    SELECT MIN(producto.LimiteDiario)
+    FROM producto
+    WHERE producto.NoP = NEW.NoP
+  );-- (3)
+  IF total + NEW.Cantidad > limiteDiario THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acaparador!!!';
+  END IF;
+END;
+\end{lstlisting}
+

@@ -1,0 +1,40 @@
+\begin{frame}{Busquemos estos elementos}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \vspace{20mm}
+        \begin{block}{}
+            Clash Royale es un juego social de estrategia en tiempo real
+            donde los {\color<3->{orange} jugadores} pueden {\color<5->{blue} hacer amigos},
+            {\color<5->{blue}pertenecer} a un {\color<3->{orange}clan} 
+            y {\color<5->{blue} coleccionar} {\color<3->{orange} cartas} para
+            {\color<5->{blue} enfrentarse} con otros jugadores en
+            \'epicas batallas de defensa de torres.
+        \end{block}
+
+        \vspace{5mm}
+
+        \centering
+        \only<2>{\Large \textcolor{red}{¿Qu\'e conjuntos de registros ser\'ia importante almacenar?}}
+        \only<4>{\Large \textcolor{red}{¿Qu\'e interrelaciones existen entre estos conjuntos?}}
+        \note[item]{Welcome to the talk}
+    \end{overlayarea}
+    
+\end{frame}
+
+
+\begin{frame}{Removiendo lo innecesario}
+    \begin{center}
+        \Large Hechos que conocemos:
+        \vspace{5mm}
+        
+        \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{ser amigo} \hspace{10mm} \textcolor{orange}{jugador}
+        \vspace{5mm}
+
+        \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{pertenecer} \hspace{10mm} \textcolor{orange}{clan}
+        \vspace{5mm}
+
+        \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{coleccionar} \hspace{10mm} \textcolor{orange}{carta}
+        \vspace{5mm}
+
+        \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{enfrentar} \hspace{10mm} \textcolor{orange}{jugador}
+    \end{center}
+\end{frame}

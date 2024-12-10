@@ -1,0 +1,27 @@
+\begin{frame}
+    \frametitle{Anexos}
+
+    \centering
+    \Huge \textcolor{blue3}{Anexos}
+
+\end{frame}
+
+\begin{frame}{Anexos}
+    \framesubtitle{Algoritmo para determinar si un conjunto de atributos cumple la unicidad}
+
+    \textbf{Entrada}: $U = \{A_1,A_2,...,A_n\}$, $F$ conjunto de dependencias funcionales y $X$, $X \subseteq U$\\
+    \textbf{Salida}: 1 si el conjunto $X$ cumple la unicidad en $R(U,F)$ o 0 en otro caso.\\
+    \textbf{M\'etodo}:
+    \begin{enumerate}
+        \item Sea $X$ el conjunto de atributos que se desea comprobar. Primero inicializamos
+        $X_0 = X$.
+        \item En cada iteraci\'on $i$ se busca una dependencia funcional $Y \to A$ tal que
+        $Y \subseteq X_{i-1}$, pero $A \notin X_{i-1}$. Entonces
+        se asigna $X_i = X_{i-1} \cup \{A\}$.
+        \item Repetir el paso 2 tantas veces como sea necesario hasta que no puedan a\~nadirse
+        m\'as atributos. Dado que el conjunto resultante solo puede crecer y la cantidad de atributos
+        en el universo es finito, eventualmente el algoritmo termina.
+        \item Sea $k$ la iteraci\'on final del algoritmo, se comprueba que $X_k = U$.  
+        
+    \end{enumerate}
+\end{frame}

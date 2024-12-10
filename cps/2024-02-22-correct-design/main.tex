@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[top=1in, bottom=1.25in, left=1.25in, right=1.25in]{geometry}
+
+\usepackage[spanish]{babel}
+\usepackage{todonotes}
+
+\usepackage{tikz}
+\usetikzlibrary{er,positioning}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=blue,
+    pdfborder={0 0 0},    % No borders around links
+    breaklinks=true,      % Allow line breaks in links
+    bookmarksnumbered,    % Include section numbers in bookmarks
+    bookmarksopen=true,    % Expand bookmarks by default
+    bookmarksopenlevel=1,  % Depth of bookmarks
+}
+
+% Comment the following line to see the notes
+\presetkeys{todonotes}{disable}{}
+
+\hyphenation{in-te-rac-cio-nes}
+
+\title{Bases de Datos\\[2mm]
+Clase Pr\'actica 3: Dise\~no Correcto}
+\author{Colectivo de la asignatura para la\\ Licenciatura en Ciencia de Datos}
+\date{22 de febrero de 2024}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item Realice una descomposici\'on del siguiente escenario en esquemas relacionales, que constituya un dise\~no correcto. 
+
+\begin{quote}
+Se desea modelar la solicitud de productos de los clientes mediante \'ordenes de compra. De los
+clientes se conoce su n\'umero, su nombre, su direcci\'on y el c\'odigo postal. De los productos se conoce 
+su c\'odigo, su descripci\'on y su precio unitario. De las \'ordenes de compra se conoce su fecha de
+emisi\'on y la fecha de entrega de la solicitud esperada. Un cliente puede emitir o no varias \'ordenes
+de compra, pero una orden corresponde a un s\'olo cliente. En una orden se pueden solicitar varios
+productos, especificando la cantidad de cada uno. Un producto puede solicitarse o no en varias
+\'ordenes de compra.
+\end{quote}
+
+\item Suponga que se desea diseñar una base de datos para una firma inversionista que maneja la información siguiente:\\
+I : Inversionista, A : Acción, C : Corredor, O : Oficina, Q : Cantidad de acciones que son propiedad de un inversionista, D : Dividendos, T : Tasa de interés, F : Fecha.
+
+Los vínculos funcionales existentes entre estos datos se expresan mediante las afirmaciones siguientes:
+\begin{itemize}
+    \item Una acción define un dividendo.
+    \item A un inversionista le corresponde un corredor.
+    \item Un inversionista y una acción determinan una cantidad de acciones que son propiedad del inversionista y una fecha de inversión.
+    \item Un corredor se ubica en una oficina dada.
+    \item Un dividendo define una tasa de interés.
+    \item Un corredor depende de un inversionista y de un dividendo. 
+    \todo[inline]{Aqu\'i pareciese que te est\'an diciendo $I \rightarrow C$ y $D \rightarrow C$, pero no tiene sentido que el dividendo determine al corredor, ya que m\'as de un corredor puede tener el mismo dividendo. Entonces, lo correcto es $ID \rightarrow C$.}
+    \item Una oficina está determinada por un inversionista.
+\end{itemize}
+
+\begin{enumerate}
+    \item Obtenga un conjunto de dependencias funcionales derivado del fenómeno descrito.
+    \item Obtenga una descomposición en Tercera Forma Normal.
+    \todo[inline]{Aqu\'i hay que hallar el cubrimiento m\'inimo primero. Hay par de dependencias que est\'an de m\'as.}
+    \item Verifique el cumplimiento de la PLJ y la PPDF.
+    \todo[inline]{$IA$ es llave de la relaci\'on universo y cae en un esquema de la descomposici\'on de 3FN, as\'i que se cumple la PLJ directo.}
+\end{enumerate}	
+
+\item Una compa\~n\'ia de vuelos, la cual realiza vuelos cortos entre pa\'ises de la Uni\'on Europea, posee una base de datos para mantener un registro de sus servicios:
+
+\todo[inline]{Hacer \'enfasis en que generamente las nuevas tablas que el Lema de Ullman a\~nade no aportan mucho significado al problema en cuesti\'on, de ah\'i que la descomposici\'on a utilizar en un escenario real no siempre es la te\'oricamente correcta, sino la que mejor se adapte a las necesidades concretas.} 
+
+Sobre los pasajeros se conoce su nombre, su direcci\'on y su tel\'efono. Sobre los vuelos se conoce el aeropuerto de salida, el aeropuerto de llegada y el avi\'on que realiza el vuelo. Los vuelos realizan salidas varias veces a la semana, de cada salida se registra su fecha y hora de salida, pudiendo los pasajeros reservar boletos para estas salidas. Sobre los modelos de aviones se tiene un registro de su fabricante, el identificador del modelo, el n\'umero de asientos y motores. Sobre el personal se conoce el n\'umero del empleado, su nombre, su direcci\'on y su salario. Es importante se\~nalar que hay un tipo particular de empleado que es el piloto, de quien se tiene informaci\'on acerca de los modelos de avi\'on que puede pilotar.
+
+
+\item Obtenga un diseño correcto para cada uno de los escenarios propuestos en la \textcolor{blue}{\underline{\href{https://t.me/matcom_database_ds/9}{clase práctica 1}}}. No dude en enviarle sus soluciones \textcolor{blue}{\underline{\href{https://t.me/andyRsdEla}{al profe}}} para que las revise :')
+
+\end{enumerate}
+
+\end{document}

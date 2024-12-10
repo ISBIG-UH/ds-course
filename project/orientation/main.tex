@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\usepackage[spanish]{babel} % Add the babel package for Spanish language support
+\usepackage{csquotes} % Add the csquotes package for proper quotation marks
+
+\usepackage{todonotes}
+\usepackage[backend=biber,style=apa]{biblatex} % Add the biblatex package
+
+\usepackage[final]{changes}
+
+\addbibresource{references.bib} % Specify the path to your bibliography file
+
+\hyphenation{in-te-rac-cio-nes}
+
+\title{Orientación del Proyecto de Bases de Datos\\{\large Versi\'on \replaced{2}{1}}}
+\author{Colectivo de la asignatura para la\\ Licenciatura en Ciencia de Datos}
+\date{\replaced{23 de marzo}{15 de febrero} de 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+Este documento proporciona una orientación para el proyecto final de la asignatura Bases de Datos para la Licenciatura en Ciencia de Datos. 
+
+La realizaci\'on de este proyecto constituye un \textbf{ejercicio individual}.
+
+N\'otese que en el t\'itulo de este documento se indica el n\'umero de la versi\'on, lo que significa que este documento se ir\'a actualizando a medida que se definan nuevas tareas. 
+En la secci\'on \ref{sec:tasks} se describen las tareas orientadas hasta el momento. 
+
+\section{Descripción del Escenario}
+GreenScape es una plataforma innovadora destinada a promover prácticas de jardinería sostenibles y eficientes en áreas urbanas. Aprovecha dispositivos IoT\footnote{\textit{Internet of Things} (IoT): una red de dispositivos físicos, vehículos, electrodomésticos y otros objetos físicos que están integrados con sensores, software y conectividad de red que les permite recopilar y compartir datos (\cite{IBMInternetOfThings2024}).} y el contenido generado por los usuarios para ayudar a individuos y comunidades a cultivar jardines en espacios urbanos pequeños de manera efectiva. Proporciona datos en tiempo real, consejos y un mercado para que los usuarios intercambien productos e ideas.
+
+La plataforma almacena el perfil de cada usuario, que incluye 
+\begin{itemize}
+    \item datos personales: nombre, direcci\'on particular, dirección de correo electrónico, fecha de nacimiento y un identificador \'unico;
+    \item preferencias: información sobre los gustos del usuario, como tipos de plantas favoritas; las notificaciones (activadas o desactivadas) y configuraciones de privacidad (no compartir o compartir parcial o totalmente datos de uso con el servidor);
+    \item actividad en la comunidad: registro de publicaciones, comentarios e interacciones. 
+\end{itemize}
+
+La plataforma recolecta y procesa datos provenientes de diversos sensores IoT para ofrecer información valiosa a los usuarios sobre sus jardines. De los sensores se conoce:
+
+\begin{itemize}
+    \item ubicaci\'on: coordenadas geogr\'aficas del sensor (latitud y longitud);
+    \item identificador del sensor: código o número que identifica a cada sensor de manera unívoca;
+    \item tipo de sensor: clasificación del sensor (por ejemplo, sensor de humedad, sensor de luz, termómetro, etc.);
+    \item lecturas de los sensores: datos específicos recopilados por cada sensor, como niveles de humedad del suelo, cantidad de luz solar, temperatura ambiente, entre otros;
+    \item fecha y hora de las lecturas: registro temporal de cada lectura para realizar seguimientos a lo largo del tiempo.
+\end{itemize}
+
+En el mercado los usuarios pueden comprar y vender plantas, semillas y herramientas de jardinería. La plataforma almacena los detalles de cada producto disponible, incluyendo nombre, descripción, categoría (planta, semilla o herramienta), precio y fotografías. Adem\'as, se registra informaci\'on sobre las ventas realizadas, de cada una de las cuales se conoce la fecha en la que se realizó, el vendedor, el comprador y los productos involucrados, así como la cantidad y el precio de cada uno en el momento de la venta. Un comprador puede emitir opiniones y/o una puntuaci\'on sobre un producto, que ayudan a otros usuarios en sus decisiones de compra.
+
+GreenScape cuenta con una extensa documentaci\'on de plantas con detalles sobre cuidados, condiciones óptimas y otras notas contribuidas por los usuarios. De cada planta se almacena el nombre científico y común, categoría, cu\'antas horas de luz y cu\'antos mililitros de agua debe recibir diariamente, as\'i como el tipo de suelo preferido. Tambi\'en se almacena informaci\'on sobre las condiciones \'optimas para cada planta, incluyendo clima, estaci\'on del a\~no y cuidados espec\'ificos. Los usuarios pueden contribuir con notas, consejos y otras informaciones basadas en sus experiencias personales con las plantas. Tambi\'en pueden proporcionar im\'agenes o videos de las plantas para enriquecer la informaci\'on y facilitar la identificaci\'on de las especies.
+
+\section{Tareas}\label{sec:tasks}
+En esta secci\'on se describen las tareas orientadas hasta el momento, adem\'as de la fecha l\'imite para la entrega de cada una de ellas.
+
+\begin{tabular}{|c|p{8cm}|l|}
+    \hline
+    \textbf{No.} & \textbf{Tarea} & \textbf{Fecha de entrega} \\
+    \hline
+    1 & Obtener un modelo conceptual del escenario anterior. & semana 5 (19-23 feb) \\
+    \hline
+    2 & Obtener un esquema relacional empleando el algoritmo de dise\~no intuitivo. & semana 7 (4-8 mar) \\
+    \hline
+    3 & Obtener un dise\~no correcto del esquema relacional planteado. & semana 7 (4-8 mar) \\
+    \hline
+    \added{4} & \added{Escribir c\'odigo MySQL que responda a los ejercicios planteados en el archivo \texttt{ejercicios-mysql.ipynb}, el cual se encuentra en el mismo comprimido que este archivo.} & \added{semana 12 (8-12 abr)} \\
+    \hline
+\end{tabular}
+
+% @TODO anyadir algunos rekisitos q no puse anteriormente a las consultas q hay q tirar
+
+% El proyecto de base de datos tiene como objetivo diseñar e implementar un sistema de base de datos para una aplicación u organización específica. El proyecto implicará el análisis de requisitos, el diseño del esquema de la base de datos, la implementación de la base de datos y el desarrollo de una interfaz de usuario para interactuar con la base de datos.
+
+\section{Comentarios Finales}
+Con el proyecto se pretende introducir a los alumnos en el mundo de la utilizaci\'on de diferentes tipos de modelos de bases de datos para representar un escenario de inter\'es, haciendo un recorrido desde la creaci\'on de las estructuras de datos apropiadas hasta la elaboraci\'on de consultas sobre los datos almacenados respectivamente.
+
+\printbibliography
+
+\end{document}

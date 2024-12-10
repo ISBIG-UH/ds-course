@@ -1,0 +1,44 @@
+\begin{frame}
+    \frametitle{Anteriormente... en Bases de Datos...}
+    \framesubtitle{Dependencia Funcional}
+    
+    Dada una relaci\'on $R$ y los atributos $X$, $Y$ de $R$, se dice que $Y$ depende funcionalmente de $X$ si
+    y s\'olo si el valor de $X$ en cada tupla de $R$ determina el valor
+    de $Y$ en dicha tupla, o sea, si para todo par de tuplas $t_1, t_2$ se cumple que 
+    
+            $$
+            t_1[X] = t_2[X] \implies t_1[Y] = t_2[Y] 
+            $$
+
+    Se representa como $R.X \to R.Y$ o simplemente
+
+    \begin{Huge}
+        
+        $$
+            X \to Y
+        $$
+    \end{Huge}
+
+    \begin{block}{Notaci\'on}
+        \begin{itemize}
+            \item Atributo simple: $A,B,C,D,E$
+            \item Atributo compuesto (conjunto de atributos simples): $W,X,Y,Z$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Anteriormente... en Bases de Datos...}
+    \framesubtitle{Mejorando la definici\'on de llave candidata}
+
+    Sea $K$ un conjunto de atributos $\{A_1, A_2, ..., A_n\}$ de una esquema
+    relacional $R(U,F)$ es llave candidata candidata del esquema
+    si cumple las siguientes propiedades:
+    \begin{enumerate}
+        \item \textbf{Unicidad}: $K^+_F = U$
+        \item \textbf{Minimalidad}: Ning\'un subconjunto propio de $K$ tiene la propiedad de unicidad.
+    \end{enumerate}
+
+    
+
+\end{frame}

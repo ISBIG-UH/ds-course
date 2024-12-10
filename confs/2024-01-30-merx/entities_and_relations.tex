@@ -1,0 +1,63 @@
+  
+
+
+
+\begin{frame}{Modelando conjuntos}
+    \begin{block}{}
+        \textcolor{orange}{Conjunto de entidades}: Conjunto de objetos que se puedan identificar
+        en el escenario que se desea representar y que tienen cierto
+        significado para el usuario.
+
+        \vspace{3mm}
+        Conjunto: JUGADOR = \{Juan, Marcos, Mar\'ia,...\}
+        \vspace{3mm}
+
+        Representaci\'on gr\'afica:
+
+        \vspace{3mm}
+        \centering
+        \begin{tikzpicture}
+            \node[entity,minimum width=2.3cm, minimum height=1.2cm] (jugador) at (3.2,0) {JUGADOR};
+        \end{tikzpicture}
+    \end{block}
+
+    \note{@NOTE esta representaci\'on gr\'afica se trata as\'i por convenio}
+\end{frame}
+
+\begin{frame}{Modelando interrelaciones}
+    \begin{block}{}
+        \textcolor{blue}{Conjuntos de interrelaciones}: Un conjunto
+        de concatenaciones de instancias tomadas de los conjuntos
+        de entidades que se relacionan.
+
+        \vspace{3mm}
+
+        Conjunto: PERTENECER = \{(Juan, TheWarriors), (Pedro, bravehearts), ...\}
+
+        \vspace{3mm}
+
+        Representaci\'on gr\'afica:
+
+        \vspace{3mm}
+
+        \centering
+        \begin{tikzpicture}
+            \node[entity,minimum width=2.3cm, minimum height=1.2cm] (jugador) at (3.4,0) {JUGADOR};
+            \node[entity,minimum width=2.3cm, minimum height=1.2cm] (clan) at (13,0) {CLAN};
+            \node[relationship, aspect=2] at (8.2,0) {PERTENECER} edge(jugador) edge(clan);
+        \end{tikzpicture}
+        
+        \vspace {3mm}
+
+        \onslide<2>{
+        \Large \textcolor{red}{¿Qu\'e instancias pertenecen a este conjunto?}
+        }
+
+    \end{block}
+
+    \note<1>{@NOTE rombo para $n \leq 4$. Pent\'agono pa $n = 5$, etc}
+\end{frame}
+
+
+
+

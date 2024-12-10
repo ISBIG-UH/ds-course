@@ -1,0 +1,87 @@
+\begin{frame}{Estructurando interrelaciones}
+
+    Una {\color<2>{orange}carta}, cuando un {\color<2>{orange}jugador} {\color<2>{blue}la agrega a su colecci\'on}, tiene un {\color<2>{attr}nivel} inicial, y este
+    puede ir aumentando con el objetivo de mejorar sus atributos y tener un mejor desempeño en
+    el campo de batalla.
+\end{frame}
+
+\begin{frame}{¿Puede una interrelaci\'on tener atributos?}
+    \begin{block}{Agregaci\'on}
+        Es un conjunto de entidades que se deriva de una interrelación entre
+        otros conjuntos de entidades.
+    \end{block}
+
+    \vspace{5mm}
+
+    \centering
+    \begin{tikzpicture}
+        \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+        \node[rectangle,draw,minimum width=12cm, minimum height=2.8cm] at (4.5,-0.4) {};
+        \node[entity] (jugador) at (0,0) {JUGADOR};
+        \node[entity] (carta) at (9,0) {CARTA};
+        \node[relationship, aspect=2] (coleccionar) at (4.5,0) {COLECCIONAR} edge(jugador) edge(carta);
+        \node at (7.5,0.2) {$1,\ast$};
+        \node at (1.5,0.2) {$0,\ast$};
+        \node at (8,-1.4) {CARTA COLECCIONADA};
+    \end{tikzpicture}
+    \vspace{5mm}
+
+    \centering
+    \onslide<2>{\textcolor{red}{\Large Una agregaci\'on contiene una y s\'olo una interrelaci\'on}}
+\end{frame}
+
+\begin{frame}{Atributo de una agregaci\'on}
+    \centering
+    \begin{tikzpicture}
+        \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+        \node[rectangle,draw,minimum width=12cm, minimum height=2.8cm] (coleccionada) at (4.5,-0.4) {};
+        \node[entity] (jugador) at (0,0) {JUGADOR};
+        \node[entity] (carta) at (9,0) {CARTA};
+        \node[relationship, aspect=2] (coleccionar) at (4.5,0) {COLECCIONAR} edge(jugador) edge(carta);
+        \node at (7.5,0.2) {$1,\ast$};
+        \node at (1.5,0.2) {$0,\ast$};
+        \node at (8,-1.4) {CARTA COLECCIONADA};
+        \node[attribute,dashed] (cartaid) at (4.5,2.3) { \underline{CARTA\_ID}};
+        \node[attribute,dashed] (ci) at (7,2.3) {\underline{CI}};
+        \node[attribute] (nivel) at (1.5,2.3) {NIVEL}; 
+        \draw (coleccionada.north) -- (cartaid.south);
+        \draw (7,1) -- (ci.south);
+        \draw (1.5,1) -- (nivel.south);
+
+    \end{tikzpicture}
+    \vspace{5mm}
+
+    \centering
+    \textcolor{red}{\Large La agregaci\'on hereda la llave de la interrelaci\'on que contiene}
+\end{frame}
+
+\begin{frame}{Interrelacionando interrelaciones}
+    \centering
+    \begin{tikzpicture}
+        \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+        \node[rectangle,draw,minimum width=12cm, minimum height=2.8cm] (coleccionada) at (4.5,-0.4) {};
+        \node[entity] (jugador) at (0,0) {JUGADOR};
+        \node[entity] (carta) at (9,0) {CARTA};
+        \node[relationship, aspect=2] (coleccionar) at (4.5,0) {COLECCIONAR} edge(jugador) edge(carta);
+        \node at (7.5,0.2) {$1,\ast$};
+        \node at (1.5,0.2) {$0,\ast$};
+        \node at (8,-1.4) {CARTA COLECCIONADA};
+        % \node[attribute] (nivel) at (4.5,2.3) { NIVEL};
+        % \draw[thick] (coleccionada.north) -- (nivel.south);
+
+        \node[entity] (clan) at (8,-3.2) {CLAN};
+        \node[relationship,aspect=2] (donar) at (4.5,-3.2) {DONAR} edge(clan);
+        \draw[thick] (coleccionada.south) -- (donar.north);
+        \node at (4.9, -2.1) {$0,\ast$};
+        \node at (6.5, -3) {$0,1$};
+
+        \node[attribute,dashed] (cartaid) at (4.5,2.3) { \underline{CARTA\_ID}};
+        \node[attribute,dashed] (ci) at (7,2.3) {\underline{CI}};
+        \node[attribute] (nivel) at (1.5,2.3) {NIVEL}; 
+        \draw (coleccionada.north) -- (cartaid.south);
+        \draw (7,1) -- (ci.south);
+        \draw (1.5,1) -- (nivel.south);
+    \end{tikzpicture}
+
+   
+\end{frame}

@@ -1,0 +1,182 @@
+\begin{frame}{A\~nadiendo estructura}
+    De cada {\color<2>{orange}jugador} se conoce su {\color<2>{attr}carnet de identidad}, 
+    {\color<2>{attr}nombre}, 
+    {\color<2>{attr}nivel}, la 
+    {\color<2>{attr}cantidad de trofeos que tiene actualmente} y el 
+    {\color<2>{attr}m\'aximo de trofeos que ha alcanzado}.
+\end{frame}
+
+
+% \begin{frame}{Atributo}
+
+%     \begin{columns}[T]
+
+%         \begin{column}{0.5\linewidth}
+%             \begin{tikzpicture}
+%                 \tikzstyle{every entity} = [minimum width=2cm, minimum height=0.8cm]
+%                 \node[entity] (jugador) at (0,-4) {\small JUGADOR};
+%                 \node[entity] (email) at (-2,2) {\small CI};
+%                 \node[entity] (apodo)at (2,2) {\small NOMBRE};
+        
+%                 \node[relationship, aspect=2] (identificar) at (-2,-1) {\small IDENTIFICAR} edge(jugador) edge(email);
+%                 \node[relationship] (tener) at (2,-1) {\small TENER} edge(jugador) edge(apodo);
+        
+%                 \node at (-2.4,1.3) {$1,{\color<2>{red}1}$};
+%                 \onslide<2>{\draw[->,thick,color=red] (-2.6,0.6) -- (-2.3,1.1);}
+%                 \node at (2.4,1.3) {${\color<5>{red}0},{\color<2>{red}1}$};
+%                 \onslide<2>{\draw[->,thick,color=red] (3,0.6) -- (2.7,1.1);}
+%                 \onslide<5>{\draw[->,thick,color=red] (2.6,0.5) -- (2.3,1.1);}
+
+        
+%                 \node at (-0.9,-3.4) {$1,{\color<3>{red}1}$};
+%                 \onslide<3>{\draw[->,thick,color=red] (-1.5,-2.8) -- (-0.8,-3.2);}
+%                 \node at (0.9,-3.4) {$1,{\color<4>{red}\ast}$};
+%                 \onslide<4>{\draw[->,thick,color=red] (1.7,-2.6) -- (1.2,-3.2);}
+        
+        
+%             \end{tikzpicture}
+%         \end{column}
+
+%         \begin{column}{0.48\linewidth}
+%             \vspace{20mm}
+%             \only<1>{
+%                 \begin{block}{Definici\'on formal}
+%                     Es una interrelaci\'on entre el conjunto
+%                     de entidades de inter\'es y un conjunto de entidades que representa el atributo.
+%                 \end{block}
+%             }
+%             \only<2-5>{
+%                 \begin{alertblock}{Consideraciones importantes}
+%                     \only<2> {Las cardinalidades m\'aximas en el extremo de los atributos siempre es 1}
+%                     \only<3> {Existen atributos cuyo valor es \'unico para cada instancia del conjunto de entidades de inter\'es}
+%                     \only<4> {Existen atributos que pueden tener el mismo valor para varias instancias del conjunto de entidades de inter\'es}
+%                     \only<5> {Una instancia puede no tener valor asociado para un atributo, en cuyo caso el atributo es nulo}     
+%                 \end{alertblock}
+
+%             }
+           
+%         \end{column}
+        
+%     \end{columns}
+    
+% \end{frame}
+
+\begin{frame}{Atributo}
+    \begin{columns}[T]
+        \begin{column}{0.5\linewidth}
+            \centering
+            \begin{tikzpicture}[node distance=6em]
+                \tikzstyle{every entity} = [minimum width=2cm, minimum height=0.8cm]
+
+                \node[entity] (jugador) {JUGADOR}
+                    [sibling distance=3cm]
+                    child {node[attribute] [above left of=jugador] {\tiny TROFEOS MAX}}
+                    child {node[attribute] [above right of=jugador]{\tiny TROFEOS}}
+                    child {node[attribute] [above of=jugador] {\tiny NIVEL}}
+                    child {node[attribute] [right of=jugador]{\tiny NOMBRE}}
+                    child {node[attribute] (ci) [left of=jugador] {\tiny \underline{CI}}};
+
+                \only<3>{
+
+                    \draw[<-,thick,color=red] (ci.south east) -- (-1.4,-1);
+                }
+            \end{tikzpicture}
+
+          
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \vspace{10mm}
+            \begin{block}{Definici\'on informal}
+                Es una propiedad de un tipo de entidades.
+            \end{block}
+        \end{column}
+    \end{columns}
+
+    \only<2>{
+        \vspace{5mm}
+        \small {JUGADOR = \{
+        (98012300205, Juan, 1, 1800, 2300), 
+        (97041223987, Pedro, 3, 1600, 1800),
+        (99072392022, Mar\'ia, 5, 1900, 2500),... 
+        \}}
+    }
+   
+    \only<3>{
+    \vspace{5mm}
+
+    \centering
+    ¿Por qu\'e el carnet de identidad est\'a subrayado?
+    }
+\end{frame}
+
+
+\begin{frame}{Atributo llave}
+    \begin{block}{Problema}
+        ¿C\'omo saber si en los conjuntos de entidades o conjuntos de interrelaciones existen
+        instancias repetidas?
+    \end{block}
+
+    \begin{block}<2->{Soluci\'on}
+        \begin{itemize}
+            \item<2-> Una llave es un valor que siempre puede utilizarse de forma
+            un\'ivoca para identificar una instancia dentro de un conjunto de instancias.
+            \item<3-> La llave de un conjunto de entidades es una concatenaci\'on de una selecci\'on de sus atributos.
+            \item<4-> La llave
+            de un conjunto de interrelaciones es una concatenaci\'on de las llaves de
+            los conjuntos entidades que intervienen en la relaci\'on.
+        \end{itemize}
+       
+    \end{block}
+\end{frame}
+
+\begin{frame}{Estructurando los conjuntos de entidades}
+    \begin{block}{}
+        Las {\color<2->{orange}cartas} tienen un {\color<2->{attr}identificador}, un {\color<2->{attr}nombre}, una {\color<2->{attr}descripci\'on}, 
+        un {\color<2->{attr}costo de elixir}  y una {\color<2->{attr}calidad} (común,
+        especial, épica o legendaria).
+    \end{block}
+    \vspace{5mm}
+
+    \onslide<3>{
+    \centering
+    \begin{tikzpicture}[node distance=6em]
+        \tikzstyle{every entity} = [minimum width=2cm, minimum height=0.8cm]
+
+        \node[entity] (carta) {CARTA}
+            [sibling distance=3cm]
+            child {node[attribute] [above left of=carta] {\tiny CALIDAD}}
+            child {node[attribute] [above right of=carta]{\tiny DESC.}}
+            child {node[attribute] [above of=carta] {\tiny NOMBRE}}
+            child {node[attribute] [right of=carta]{\tiny COSTO}}
+            child {node[attribute] [left of=carta] {\tiny \underline{CARTA\_ID}}};
+    \end{tikzpicture}
+    }
+\end{frame}
+
+\begin{frame}{Estructurando los conjuntos de entidades}
+    \begin{block}{}
+        De los {\color<2->{orange}clanes} se conoce su {\color<2->{attr}identificador}, {\color<2->{attr}nombre}, una {\color<2->{attr}regi\'on}, 
+        un {\color<2->{attr}tipo} (solo invitaci\'on o abierto)  y una {\color<2->{attr}cantidad m\'inima de trofeos} para entrar.
+    \end{block}
+    \vspace{5mm}
+
+    \onslide<3>{
+    \centering
+    \begin{tikzpicture}[node distance=6em]
+        \tikzstyle{every entity} = [minimum width=2cm, minimum height=0.8cm]
+
+        \node[entity] (clan) {CLAN}
+            [sibling distance=3cm]
+            child {node[attribute] [above left of=clan] {\tiny TROFEOS MIN.}}
+            child {node[attribute] [above right of=clan]{\tiny TIPO}}
+            child {node[attribute] [above of=clan] {\tiny NOMBRE}}
+            child {node[attribute] [right of=clan]{\tiny REGI\'ON}}
+            child {node[attribute] [left of=clan] {\tiny \underline{CLAN\_ID}}};
+    \end{tikzpicture}
+    }
+
+    \note<3>{@NOTE dudas?}
+\end{frame}
+
+% @TODO corta aki' la conf y ponle ejercicios. 
+

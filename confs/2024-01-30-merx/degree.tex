@@ -1,0 +1,161 @@
+
+\begin{frame}{Tipos de interrelaciones}
+    \begin{block}{Grado de una interrelaci\'on}
+        Cantidad de conjuntos de entidades entre los que se establece la interrelaci\'on
+    \end{block}
+
+    \begin{block}{Tipos existentes}
+        \begin{itemize}
+            \item Unaria o recursiva
+            \item Binaria
+            \item Ternaria
+            \item $n$-aria con $n > 3$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+
+\begin{frame}{Interrelaci\'on unaria}
+    \begin{center}
+        \Large{\textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{ser amigo} \hspace{10mm} \textcolor{orange}{jugador}}
+    \end{center}
+    \vspace{5mm}
+
+    \centering
+    \begin{tikzpicture}
+        \node[entity, minimum width=2.3cm, minimum height=1.2cm] (jugador) at (0,0) {JUGADOR};
+        \node[relationship, aspect=2] (seramigo) at (0,-2.5) {SER\_AMIGO};
+        \draw (seramigo.east) -- (2,-2.5) -- (2,0) -- (jugador.east);
+        \draw (seramigo.west) -- (-2,-2.5) -- (-2,0) -- (jugador.west);
+        \node at (-1.5,0.2) {$0 , \ast$};
+        \node at (1.5,0.2) {$0,\ast$};
+
+    \end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}{Interrelaci\'on binaria}
+    \begin{center}
+        \Large{
+            \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{coleccionar} \hspace{10mm} \textcolor{orange}{carta}
+        }
+    \end{center}
+    \vspace{3mm}
+
+    \centering
+    \begin{tikzpicture}
+        \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+        \node[entity] (jugador) at (0,0) {JUGADOR};
+        \node[entity] (carta) at (9,0) {CARTA};
+        \node[relationship, aspect=2] (coleccionar) at (4.5,0) {COLECCIONAR} edge(jugador) edge(carta);
+        \node at (7.5,0.2) {$1,\ast$};
+        \node at (1.5,0.2) {$0,\ast$};
+    \end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Interrelaci\'on ternaria}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \vspace{5mm}
+        \begin{center}
+            \Large{
+                \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{donar} \hspace{10mm} \textcolor{orange}{carta} \hspace{10mm} \textcolor{orange}{clan}
+            }
+        \end{center}
+        \vspace{3mm}
+    
+        \centering
+        \begin{tikzpicture}
+            \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+            \node[entity] (jugador) at (0,0) {JUGADOR};
+            \node[entity] (carta) at (9,0) {CARTA};
+            \node[entity] (clan) at (4.5,-3) {CLAN};
+            \node[relationship, aspect=2] (donar) at (4.5,0) {DONAR} edge(jugador) edge(carta) edge(clan);
+            \onslide<3->{\node at (7.5,0.2) {$0,\ast$};}
+            \onslide<5->{\node at (1.5,0.2) {$0,\ast$};}
+            \onslide<7->{\node at (4.9,-2.2) {$0,1$};}
+        \end{tikzpicture}
+    
+        \only<2>{
+            \begin{block}{Cardinalidad en el extremo CARTA}
+                ¿Un jugador puede donar a un clan cu\'antas cartas?
+            \end{block}
+        }
+    
+        \only<4>{
+            \begin{block}{Cardinalidad en el extremo JUGADOR}
+                ¿Una carta es donada a un clan por cu\'antos jugadores?
+            \end{block}
+        }
+        \only<6>{
+            \begin{block}{Cardinalidad en el extremo CLAN}
+                ¿Un jugador puede donar una carta a cu\'antos clanes?
+            \end{block}
+        }
+    \end{overlayarea}
+\end{frame}
+
+\begin{frame}{Interrelaci\'on unaria \only<2->{¿Seguros?}}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \vspace{6mm}
+        \begin{center}
+            \Large{
+                \textcolor{orange}{jugador} \hspace{10mm} \textcolor{blue}{enfrentar} \hspace{10mm} \textcolor{orange}{jugador}
+            }
+        \end{center}
+    
+        \vspace{5mm}
+    
+        \centering
+        \begin{tikzpicture}
+            \node[entity, minimum width=2.3cm, minimum height=1.2cm] (jugador) at (0,0) {JUGADOR};
+            \node[relationship, aspect=2] (enfrentar) at (0,-2.5) {ENFRENTAR};
+            \draw (enfrentar.east) -- (2,-2.5) -- (2,0) -- (jugador.east);
+            \draw (enfrentar.west) -- (-2,-2.5) -- (-2,0) -- (jugador.west);
+            \node at (-1.5,0.2) {$0 , \ast$};
+            \node at (1.5,0.2) {$0,\ast$};
+    
+            
+            \only<3>{
+                \node[align=left] at (6,-1) {
+                    \{{\color<3>{red}(Pedro, Juan)}, {\color<3>{red}(Pedro, Juan)}, ... \}
+                };
+            }
+        \end{tikzpicture}
+    
+    
+        \vspace{3mm}
+    
+        \only<2>{¿Qu\'e ocurre si dos jugadores se enfrentan m\'as de una vez?}
+        \only<3>{\textcolor{red}{Se crear\'ian instancias duplicadas en el conjunto de interrelaciones. Imposible}}
+    \end{overlayarea}
+\end{frame}
+
+\begin{frame}{Interrelaciones en el tiempo}
+    
+    \centering
+    \begin{tikzpicture}
+        \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+        \node[entity] (jugador) at (0,0) {JUGADOR};
+        \node[entity] (fecha) at (9,0) {FECHA};
+        \node[relationship, aspect=2] (enfrentar)at (4.5,0) {ENFRENTAR} edge(fecha);
+        \draw (jugador.south) -- (0,-1.2) -- (4.5,-1.2) -- (enfrentar.south); 
+        \draw (jugador.north) -- (0,1.2) -- (4.5,1.2) -- (enfrentar.north); 
+
+        \node at (-0.4,0.9) {$0,1$};
+        \node at (-0.4,-0.9) {$0,1$};
+        \node at (7.5,0.2) {$0,\ast$};
+    \end{tikzpicture}
+
+    \vspace{5mm}
+
+    \centering
+        \{
+            (Pedro, Juan, 24/02/23-14:55),
+            (Pedro, Juan, 24/02/23-16:00),
+            ...
+        \}
+
+
+\end{frame}
+

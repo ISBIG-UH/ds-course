@@ -1,0 +1,148 @@
+\begin{frame}{Bases de datos}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de registros integrados."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+            \end{block}
+      \end{onlyenv}
+    \end{overlayarea}
+   
+
+    
+\end{frame}
+
+\begin{frame}{Bases de datos}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de \textcolor{red}{registros} integrados."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                
+                \textcolor{red}{Registro}: datos espec\'ificos sobre una entidad u objeto de inter\'es
+            \end{block}
+      \end{onlyenv}
+      \vspace{8mm}
+      \centering
+      \begin{tabular}{|c|c|c|c|c|}
+          \hline
+          98082200205 & Jos\'e & P\'erez & 22/08/98\\
+          \hline
+      \end{tabular}
+    \end{overlayarea}
+   
+
+
+    
+\end{frame}
+
+\begin{frame}{Bases de datos}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+            \begin{quote}
+                ``... una base de datos es una colecci\'on \textcolor{red}{auto-descriptiva} de registros integrados."
+                \hspace{1em plus 1fill}---Allen Taylor
+            \end{quote}
+    
+            \textcolor{red}{Auto-descriptiva}: se almacenan metadatos (la descripci\'on de su estructura) dentro
+            del diccionario de datos de la propia base de datos.
+        \end{block}
+      \end{onlyenv}
+      
+          \vspace{5mm}
+          \large \textbf{Persona}
+          \vspace{2mm}
+          \centering{
+          
+      
+          \begin{tabular}{|c|c|c|c|}
+              \hline
+              CI : \textcolor{blue}{\texttt{string}} & Nombre : \textcolor{blue}{\texttt{string}} & Apellido : \textcolor{blue}{\texttt{string}} & F. Nacimiento : \textcolor{blue}{\texttt{date}} \\ 
+              \hline
+              98082200205 & Jos\'e & P\'erez & 22/08/98 \\
+              \hline
+          \end{tabular}
+          }
+    \end{overlayarea}
+    
+
+
+    % \large \textbf{Cuenta}
+    % \vspace{2mm}
+    % \centering{
+    
+
+    % \begin{tabular}{|c|c|}
+    %     \hline
+    %     No. Cuenta : \textcolor{blue}{\texttt{string}} & Balance : \textcolor{blue}{\texttt{decimal}}\\
+    %     \hline
+    %     8976 & 270.98\\
+    %     \hline
+    % \end{tabular}
+    % }
+   
+
+    
+\end{frame}
+
+
+
+\begin{frame}{Bases de datos}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de registros \textcolor{red}{integrados}."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                \textcolor{red}{Integrados}: no solo contiene los datos sino tambi\'en las interrelaciones
+                 que se establecen entre estos.
+            \end{block}
+      \end{onlyenv}
+
+      \vspace{5mm}
+    \large \textbf{Persona}
+    \vspace{2mm}
+    \centering{
+    
+
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        CI : \textcolor{blue}{\texttt{string}} & Nombre : \textcolor{blue}{\texttt{string}} & Apellido : \textcolor{blue}{\texttt{string}} & F. Nacimiento : \textcolor{blue}{\texttt{date}} \\ 
+        \hline
+        \textcolor{red}{98082200205} & Jos\'e & P\'erez & 22/08/98 \\
+        \hline
+    \end{tabular}
+    }
+
+    \vspace{5mm}
+
+
+    \large \textbf{Cuenta}
+
+    \vspace{2mm}
+    \centering{
+    \begin{tabular}{|c|c|c|}
+        \hline
+        No. Cuenta : \textcolor{blue}{\texttt{string}} & Balance : \textcolor{blue}{\texttt{decimal}} & CI Due\~no : \textcolor{blue}{\texttt{string}} \\
+        \hline
+        8976 & 270.98 & \textcolor{red}{98082200205} \\
+        \hline
+    \end{tabular}
+    }
+    \end{overlayarea}
+    
+
+    
+\end{frame}
+
+
+
+

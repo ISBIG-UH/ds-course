@@ -1,0 +1,46 @@
+\begin{frame}{Estructura de la asignatura}
+    % \begin{columns}[T]
+    %     \begin{column}{0.24\linewidth}
+    %         \begin{tikzpicture}
+    %             \node[rectangle, fill=violet, minimum width=\linewidth] at (0,0) {};
+    %         \end{tikzpicture}
+    %         \centering
+    %         An\'alisis de Requerimientos
+    %     \end{column}
+    %     \begin{column}{0.24\linewidth}
+    %         \begin{tikzpicture}
+    %             \node[rectangle, fill=cyan, minimum width=\linewidth] at (0,0) {};
+    %         \end{tikzpicture}
+    %         \centering
+    %         Dise\~no Conceptual
+    %     \end{column}
+    %     \begin{column}{0.24\linewidth}
+    %         \begin{tikzpicture}
+    %             \node[rectangle, fill=green, minimum width=\linewidth] at (0,0) {};
+    %         \end{tikzpicture}
+    %         \centering
+    %         Dise\~no\\ L\'ogico
+    %     \end{column}
+    %     \begin{column}{0.24\linewidth}
+    %         \begin{tikzpicture}
+    %             \node[rectangle, fill=blue, minimum width=\linewidth] at (0,0) {};
+    %         \end{tikzpicture}
+    %         \centering
+    %         Dise\~no\\ F\'isico
+    %     \end{column}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \vspace{5mm}
+        \centering
+        \begin{tikzpicture}
+            \node<1->[rectangle, fill=blue1, minimum width=5cm, minimum height=8mm, text=white] at (0,0) {An\'alisis de Requerimientos};
+            \node<2->[single arrow, fill=black, inner sep=6pt, rotate=270] at (0,-0.8){};
+            \node<2->[rectangle, fill=blue2, minimum width=5cm, minimum height=8mm, text=white] at (0,-1.8) {Dise\~no Conceptual};
+            \node<3->[single arrow, fill=black, inner sep=6pt, rotate=270] at (0,-2.6){};
+            \node<3->[rectangle, fill=blue3, minimum width=5cm, minimum height=8mm, text=white] at (0,-3.6) {Dise\~no L\'ogico};
+            \node<4->[single arrow, fill=black, inner sep=6pt, rotate=270] at (0,-4.4){};
+            \node<4->[rectangle, fill=blue4, minimum width=5cm, minimum height=8mm, text=white] at (0,-5.4) {Dise\~no F\'isico};
+        \end{tikzpicture}
+            
+    \end{overlayarea}
+        
+\end{frame}

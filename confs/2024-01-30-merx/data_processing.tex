@@ -1,0 +1,23 @@
+
+\definecolor{blue1}{RGB}{126,126,206}
+\definecolor{blue2}{RGB}{87,87,192}
+\definecolor{blue3}{RGB}{51,51,178}
+\definecolor{blue4}{RGB}{27,26,107}
+
+\begin{frame}{Procesamiento de datos}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \vspace{5mm}
+        \centering
+        \begin{tikzpicture}
+            \node[rectangle, fill=blue1, minimum width=5cm, minimum height=8mm, text=white] at (0,0) {An\'alisis de Requerimientos};
+            \node[single arrow, fill=black, inner sep=6pt, rotate=270] at (0,-0.8){};
+            \node[rectangle, fill=blue2, minimum width=5cm, minimum height=8mm, text=white] at (0,-1.8) {Modelos Conceptuales};
+            \node[single arrow, fill=black, inner sep=6pt, rotate=270] at (0,-2.6){};
+            \node[rectangle, fill=blue3, minimum width=5cm, minimum height=8mm, text=white] at (0,-3.6) {Bases de Datos};
+            \node[single arrow, fill=black, inner sep=6pt, rotate=270] at (0,-4.4){};
+            \node[rectangle, fill=blue4, minimum width=5cm, minimum height=8mm, text=white] at (0,-5.4) {Consultas};
+        \end{tikzpicture}
+    \end{overlayarea}
+        
+    \note{@NOTE se levantan los requerimientos y se analizan. En esta semana vamos a ver los 2 1ros}
+\end{frame}

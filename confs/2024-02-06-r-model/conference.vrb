@@ -1,0 +1,38 @@
+\frametitle{¿C\'omo usar relaciones para almacenar registros?}
+\begin{block}{Relaci\'on (Bases de datos)}
+        Una relaci\'on $R$ definida sobre un conjunto de dominios
+        $D_1, D_2, ..., D_n$, no necesariamente distintos, se compone de:
+        \begin{itemize}
+            \item La \textbf{cabecera}, formada por un conjunto finito de pares atributo-dominio
+            $$
+                \{(A_1:D_1), (A_2:D_2), ..., (A_n:D_n)\}
+            $$
+            tal que el atributo $A_j$ corresponde al y s\'olo al dominio $D_j$ para todo\\ $j=1,2,...,n$.
+        \end{itemize}
+        \vspace{3mm}
+
+        \onslide<2>{
+        \begin{center}
+            \small{Cabecera para la relaci\'on Jugador}\\[2mm]
+
+            $
+            \{ (\text{\#J} : \mathbb{N}), (\text{Nombre} : \mathbb{S}),
+            (\text{Nivel} : \mathbb{N}),  (\text{Trofeos} : \mathbb{N}),  (\text{TrofeosMax} : \mathbb{N}) \}
+            $
+            \\[1mm]
+            $
+                \mathbb{S} = \{\text{Conjunto de todas las cadenas de longitud} \leq 20\}
+            $
+
+
+        \end{center}
+        }
+
+
+
+
+
+\end{block}
+
+
+    \note<2>{@NOTE recalcar que 2 atributos son iguales si tienen dominios =s tambie'n}

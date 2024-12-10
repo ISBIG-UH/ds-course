@@ -1,0 +1,131 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{geometry}
+\usepackage[absolute,overlay]{textpos}
+
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{overlay-beamer-styles}
+\setbeamertemplate{navigation symbols}{}
+
+\setbeameroption{show notes on second screen=right}
+
+\definecolor{blue1}{RGB}{126,126,206}
+\definecolor{blue2}{RGB}{87,87,192}
+\definecolor{blue3}{RGB}{51,51,178}
+\definecolor{blue4}{RGB}{27,26,107}
+
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{background}{rgb}{0.95, 0.95, 0.95}
+\definecolor{numb}{rgb}{0.5,0.5,0.5} % grey color for numbers
+\definecolor{punct}{rgb}{0,0,0}       % black color for punctuation
+\definecolor{delim}{rgb}{0.08,0.52,0.8} % blue color for delimiters
+
+
+\usepackage[
+    backend=biber,
+    sorting=ynt]{biblatex}
+\addbibresource{biblio.bib}
+
+\usepackage{listings}
+\lstdefinelanguage{text}{
+    basicstyle=\normalfont\ttfamily,
+    moredelim=[is][\textcolor{blue}]{\#}{\#}, % Delimiter for bold text
+}
+\lstdefinelanguage{json}{
+    moredelim=[is][\textcolor{blue}]{\#}{\#}, % Delimiter for bold text
+    basicstyle=\small\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+}
+
+\lstset{
+    language=text,
+    showstringspaces=false,
+    breaklines=true
+}
+% \lstset{frame=tb,
+%   language=json,
+%   aboveskip=3mm,
+%   belowskip=3mm,
+%   showstringspaces=false,
+%   columns=flexible,
+%   basicstyle={\small\ttfamily},
+%   numbers=none,
+%   numberstyle=\tiny\color{gray},
+%   breaklines=true,
+%   breakatwhitespace=true,
+%   tabsize=3
+% }
+
+\usepackage{svg}
+
+% \usetheme{Warsaw}
+\usecolortheme{whale}
+\title{Bases de Datos}
+\subtitle{Introducci\'on a las Bases de Datos Relacionales y No Relacionales}
+
+\author[Garc\'ia L., Cardentey V. M.]{ Lic. Andy Ledesma Garc\'ia \\ 
+Lic. V\'ictor M. Cardentey Fundora \\ 
+Dra. Lucina Garc\'ia Hern\'andez}
+
+\institute[MATCOM-UH]{
+    Departamento de Computaci\'on\\
+    Facultad de Matem\'atica y Computaci\'on\\
+    Universidad de La Habana\\[3mm]
+    Licenciatura en Ciencia de Datos
+}
+
+\date[]{23 de enero de 2024}
+
+\begin{document}
+\maketitle
+\include{funfact.tex}
+\include{01-motivation.tex}
+\include{files.tex}
+\include{database.tex}
+\include{approach.tex}
+\include{sgbd.tex}
+\include{dbs.tex}
+\include{evolution.tex}
+\include{khierarchy.tex}
+\include{subject.tex}
+\include{contents.tex}
+\include{eval.tex}
+\include{next.tex}
+\maketitle
+\end{document}
+
+% @TODO hacer q todos los ti'tulos sean Camel Case o no (elige uno)
+% @TODO garantizar consistencia tambie'n en el punto despue's de cada item en un itemize

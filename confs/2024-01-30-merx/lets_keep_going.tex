@@ -1,0 +1,57 @@
+\begin{frame}{¿Hasta d\'onde hemos llegado?}
+    \centering
+    \resizebox{!}{7.5cm}{
+    \begin{tikzpicture}
+        \tikzstyle{every entity} = [minimum width=2.3cm, minimum height=1.2cm]
+        \tikzstyle{every relationship} = [minimum width=2.5cm, minimum height=1.3cm]
+
+        \node[entity] (jugador) at (0,0) {JUGADOR};
+        \node[entity] (fecha) at (0,4.6) {FECHA};
+        \node[entity] (clan) at (0,-4.6) {CLAN};
+        \node[entity] (carta) at (8.6,0) {CARTA};
+
+        \node[relationship,aspect=2] (pertenecer) at (0,-2.3) {\small PERTENECER}
+            edge(jugador) edge(clan);
+        \node at (0.4,-0.9) {$1,\ast$};
+        \node at (0.4,-3.8) {$0,1$};
+
+
+        \node[relationship,aspect=2] (coleccionar) at (4.3,0) {\small COLECCIONAR}
+            edge(carta) edge(jugador);
+        \node at (1.6,0.2) {$0,\ast$};
+        \node at (7.0,0.2) {$1,\ast$};
+
+        \node[relationship,aspect=2] (enfrentar) at (0,2.3) {\small ENFRENTAR}
+            edge(fecha);
+        \draw (enfrentar.west) -- (jugador.north);
+        \draw (enfrentar.east) -- (jugador.north);
+        \node at (0.7,0.8) {$0,1$};
+        \node at (-0.7,0.8) {$0,1$};
+        \node at (0.4,3.7) {$0,\ast$};
+
+        \node[relationship,aspect=2] (seramigo) at (-4.3, 0) {\small SER\_AMIGO};
+        \draw (seramigo.north) -- (jugador.west);
+        \draw (seramigo.south) -- (jugador.west);
+        \node at (-1.6,-0.4) {$0,\ast$};
+        \node at (-1.6,0.4) {$0,\ast$};
+      
+
+        \node[relationship,aspect=2] (serlider) at (-3,-2.3) {\small SER\_L\'IDER}
+            edge(jugador) edge(clan);
+        \node at (-1.6,-3.8) {$0,1$};
+        \node at (-1.6,-0.9) {$1,1$};
+    
+
+        \node[relationship,aspect=2] (donar) at (4.3,-2.3) {\small DONAR}
+            edge(jugador) edge(clan) edge(carta);
+        \node at (1.6,-4.2) {$0,1$};
+        \node at (1.6,-0.5) {$0,\ast$};
+        \node at (7,-0.5) {$0,\ast$};
+
+
+
+
+        
+    \end{tikzpicture}
+    }
+\end{frame}

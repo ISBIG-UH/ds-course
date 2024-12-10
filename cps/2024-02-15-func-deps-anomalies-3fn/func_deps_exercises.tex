@@ -1,0 +1,78 @@
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle<2->{1. Identificando llaves candidatas}
+    
+    \only<2->{
+    Considere la relación $R(U, F)$, tal que 
+    $$U = \{A,B,C,D,E\} \quad \textrm{ y } \quad F = \{D \rightarrow C, \ CE \rightarrow A, \ D \rightarrow A, \ AE \rightarrow D \}.$$
+
+    ¿Cuáles de los
+    siguientes conjuntos de atributos constituyen llaves candidatas?
+
+    \begin{center}
+        CE, BDE, BD, CDE, AD, BCE y A.
+    \end{center}
+
+    }
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle{2. Detractores de $E$}
+
+    Considere la relación $R(U, F)$, con $U=\{A,B,C,D,E\}$, que satisface el conjunto de
+    dependencias funcionales $F = \{ AB \rightarrow C, \ C \rightarrow D, \ BD \rightarrow E \}$. ¿Cuáles de los siguientes
+    conjuntos de atributos no determinan funcionalmente a E?
+
+    \begin{center}
+        ABC, AB, BC, AD, ACD, BE y C.
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle{3. Con $R$ hay que ser legal}
+
+    Suponga que el conjunto universo $U$ de una relación $R$ es $U = \{A,B,C\}$. Actualmente, $R$ s\'olo contiene a la tupla
+    $(0,0,0)$, y dicha relación siempre satisface las dependencias funcionales $A \rightarrow B$ y $B \rightarrow C$. ¿Cuáles de las siguientes tuplas pudieran ser insertadas en $R$?
+    \begin{center}
+        (0,1,0), (0,0,2), (1,1,0), (1,0,2), (0,1,2), (1,2,0) y (1,0,1).
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle{4. Aprovechando los vac\'ios legales}
+
+    Se conoce de la existencia de una relación $R(U, F)$, donde 
+
+    $$U = \{A,B,C,D,E\} \quad \textrm{ y } \quad F = \{ A \rightarrow B, \ B \rightarrow C, \ DE \rightarrow A \},$$
+    pero hemos perdido los valores de ciertas tuplas. ?`Podr\'ias ayudarnos a completarlas? Ten en cuenta que los atributos pueden tomar valores entre 0 y 3.
+
+    \begin{center}
+        (0,0,0,1,1), \ (2,1,0,0,3), \ (1,2,0,1,0), \ (1,2, NULL,0,1), \ (3,3,2,0, NULL),\\ (2, NULL, NULL,3,0) 
+    \end{center}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ejercicios}
+    \framesubtitle{5. Aprovechando los vac\'ios legales (la secuela)}
+
+    ¿De verdad entendieron lo que son las dependencias funcionales? Se conoce de la existencia de una relación R(A,B,C,D,E) que satisface las dependencias funcionales:
+
+    $\{ CE \rightarrow A, AE \rightarrow D, A \rightarrow E, D \rightarrow CA \}$
+
+    Pero somos muy despistados y nuevamente hemos perdido valores de ciertas tuplas. ?`Podr\'ias sugerirnos cómo completarlas? Los atributos pueden tomar valores entre 1 y 20.
+
+    %$(2, 1, \gamma, 1, 3), (7, 15, 6, \Delta, 3), (2, 5, \omega, \Omega, \delta), (\alpha, 4, 9, 1, 3)$
+
+    \begin{center}
+        (2,1, NULL,1,3), (7,15,6, NULL,3), (2,5, NULL, NULL, NULL),\\
+        (NULL,4,9,1,3)  
+    \end{center}
+
+\end{frame}

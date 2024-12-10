@@ -1,0 +1,152 @@
+\begin{frame}
+    \frametitle{Bases de datos}
+    \framesubtitle{Llave-valor}
+
+\begin{center}
+    \Huge \textbf{Llave-valor}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Bases de datos}
+    \framesubtitle{Llave-valor}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de \textcolor{red}{registros} integrados."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                
+                \textcolor{red}{Registro}: datos espec\'ificos sobre una entidad u objeto de inter\'es
+            \end{block}
+      \end{onlyenv}
+      \vspace{2mm}
+      \begin{center}
+        
+\begin{minipage}{0.6\textwidth}
+    \begin{onlyenv}<1>
+\begin{lstlisting}[language=text]
+`persona_23082300205': `{  
+    "CI": 23082300205, 
+    "Nombre": "Edgar F.", 
+    "Apellido": "Codd", 
+    "F. Nacimiento": 23/08/1923 
+}'
+\end{lstlisting}
+    \end{onlyenv}
+
+    \begin{onlyenv}<2>
+\begin{lstlisting}[language=text]
+`#persona_23082300205#': `{  
+    "CI": 23082300205, 
+    "Nombre": "Edgar F.", 
+    "Apellido": "Codd", 
+    "F. Nacimiento": 23/08/1923 
+}'
+\end{lstlisting}
+    \end{onlyenv}
+
+\begin{onlyenv}<3>
+\begin{lstlisting}[language=text]
+`persona_23082300205': `#{  
+    "CI": 23082300205, 
+    "Nombre": "Edgar F.", 
+    "Apellido": "Codd", 
+    "F. Nacimiento": 23/08/1923 
+}#'
+\end{lstlisting}
+\end{onlyenv}
+
+\end{minipage}
+      \end{center}
+    \end{overlayarea}
+
+    \note<1>{@NOTE el objetivo de estas bds es garantizar el acceso eficiente al valor asociado a una llave. Vamos a ver m\'as adelante c\'omo esto se logra}
+    \note<2>{@NOTE la llave}
+    \note<3>{@NOTE el valor \textbf{no se interpreta, no se asume estructurado, se almacena tal cual}. Se espera un \textit{blob} o string}
+\end{frame}
+
+\begin{frame}[fragile]{Bases de datos}
+    \framesubtitle{Llave-valor}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+            \begin{quote}
+                ``... una base de datos es una colecci\'on \textcolor{red}{auto-descriptiva} de registros integrados."
+                \hspace{1em plus 1fill}---Allen Taylor
+            \end{quote}
+    
+            \textcolor{red}{Auto-descriptiva}: se almacenan metadatos (la descripci\'on de su estructura) dentro
+            del diccionario de datos de la propia base de datos.
+        \end{block}
+      \end{onlyenv}
+      
+          \vspace{5mm}
+\centering
+
+\begin{minipage}{0.6\textwidth}
+\begin{lstlisting}[language=text]
+`persona_23082300205': `{  
+    "#CI#": 23082300205, 
+    "#Nombre#": "Edgar F.", 
+    "#Apellido#": "Codd", 
+    "#F. Nacimiento#": 23/08/1923 
+}'
+\end{lstlisting}
+
+\end{minipage}
+    \end{overlayarea}
+
+                \note{@NOTE no hay esquema. Mayor libertad. La integridad debe ser garantizada a nivel de app}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Bases de datos}
+    \framesubtitle{Llave-valor}
+
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{onlyenv}
+            \begin{block}{}
+                \begin{quote}
+                    ``... una base de datos es una colecci\'on auto-descriptiva de registros \textcolor{red}{integrados}."
+                    \hspace{1em plus 1fill}---Allen Taylor
+                \end{quote}
+                \textcolor{red}{Integrados}: no solo contiene los datos sino tambi\'en las interrelaciones
+                 que se establecen entre estos.
+            \end{block}
+      \end{onlyenv}
+
+      \vspace{5mm}
+        \begin{columns}
+            \begin{column}[t]{0.5\textwidth}
+                \centering
+
+                \begin{lstlisting}[language=text]
+`persona_#23082300205#': `{  
+    "CI": 23082300205, 
+    "Nombre": "Edgar F.", 
+    "Apellido": "Codd", 
+    "F. Nacimiento": 23/08/1923 
+}'
+                \end{lstlisting} 
+            \end{column}
+
+            \begin{column}[t]{0.5\textwidth}
+                \centering
+
+                \begin{lstlisting}[language=text]
+`cuenta_8976': `{  
+    "No. Cuenta": 8976, 
+    "Balance": 270.98, 
+    "CI Duenyo": #23082300205#
+}'
+                \end{lstlisting} 
+            \end{column}
+        \end{columns}
+    \end{overlayarea}
+    
+    \note{@NOTE mantener la consistencia e integridad va a nivel de app. No es el objetivo principal de las BDs llave-valor}
+\end{frame}

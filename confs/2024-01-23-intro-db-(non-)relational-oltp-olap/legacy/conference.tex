@@ -1,0 +1,52 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{overlay-beamer-styles}
+\setbeamertemplate{navigation symbols}{}
+
+\definecolor{blue1}{RGB}{126,126,206}
+\definecolor{blue2}{RGB}{87,87,192}
+\definecolor{blue3}{RGB}{51,51,178}
+\definecolor{blue4}{RGB}{27,26,107}
+
+
+\usepackage[
+    backend=biber,
+    sorting=ynt]{biblatex}
+\addbibresource{biblio.bib}
+
+% \usetheme{Warsaw}
+\usecolortheme{whale}
+\title{Bases de Datos}
+\subtitle{Introducci\'on a las Bases de Datos}
+
+\author[Garc\'ia L., Cardentey V. M.]{ Lic. V\'ictor M. Cardentey Fundora \\ Dra. Lucina Garc\'ia Hern\'andez}
+
+\institute[MATCOM-UH]{
+    Departamento de Computaci\'on\\
+    Facultad de Matem\'atica y Computaci\'on\\
+    Universidad de La Habana
+}
+
+\date[]{20 de febrero de 2023}
+\begin{document}
+\maketitle
+\include{funfact.tex}
+\include{01-motivation.tex}
+\include{files.tex}
+\include{database.tex}
+\include{approach.tex}
+\include{sgbd.tex}
+\include{dbs.tex}
+\include{evolution.tex}
+\include{khierarchy.tex}
+\include{subject.tex}
+\include{contents.tex}
+\include{eval.tex}
+\include{resources.tex}
+\maketitle
+\end{document}
