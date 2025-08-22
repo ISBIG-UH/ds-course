@@ -1,3 +1,79 @@
+\begin{frame}{Modelo relacional}
+    \begin{overlayarea}{\linewidth}{\textheight}
+        \begin{block}{Estructura de datos}
+           Relaci\'on
+        \end{block}
+
+        \begin{block}{Restricciones de integridad}
+            \begin{itemize}
+                \item Metarreglas
+                \item Dependencias funcionales
+                \item Restricciones del negocio
+            \end{itemize}
+            
+        \end{block}
+
+        \begin{block}{Operaciones}
+            \begin{itemize}
+                \item Insertar
+                \item Actualizar
+                \item Eliminar
+                \item \'Algebra relacional
+            \end{itemize}
+        \end{block}
+    \end{overlayarea}
+
+\end{frame}
+
+\begin{frame}{Consideraciones sobre la normalización}
+    \centering
+    \large{\textcolor{red}{ La correctitud del modelo relacional depende de su forma normal ($\geq$ 3FN)}}
+
+    \begin{table}[h!]
+        \centering
+        \begin{tabular}{|p{0.45\textwidth}|p{0.45\textwidth}|}
+        \hline
+        \multicolumn{1}{|c|}{\cellcolor{green1} \textbf{Ventajas}} &  \multicolumn{1}{|c|}{ \cellcolor{red1} \textbf{Desventajas}} \\ \hline
+        Garantiza el cumplimiento de las dependencias funcionales & Aumenta la complejidad del diseño lógico, especialmente para los usuarios finales \\ \hline
+        Disminuye la redundancia y por tanto el espacio consumido & Se requiere de JOINs para recuperar la información original \\ \hline
+        Aumenta la eficiencia de las operaciones de escritura & Al separar los datos se requieren más operaciones de JOIN para realizar las consultas\\ \hline
+        \end{tabular}
+    \end{table}
+
+\end{frame}
+
+
+\begin{frame}{Sakila (relacional)}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/sakila-db.png}
+
+\end{frame}
+
+
+\begin{frame}{Modelo dimensional}
+
+    Constituye una abstracción intuitiva que facilita la representación y el análisis de un evento o sujeto en términos de hechos y dimensiones.
+
+
+    \begin{itemize}
+        
+        \item Tabla de hechos: asociados con métricas que describen el comportamiento del evento: ¿cuánto?, ¿ocurrió?
+
+        \item Tabla de dimensión: permiten caracterizar los hechos y proporcionan el contexto de análisis : ¿qué?, ¿quién?, ¿cuándo?, ¿dónde? 
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{Sakila (dimensional)}
+    \centering
+    \includegraphics[width=0.8\textwidth]{img/sakila-dimensional.png}
+\end{frame}
+
+
+
+
+
 \begin{frame}
     \frametitle{Almacenamiento basado en columnas}
 
@@ -43,4 +119,21 @@
             \item An\'alisis en tiempo real
         \end{itemize}
     \end{block}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Implementación de un caso de uso}
+
+    \begin{block}{Código}
+        El código para simular y solucionar el escenario se encuentra en uno de los repositorios
+        de la disciplina \href{https://github.com/ISBIG-UH/no-sql-samples/}{https://github.com/ISBIG-UH/no-sql-samples/}
+
+        \begin{center}
+            
+            \includegraphics[width=40mm]{img/repo-qrcode.png}
+        \end{center}
+   
+    \end{block}
+
 \end{frame}
